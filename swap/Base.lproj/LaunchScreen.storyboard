@@ -37,11 +37,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lCU-bK-biF" firstAttribute="top" secondItem="9vI-NE-YfW" secondAttribute="bottom" constant="16" id="ILi-NJ-cZ6"/>
+                            <constraint firstItem="lCU-bK-biF" firstAttribute="top" secondItem="9vI-NE-YfW" secondAttribute="bottom" constant="16" id="7nL-nD-6BG"/>
                             <constraint firstItem="9vI-NE-YfW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="76.666666666666686" id="OJF-6g-PK2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9vI-NE-YfW" secondAttribute="trailing" constant="76.333333333333314" id="YWt-qC-02g"/>
-                            <constraint firstItem="9vI-NE-YfW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="ekF-i8-IxU"/>
-                            <constraint firstItem="lCU-bK-biF" firstAttribute="centerX" secondItem="9vI-NE-YfW" secondAttribute="centerX" id="gA6-T7-IUH"/>
+                            <constraint firstItem="lCU-bK-biF" firstAttribute="centerX" secondItem="9vI-NE-YfW" secondAttribute="centerX" id="Yee-yj-T1a"/>
+                            <constraint firstItem="9vI-NE-YfW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="gqg-f9-TgL"/>
                         </constraints>
                     </view>
                 </viewController>
