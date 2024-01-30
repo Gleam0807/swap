@@ -16,6 +16,7 @@
 		326F7FF52B64C93F00A09D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FF32B64C93F00A09D9A /* LaunchScreen.storyboard */; };
 		328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328653452B664C5000BDEB2D /* SuggestionViewController.swift */; };
 		32F30CD72B64E41400551652 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 32F30CD62B64E41400551652 /* fonts */; };
+		32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		326F7FF62B64C93F00A09D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		328653452B664C5000BDEB2D /* SuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
 		32F30CD62B64E41400551652 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = swap/fonts; sourceTree = "<group>"; };
+		32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				326F7FEA2B64C93E00A09D9A /* SceneDelegate.swift */,
 				326F7FEC2B64C93E00A09D9A /* ViewController.swift */,
 				3232D6DB2B67D745001A7D47 /* MainViewController.swift */,
+				32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */,
 				328653452B664C5000BDEB2D /* SuggestionViewController.swift */,
 				326F7FEE2B64C93E00A09D9A /* Main.storyboard */,
 				326F7FF12B64C93F00A09D9A /* Assets.xcassets */,
@@ -150,6 +153,7 @@
 			files = (
 				328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */,
 				326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */,
+				32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */,
 				326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */,
 				326F7FEB2B64C93E00A09D9A /* SceneDelegate.swift in Sources */,
 				3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */,

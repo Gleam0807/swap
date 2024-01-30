@@ -11,4 +11,12 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         
     }
+    
+    //MARK: Action
+    @IBAction func calendarAddButtonClicked(_ sender: UIButton) {
+        if let calendarAddVC = storyboard?.instantiateViewController(withIdentifier: "CalendarAddViewController") {
+            
+            present(calendarAddVC, animated: true)
+        }
+    }
 }
