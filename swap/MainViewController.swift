@@ -19,4 +19,11 @@ class MainViewController: UIViewController {
             present(calendarAddVC, animated: true)
         }
     }
+    @IBAction func settingButtonClicked(_ sender: UIButton) {
+        if let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingModalViewController") {
+            
+            present(settingVC, animated: true)
+        }
+    }
+    
 }
