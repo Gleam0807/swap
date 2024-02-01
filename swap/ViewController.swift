@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    //MARK: Outlet
+    @IBOutlet weak var nickNameField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,16 @@ class ViewController: UIViewController {
     
     // MARK: Action
     @IBAction func nextButtonClicked(_ sender: UIButton) {
+        guard let nickname = nickNameField.text, !nickname.isEmpty else {
+            nickNameField.placeholder = "닉네임을 입력해주세요."
+            return
+        }
+        
+        saveUserDefaults(key: "nickname", value: nickname)
+        print(fetchUserDefaults(key: "nickname") ?? "")
+    
         if let suggestionVC = storyboard?.instantiateViewController(withIdentifier: "SuggestionViewController") {
+            nickNameField.text = ""
             suggestionVC.modalPresentationStyle = .fullScreen
             present(suggestionVC, animated: true)
         }

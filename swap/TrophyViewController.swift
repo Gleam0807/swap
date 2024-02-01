@@ -1,13 +1,13 @@
 //
-//  MainViewController.swift
+//  TrophyViewController.swift
 //  swap
 //
-//  Created by SUNG on 1/29/24.
+//  Created by SUNG on 2/1/24.
 //
 
 import UIKit
 
-class MainViewController: UIViewController {
+class TrophyViewController: UIViewController {
     //MARK: Outlet
     @IBOutlet weak var tabBar: UITabBar!
     
@@ -25,29 +25,16 @@ class MainViewController: UIViewController {
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == tabBar.items?[0] {
-            
+            presentTabBar(withIdentifier: "MainViewController")
         } else if item == tabBar.items?[1] {
             presentTabBar(withIdentifier: "AttaintViewController")
         } else if item == tabBar.items?[2] {
-            presentTabBar(withIdentifier: "TrophyViewController")
-        }
-    }
-    
-    //MARK: Action
-    @IBAction func calendarAddButtonClicked(_ sender: UIButton) {
-        //CalendarAddViewController
-        if let calendarAddVC = storyboard?.instantiateViewController(withIdentifier: "CalendarAddViewController") {
-            present(calendarAddVC, animated: true)
-        }
-    }
-    @IBAction func settingButtonClicked(_ sender: UIButton) {
-        if let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingModalViewController") {
-            present(settingVC, animated: true)
+     
         }
     }
     
 }
 
-extension MainViewController: UITabBarDelegate {
+extension TrophyViewController: UITabBarDelegate {
     
 }
