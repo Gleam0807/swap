@@ -32,8 +32,8 @@ class ViewController: UIViewController {
             return
         }
         
-        saveUserDefaults(key: "nickname", value: nickname)
-        print(fetchUserDefaults(key: "nickname") ?? "")
+        //saveUserDefaults(key: "nickname", value: nickname)
+        //print(fetchUserDefaults(key: "nickname") ?? "")
     
         if let suggestionVC = storyboard?.instantiateViewController(withIdentifier: "SuggestionViewController") {
             nickNameField.text = ""

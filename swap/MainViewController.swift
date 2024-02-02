@@ -9,9 +9,12 @@ import UIKit
 
 class MainViewController: UIViewController {
     //MARK: Outlet
+    @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
     
     override func viewDidLoad() {
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
         tabBar.delegate = self
     }
     
@@ -35,7 +38,6 @@ class MainViewController: UIViewController {
     
     //MARK: Action
     @IBAction func calendarAddButtonClicked(_ sender: UIButton) {
-        //CalendarAddViewController
         if let calendarAddVC = storyboard?.instantiateViewController(withIdentifier: "CalendarAddViewController") {
             present(calendarAddVC, animated: true)
         }
@@ -45,9 +47,39 @@ class MainViewController: UIViewController {
             present(settingVC, animated: true)
         }
     }
+    @IBAction func recordEditButtonClicked(_ sender: UIButton) {
+        if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") {
+            present(recordVC, animated: true)
+        }
+    }
+    
+    
+}
+
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        
+        return cell
+    }
+    
+    
+}
+
+extension MainViewController: UITableViewDelegate {
     
 }
 
 extension MainViewController: UITabBarDelegate {
     
 }
+
+class MainTableViewCell: UITableViewCell {
+    
+}
+

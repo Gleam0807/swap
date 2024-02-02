@@ -19,6 +19,7 @@
 		326F7FF22B64C93F00A09D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FF12B64C93F00A09D9A /* Assets.xcassets */; };
 		326F7FF52B64C93F00A09D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FF32B64C93F00A09D9A /* LaunchScreen.storyboard */; };
 		328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328653452B664C5000BDEB2D /* SuggestionViewController.swift */; };
+		32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32989A532B6CC690000EA449 /* RecordViewController.swift */; };
 		32F30CD72B64E41400551652 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 32F30CD62B64E41400551652 /* fonts */; };
 		32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		326F7FF42B64C93F00A09D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		326F7FF62B64C93F00A09D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		328653452B664C5000BDEB2D /* SuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
+		32989A532B6CC690000EA449 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		32F30CD62B64E41400551652 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = swap/fonts; sourceTree = "<group>"; };
 		32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 				326F7FEC2B64C93E00A09D9A /* ViewController.swift */,
 				3232D6DB2B67D745001A7D47 /* MainViewController.swift */,
 				32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */,
+				32989A532B6CC690000EA449 /* RecordViewController.swift */,
 				328653452B664C5000BDEB2D /* SuggestionViewController.swift */,
 				321031522B6A6A16004377E9 /* AlarmModalViewController.swift */,
 				3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */,
@@ -168,6 +171,7 @@
 				3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */,
 				326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */,
 				32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */,
+				32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */,
 				326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */,
 				326F7FEB2B64C93E00A09D9A /* SceneDelegate.swift in Sources */,
 				3200E6382B6BB454005126BC /* AttaintViewController.swift in Sources */,
