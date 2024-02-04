@@ -501,7 +501,6 @@
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
-                                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default"/>
                                     </tabBarItem>
                                     <tabBarItem title="" id="y8q-gn-6Bb">
                                         <imageReference key="image" image="text.book.closed.fill" catalog="system" renderingMode="hierarchical-single">
@@ -1147,7 +1146,7 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" name="ButtonColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="U14-d0-mAL" secondAttribute="bottom" constant="8" id="997-Vb-QZr"/>
                                                     <constraint firstItem="rP3-SW-Yow" firstAttribute="leading" secondItem="f2I-ee-64J" secondAttribute="leading" constant="8" id="MeL-AT-bFX"/>
@@ -1162,46 +1161,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mm-ft-uzN">
-                                                <rect key="frame" x="0.0" y="58" width="249" height="50"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="uJN-Qu-DmI">
-                                                        <rect key="frame" x="8" y="8" width="233" height="34"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다크모드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nI-Nu-5dh">
-                                                                <rect key="frame" x="0.0" y="9" width="104" height="16"/>
-                                                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                                <color key="textColor" name="TextColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogH-S2-Iod">
-                                                                <rect key="frame" x="184" y="1.3333333333333144" width="51" height="31"/>
-                                                                <color key="onTintColor" name="InputColor"/>
-                                                                <color key="thumbTintColor" name="ButtonColor"/>
-                                                            </switch>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="ogH-S2-Iod" firstAttribute="leading" secondItem="4nI-Nu-5dh" secondAttribute="trailing" constant="80" id="Zub-86-Z3h"/>
-                                                        </constraints>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstItem="4nI-Nu-5dh" firstAttribute="leading" secondItem="9mm-ft-uzN" secondAttribute="leading" constant="8" id="0m4-Rt-hCd"/>
-                                                    <constraint firstItem="uJN-Qu-DmI" firstAttribute="top" secondItem="9mm-ft-uzN" secondAttribute="top" constant="8" id="6UY-mp-qj8"/>
-                                                    <constraint firstAttribute="bottom" secondItem="uJN-Qu-DmI" secondAttribute="bottom" constant="8" id="8fX-Ju-TFw"/>
-                                                    <constraint firstAttribute="trailing" secondItem="uJN-Qu-DmI" secondAttribute="trailing" constant="8" id="B8n-DR-rwW"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ogH-S2-Iod" secondAttribute="trailing" constant="8" id="E8L-lN-Bxm"/>
-                                                    <constraint firstItem="uJN-Qu-DmI" firstAttribute="leading" secondItem="9mm-ft-uzN" secondAttribute="leading" constant="8" id="G2C-Wn-fPL"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWs-RP-Dln">
-                                                <rect key="frame" x="0.0" y="116" width="249" height="50"/>
+                                                <rect key="frame" x="0.0" y="58" width="249" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="e3W-Jc-KAI">
                                                         <rect key="frame" x="8" y="8" width="233" height="34"/>
@@ -1229,7 +1190,7 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" name="ButtonColor"/>
                                                 <constraints>
                                                     <constraint firstItem="Tqv-CZ-VOf" firstAttribute="leading" secondItem="YWs-RP-Dln" secondAttribute="leading" constant="144" id="J9g-dp-64C"/>
                                                     <constraint firstAttribute="bottom" secondItem="e3W-Jc-KAI" secondAttribute="bottom" constant="8" id="LfB-lN-OA3"/>
@@ -1238,6 +1199,60 @@
                                                     <constraint firstItem="e3W-Jc-KAI" firstAttribute="top" secondItem="YWs-RP-Dln" secondAttribute="top" constant="8" id="kAk-y1-koX"/>
                                                     <constraint firstAttribute="trailing" secondItem="e3W-Jc-KAI" secondAttribute="trailing" constant="8" id="kSz-xW-6tX"/>
                                                     <constraint firstAttribute="trailing" secondItem="Tqv-CZ-VOf" secondAttribute="trailing" constant="8" id="pSy-qW-TWF"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mm-ft-uzN">
+                                                <rect key="frame" x="0.0" y="116" width="249" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="uJN-Qu-DmI">
+                                                        <rect key="frame" x="8" y="8" width="233" height="34"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nI-Nu-5dh">
+                                                                <rect key="frame" x="0.0" y="9" width="56" height="16"/>
+                                                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
+                                                                <color key="textColor" name="TextColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfZ-EW-HjU">
+                                                                <rect key="frame" x="136" y="2" width="97" height="30"/>
+                                                                <color key="backgroundColor" name="InputColor"/>
+                                                                <color key="tintColor" name="TextColor"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="정보보기">
+                                                                    <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
+                                                                </buttonConfiguration>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                        <real key="value" value="2"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                        <real key="value" value="0.25"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                        <size key="value" width="0.0" height="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="ButtonColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="4nI-Nu-5dh" firstAttribute="leading" secondItem="9mm-ft-uzN" secondAttribute="leading" constant="8" id="0m4-Rt-hCd"/>
+                                                    <constraint firstItem="uJN-Qu-DmI" firstAttribute="top" secondItem="9mm-ft-uzN" secondAttribute="top" constant="8" id="6UY-mp-qj8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="uJN-Qu-DmI" secondAttribute="bottom" constant="8" id="8fX-Ju-TFw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uJN-Qu-DmI" secondAttribute="trailing" constant="8" id="B8n-DR-rwW"/>
+                                                    <constraint firstItem="uJN-Qu-DmI" firstAttribute="leading" secondItem="9mm-ft-uzN" secondAttribute="leading" constant="8" id="G2C-Wn-fPL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="TfZ-EW-HjU" secondAttribute="trailing" constant="8" id="JW5-1a-p6K"/>
+                                                    <constraint firstItem="TfZ-EW-HjU" firstAttribute="leading" secondItem="9mm-ft-uzN" secondAttribute="leading" constant="144" id="VLK-8U-G6L"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1283,7 +1298,7 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" name="ButtonColor"/>
                                                 <constraints>
                                                     <constraint firstItem="tIX-GJ-TXO" firstAttribute="top" secondItem="uPn-cZ-OSy" secondAttribute="top" constant="8" id="JnC-EK-mhH"/>
                                                     <constraint firstItem="1NX-g7-RsW" firstAttribute="leading" secondItem="uPn-cZ-OSy" secondAttribute="leading" constant="8" id="P75-7H-p4f"/>
@@ -1601,16 +1616,16 @@
         <image name="text.book.closed.fill" catalog="system" width="115" height="128"/>
         <image name="trophy.fill" catalog="system" width="128" height="128"/>
         <namedColor name="ButtonColor">
-            <color red="0.80000000000000004" green="0.83529411764705885" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.80000001192092896" green="0.83499997854232788" blue="0.68199998140335083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="InputColor">
-            <color red="1" green="1" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="1" blue="0.9100000262260437" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="MainBackgroundColor">
-            <color red="0.9137254901960784" green="0.92941176470588238" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91399997472763062" green="0.92900002002716064" blue="0.78799998760223389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ModalBackgroundColor">
-            <color red="0.97647058823529409" green="1" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.97600001096725464" green="1" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TextColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
