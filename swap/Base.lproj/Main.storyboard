@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
@@ -29,7 +30,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evh-p5-k1R">
                                         <rect key="frame" x="0.0" y="0.0" width="58" height="24"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hqr-hW-ZHw">
@@ -44,10 +45,11 @@
                             </stackView>
                             <textField opaque="NO" contentMode="left" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="닉네임을 입력해주세요." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8S-h6-kVr">
                                 <rect key="frame" x="16" y="219" width="361" height="80"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="bhg-kX-iYD"/>
                                 </constraints>
+                                <color key="textColor" name="TextColor"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -58,11 +60,11 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eko-19-CAb">
                                 <rect key="frame" x="151" y="652" width="91.333333333333314" height="46"/>
-                                <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="ButtonColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="vAk-cU-Nn8"/>
                                 </constraints>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="TextColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Next"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Next">
@@ -91,7 +93,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="MainBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lXW-mr-du1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="Hii-u5-LT0"/>
                             <constraint firstItem="t8S-h6-kVr" firstAttribute="top" secondItem="lXW-mr-du1" secondAttribute="bottom" constant="16" id="M3T-fK-jUw"/>
@@ -131,12 +133,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="많은 사용자들이 사용하고 있는 습관을 추천해드릴게요!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8k-lc-LCr">
                                 <rect key="frame" x="48" y="139" width="297" height="48"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JA8-Mv-Tkf">
                                 <rect key="frame" x="0.0" y="203" width="393" height="489"/>
-                                <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionTableViewCell" rowHeight="348" id="h7J-zR-K5c" customClass="SuggestionTableViewCell" customModule="swap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="348"/>
@@ -153,13 +155,13 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 하루 물 1L 마시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8N-FR-kLS">
                                                                     <rect key="frame" x="0.0" y="0.0" width="280" height="67"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="72" id="beo-ex-JW8"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="zAl-UH-6xf"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" name="TextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -169,7 +171,7 @@
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1M-LW-fbW">
                                                                     <rect key="frame" x="296" y="17.666666666666664" width="32" height="32"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="F4t-v8-PsB"/>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="wpq-AW-fEt"/>
@@ -184,13 +186,13 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 책 한 권 읽기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21T-0n-j3z">
                                                                     <rect key="frame" x="0.0" y="0.0" width="280" height="67"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="72" id="2eG-tp-0jh"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="YJo-yL-f2V"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" name="TextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -200,7 +202,7 @@
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4u-Yj-JQ9">
                                                                     <rect key="frame" x="296" y="17.666666666666671" width="32" height="32"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="ABJ-S9-sAG"/>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="rfp-sX-fm6"/>
@@ -215,13 +217,13 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 운동 30분 이상 하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7G6-lE-CyX">
                                                                     <rect key="frame" x="0.0" y="0.0" width="280" height="67"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="adR-KW-4x3"/>
                                                                         <constraint firstAttribute="height" constant="72" id="fZO-I3-1Xk"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" name="TextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -231,7 +233,7 @@
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGf-KV-bMR">
                                                                     <rect key="frame" x="296" y="17.666666666666657" width="32" height="32"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="kCt-1P-HV4"/>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="wbo-0S-rD5"/>
@@ -246,13 +248,13 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 영단어 50개 암기하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zV3-cK-0la">
                                                                     <rect key="frame" x="0.0" y="0.0" width="280" height="67"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="72" id="3th-QU-oaG"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="gry-2Z-hww"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" name="TextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -262,7 +264,7 @@
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0g-WE-VMo">
                                                                     <rect key="frame" x="296" y="17.666666666666686" width="32" height="32"/>
-                                                                    <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="ZIk-d1-oQ8"/>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="aUQ-x9-Mk0"/>
@@ -276,7 +278,7 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" name="MainBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="ffC-3P-C69" secondAttribute="bottom" constant="16" id="1cc-TV-Uca"/>
                                                 <constraint firstItem="ffC-3P-C69" firstAttribute="top" secondItem="URV-cH-0VD" secondAttribute="top" constant="16" id="V2c-6u-xWZ"/>
@@ -292,8 +294,8 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBb-qS-khy">
                                         <rect key="frame" x="0.0" y="0.0" width="136.66666666666666" height="46"/>
-                                        <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="ButtonColor"/>
+                                        <color key="tintColor" name="TextColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Start!">
                                             <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="32"/>
@@ -315,8 +317,8 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pns-LP-S1a">
                                         <rect key="frame" x="160.66666666666663" y="0.0" width="136.33333333333337" height="46"/>
-                                        <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="ButtonColor"/>
+                                        <color key="tintColor" name="TextColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Jump!">
                                             <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="32"/>
@@ -343,7 +345,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hUE-V8-b0x"/>
-                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="MainBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="w2n-tb-Vse" firstAttribute="top" secondItem="JA8-Mv-Tkf" secondAttribute="bottom" constant="16" id="1HD-Cb-oif"/>
                             <constraint firstItem="oN7-pg-fP8" firstAttribute="top" secondItem="hUE-V8-b0x" secondAttribute="top" constant="16" id="9wB-SE-SUI"/>
@@ -380,12 +382,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2024년 2월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXW-7f-EgH">
                                 <rect key="frame" x="16" y="75" width="361" height="32"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="32"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnT-Lz-gF8">
                                 <rect key="frame" x="345" y="75" width="32" height="34.333333333333343"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="TextColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system"/>
                                 <connections>
@@ -398,12 +400,12 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-Ea-MnD">
                                         <rect key="frame" x="0.0" y="0.0" width="58" height="24"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dDm-Nh-oJF">
                                         <rect key="frame" x="66" y="0.0" width="24" height="24"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" name="TextColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="XzO-Ii-wVl"/>
                                             <constraint firstAttribute="width" constant="24" id="iM3-ub-sY5"/>
@@ -413,14 +415,14 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcE-f3-fFJ">
                                 <rect key="frame" x="16" y="171" width="361" height="60"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="CCh-TL-7vb"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-ta-gNB">
                                 <rect key="frame" x="345" y="239" width="32" height="32"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="TextColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system"/>
                                 <connections>
@@ -429,7 +431,7 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Uo6-aY-Irb">
                                 <rect key="frame" x="0.0" y="279" width="393" height="484"/>
-                                <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="69" id="WeS-Sa-3NU" customClass="MainTableViewCell" customModule="swap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="69"/>
@@ -443,7 +445,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1n-JC-pH1">
                                                             <rect key="frame" x="0.0" y="0.0" width="321" height="53"/>
-                                                            <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" name="InputColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="72" id="s7A-a9-v9N"/>
                                                             </constraints>
@@ -460,7 +462,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3w-25-GVb">
                                                             <rect key="frame" x="329" y="10.666666666666668" width="32" height="32"/>
-                                                            <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" name="InputColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="X5J-Yb-qrw"/>
                                                             </constraints>
@@ -468,7 +470,7 @@
                                                             <buttonConfiguration key="configuration" style="plain"/>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" name="MainBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="G3w-25-GVb" firstAttribute="leading" secondItem="X1n-JC-pH1" secondAttribute="trailing" constant="8" id="Kmk-Ci-Osx"/>
                                                         <constraint firstItem="X1n-JC-pH1" firstAttribute="leading" secondItem="1tN-gU-JKq" secondAttribute="leading" id="OAf-aH-9Oy"/>
@@ -483,17 +485,18 @@
                                                 <constraint firstAttribute="bottom" secondItem="1tN-gU-JKq" secondAttribute="bottom" constant="8" id="xBc-GL-cSK"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="MainBackgroundColor"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sc-sS-XOC">
                                 <rect key="frame" x="0.0" y="765" width="393" height="49"/>
+                                <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <items>
                                     <tabBarItem id="oal-RI-HSP">
                                         <imageReference key="image" image="house.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -503,7 +506,7 @@
                                     <tabBarItem title="" id="y8q-gn-6Bb">
                                         <imageReference key="image" image="text.book.closed.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -512,19 +515,19 @@
                                     <tabBarItem id="Ygd-HS-TRl">
                                         <imageReference key="image" image="crown.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
                                     </tabBarItem>
                                 </items>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" name="TextColor"/>
+                                <color key="barTintColor" name="MainBackgroundColor"/>
                             </tabBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="y34-Me-4sd"/>
-                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="MainBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="y34-Me-4sd" firstAttribute="trailing" secondItem="NnT-Lz-gF8" secondAttribute="trailing" constant="16" id="0Wb-B3-aOr"/>
                             <constraint firstItem="y34-Me-4sd" firstAttribute="trailing" secondItem="1Sc-sS-XOC" secondAttribute="trailing" id="40o-in-C2d"/>
@@ -570,12 +573,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2024년 2월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jER-yU-pWO">
                                 <rect key="frame" x="16" y="75" width="361" height="32"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="32"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlA-TX-Q1d">
                                 <rect key="frame" x="329.33333333333331" y="75" width="47.666666666666686" height="34.333333333333343"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="TextColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
                                 <connections>
@@ -584,14 +587,14 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgF-GI-JeW">
                                 <rect key="frame" x="16" y="115" width="361" height="56"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="ttd-N6-kZJ"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jax-Be-QXJ">
                                 <rect key="frame" x="0.0" y="187" width="393" height="576"/>
-                                <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="LXl-tQ-AGn">
                                         <rect key="frame" x="0.0" y="50" width="393" height="150"/>
@@ -606,12 +609,12 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하루 물 1L 마시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYa-6l-uTZ">
                                                             <rect key="frame" x="0.0" y="0.0" width="105" height="16"/>
                                                             <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" name="TextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPu-48-Ora">
                                                             <rect key="frame" x="0.0" y="20" width="361" height="114"/>
-                                                            <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" name="InputColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="30"/>
@@ -632,17 +635,18 @@
                                                 <constraint firstItem="b3z-vF-Vdu" firstAttribute="leading" secondItem="aBc-9y-9VM" secondAttribute="leading" constant="16" id="mE8-By-jcF"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="MainBackgroundColor"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ECm-i1-ZxO">
                                 <rect key="frame" x="0.0" y="765" width="393" height="49"/>
+                                <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <items>
                                     <tabBarItem id="NdX-Y1-zUw">
                                         <imageReference key="image" image="house.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -652,7 +656,7 @@
                                     <tabBarItem title="" id="xBu-6f-9UW">
                                         <imageReference key="image" image="text.book.closed.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -661,19 +665,19 @@
                                     <tabBarItem id="a1n-9t-Bj6">
                                         <imageReference key="image" image="crown.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
                                     </tabBarItem>
                                 </items>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" name="TextColor"/>
+                                <color key="barTintColor" name="MainBackgroundColor"/>
                             </tabBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rjE-aB-fsR"/>
-                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="MainBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rlA-TX-Q1d" firstAttribute="leading" secondItem="rjE-aB-fsR" secondAttribute="leading" constant="329.33333333333331" id="46Z-kq-vrI"/>
                             <constraint firstItem="jax-Be-QXJ" firstAttribute="leading" secondItem="rjE-aB-fsR" secondAttribute="leading" id="Bsl-bF-0YT"/>
@@ -723,7 +727,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 습관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-aR-0wU">
                                         <rect key="frame" x="146" y="0.0" width="85" height="30"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZt-Uw-M2K">
@@ -738,10 +742,11 @@
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 습관명" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="FjJ-U8-8w9">
                                 <rect key="frame" x="16" y="137" width="361" height="120"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="GAQ-s3-8yE"/>
                                 </constraints>
+                                <color key="textColor" name="TextColor"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -762,13 +767,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hue-5x-Z0V">
                                                         <rect key="frame" x="0.0" y="15" width="44" height="16"/>
                                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPr-rN-i5I">
                                                         <rect key="frame" x="184" y="8" width="145" height="30"/>
-                                                        <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="InputColor"/>
+                                                        <color key="tintColor" name="TextColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="2024-02-01">
                                                             <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
@@ -786,7 +791,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="ButtonColor"/>
                                         <constraints>
                                             <constraint firstItem="7zs-sF-d3p" firstAttribute="leading" secondItem="C5a-nm-y7h" secondAttribute="leading" constant="16" id="CED-eP-mOS"/>
                                             <constraint firstItem="7zs-sF-d3p" firstAttribute="top" secondItem="C5a-nm-y7h" secondAttribute="top" constant="8" id="YYp-hP-a2d"/>
@@ -808,13 +813,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zV-4W-OsO">
                                                         <rect key="frame" x="0.0" y="15" width="43.666666666666664" height="16"/>
                                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRX-Gt-w0b">
                                                         <rect key="frame" x="183.66666666666663" y="8" width="145.33333333333337" height="30"/>
-                                                        <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="InputColor"/>
+                                                        <color key="tintColor" name="TextColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="2024-02-01">
                                                             <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
@@ -831,7 +836,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="ButtonColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="NuM-U8-BDi" secondAttribute="trailing" constant="16" id="13q-qm-erh"/>
                                             <constraint firstAttribute="bottom" secondItem="NuM-U8-BDi" secondAttribute="bottom" constant="8" id="EVq-ua-TIm"/>
@@ -855,7 +860,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-oO-Syk">
                                                 <rect key="frame" x="0.0" y="8" width="28.666666666666668" height="16"/>
                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JML-W1-OlZ">
@@ -863,7 +868,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJg-D9-1br">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="32"/>
-                                                        <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" name="InputColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Lfp-qs-dL9"/>
                                                         </constraints>
@@ -875,7 +880,7 @@
                                                             </children>
                                                         </menu>
                                                         <state key="normal" title="미사용">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleColor" name="TextColor"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -889,7 +894,7 @@
                                                             <constraint firstAttribute="width" constant="32" id="BoC-Yc-Quc"/>
                                                             <constraint firstAttribute="height" constant="32" id="W5q-cs-12Y"/>
                                                         </constraints>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" name="TextColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="bell.fill" catalog="system"/>
                                                         <connections>
@@ -907,7 +912,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="ButtonColor"/>
                                 <constraints>
                                     <constraint firstItem="foE-oX-rBz" firstAttribute="leading" secondItem="xXE-Xb-2QP" secondAttribute="leading" constant="16" id="9yh-wR-4or"/>
                                     <constraint firstAttribute="bottom" secondItem="foE-oX-rBz" secondAttribute="bottom" constant="8" id="K0Y-9p-iO0"/>
@@ -922,7 +927,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Lbe-oh-xIu"/>
-                        <color key="backgroundColor" red="0.98039215800000001" green="1" blue="0.73333334920000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="ModalBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="b3j-Dk-75s" firstAttribute="leading" secondItem="Lbe-oh-xIu" secondAttribute="leading" constant="16" id="2BZ-uj-FJj"/>
                             <constraint firstItem="xXE-Xb-2QP" firstAttribute="top" secondItem="b3j-Dk-75s" secondAttribute="bottom" constant="39.999999999999886" id="76H-qB-5a6"/>
@@ -953,7 +958,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eP1-NW-OAr">
                                 <rect key="frame" x="56" y="268" width="281" height="316"/>
-                                <color key="backgroundColor" red="0.98039215800000001" green="1" blue="0.80392158030000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="ModalBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="30"/>
@@ -986,7 +991,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etr-17-kg2">
                                         <rect key="frame" x="114.33333333333336" y="0.0" width="40.666666666666671" height="30"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DS-gB-Coi">
@@ -1001,6 +1006,7 @@
                             </stackView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="vK3-m7-lvb">
                                 <rect key="frame" x="56" y="322" width="281" height="160"/>
+                                <color key="tintColor" name="TextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="ofy-GA-uk3"/>
                                 </constraints>
@@ -1014,13 +1020,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FE-RT-kuO">
                                                 <rect key="frame" x="0.0" y="7" width="39.666666666666664" height="16"/>
                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SK6-sK-8hb">
                                                 <rect key="frame" x="119.66666666666666" y="0.0" width="97.333333333333343" height="30"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="InputColor"/>
+                                                <color key="tintColor" name="TextColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="선택">
                                                     <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
@@ -1034,7 +1040,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="ButtonColor"/>
                                 <constraints>
                                     <constraint firstItem="aBM-re-hnD" firstAttribute="top" secondItem="d8M-fl-r1i" secondAttribute="top" constant="8" id="D3p-tw-an8"/>
                                     <constraint firstAttribute="bottom" secondItem="aBM-re-hnD" secondAttribute="bottom" constant="8" id="KXF-RR-6Wo"/>
@@ -1099,7 +1105,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcA-Rg-Xce">
                                                 <rect key="frame" x="114.33333333333333" y="0.0" width="37.333333333333329" height="30"/>
                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHz-zt-bAX">
@@ -1124,12 +1130,12 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rP3-SW-Yow">
                                                                 <rect key="frame" x="0.0" y="9" width="56" height="16"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-ex-h9c">
                                                                 <rect key="frame" x="136" y="0.0" width="97" height="34"/>
-                                                                <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="backgroundColor" name="InputColor"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -1165,13 +1171,13 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다크모드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nI-Nu-5dh">
                                                                 <rect key="frame" x="0.0" y="9" width="104" height="16"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogH-S2-Iod">
                                                                 <rect key="frame" x="184" y="1.3333333333333144" width="51" height="31"/>
-                                                                <color key="onTintColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <color key="thumbTintColor" red="0.8078432083" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="onTintColor" name="InputColor"/>
+                                                                <color key="thumbTintColor" name="ButtonColor"/>
                                                             </switch>
                                                         </subviews>
                                                         <constraints>
@@ -1203,13 +1209,13 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트로피" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-Dc-tCn">
                                                                 <rect key="frame" x="0.0" y="9" width="56" height="16"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqv-CZ-VOf">
                                                                 <rect key="frame" x="136" y="2" width="97" height="30"/>
-                                                                <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" name="InputColor"/>
+                                                                <color key="tintColor" name="TextColor"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="선택">
                                                                     <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
@@ -1248,13 +1254,13 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="고객센터" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NX-g7-RsW">
                                                                 <rect key="frame" x="0.0" y="9" width="56" height="16"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mp1-sT-Rcm">
                                                                 <rect key="frame" x="136" y="2" width="97" height="30"/>
-                                                                <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" name="InputColor"/>
+                                                                <color key="tintColor" name="TextColor"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="문의하기">
                                                                     <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
@@ -1299,7 +1305,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98039215800000001" green="1" blue="0.80392158030000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="ModalBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="enY-sp-qr2" firstAttribute="top" secondItem="fcf-Gy-Sc5" secondAttribute="bottom" constant="16" id="0yX-xe-1eF"/>
                                     <constraint firstItem="fcf-Gy-Sc5" firstAttribute="top" secondItem="qsj-ef-yhB" secondAttribute="top" constant="16" id="6OQ-32-LFP"/>
@@ -1348,12 +1354,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트로피 전시장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIE-9X-aUn">
                                 <rect key="frame" x="16" y="75" width="361" height="32"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="32"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OXa-gP-m7S">
                                 <rect key="frame" x="0.0" y="123" width="393" height="640"/>
-                                <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="R0q-my-0uk">
                                         <rect key="frame" x="0.0" y="50" width="393" height="150"/>
@@ -1368,12 +1374,12 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="누적로그인횟수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIm-K9-yCN">
                                                             <rect key="frame" x="0.0" y="0.0" width="89.666666666666671" height="16"/>
                                                             <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" name="TextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74F-Sg-Il0">
                                                             <rect key="frame" x="0.0" y="20" width="361" height="114"/>
-                                                            <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" name="InputColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="30"/>
@@ -1394,17 +1400,18 @@
                                                 <constraint firstItem="owb-TM-gAk" firstAttribute="top" secondItem="P3b-Ga-CfD" secondAttribute="top" constant="8" id="q7b-9z-jPu"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="MainBackgroundColor"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P46-lm-dMj">
                                 <rect key="frame" x="0.0" y="765" width="393" height="49"/>
+                                <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <items>
                                     <tabBarItem id="ruG-Hv-V31">
                                         <imageReference key="image" image="house.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -1414,7 +1421,7 @@
                                     <tabBarItem title="" id="RgK-XU-r29">
                                         <imageReference key="image" image="text.book.closed.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -1423,19 +1430,19 @@
                                     <tabBarItem id="6sn-7Y-CvN">
                                         <imageReference key="image" image="crown.fill" catalog="system" renderingMode="hierarchical-single">
                                             <hierarchicalColors>
-                                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color name="TextColor"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
                                     </tabBarItem>
                                 </items>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" name="TextColor"/>
+                                <color key="barTintColor" name="MainBackgroundColor"/>
                             </tabBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DjC-RZ-0KD"/>
-                        <color key="backgroundColor" red="0.91764706370000004" green="0.92941176889999999" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="MainBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NIE-9X-aUn" firstAttribute="centerX" secondItem="tWu-4p-ejq" secondAttribute="centerX" id="Ebv-dg-K8h"/>
                             <constraint firstItem="NIE-9X-aUn" firstAttribute="leading" secondItem="DjC-RZ-0KD" secondAttribute="leading" constant="16" id="H0o-fo-tRn"/>
@@ -1479,7 +1486,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선택된 습관명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZE-gC-ovj">
                                         <rect key="frame" x="127.66666666666666" y="0.0" width="122" height="30"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsB-yL-THM">
@@ -1494,7 +1501,7 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fom-xZ-uhH">
                                 <rect key="frame" x="16" y="137" width="361" height="141"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="InputColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="20"/>
@@ -1506,10 +1513,11 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="메모" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="gNo-8z-nsd">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="88"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="InputColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="88" id="9bU-F7-scy"/>
                                         </constraints>
+                                        <color key="textColor" name="TextColor"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -1540,12 +1548,12 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="달성목표" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyk-dK-xj2">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="24"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRT-d6-vBu">
                                         <rect key="frame" x="0.0" y="41" width="361" height="83"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="InputColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1556,7 +1564,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GJs-MI-zf9"/>
-                        <color key="backgroundColor" red="0.98039215800000001" green="1" blue="0.73333334920000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="ModalBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Fom-xZ-uhH" firstAttribute="top" secondItem="GJs-MI-zf9" secondAttribute="top" constant="78" id="0bP-9v-TVh"/>
                             <constraint firstItem="GJs-MI-zf9" firstAttribute="trailing" secondItem="Fom-xZ-uhH" secondAttribute="trailing" constant="16" id="1JF-fX-Rto"/>
@@ -1592,17 +1600,29 @@
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <image name="text.book.closed.fill" catalog="system" width="115" height="128"/>
         <image name="trophy.fill" catalog="system" width="128" height="128"/>
+        <namedColor name="ButtonColor">
+            <color red="0.80000000000000004" green="0.83529411764705885" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="InputColor">
+            <color red="1" green="1" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="MainBackgroundColor">
+            <color red="0.9137254901960784" green="0.92941176470588238" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ModalBackgroundColor">
+            <color red="0.97647058823529409" green="1" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
