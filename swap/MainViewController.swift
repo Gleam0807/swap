@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     //MARK: Outlet
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
@@ -33,15 +33,20 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
         weekCalendar.scope = .week
         weekCalendar.locale = Locale(identifier: "ko_kr")
         weekCalendar.headerHeight = 0
+        weekCalendar.weekdayHeight = 30
         weekCalendar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
         weekCalendar.appearance.weekdayTextColor = UIColor(named: "TextColor")
         weekCalendar.appearance.headerTitleColor = .clear
         weekCalendar.appearance.headerMinimumDissolvedAlpha = 0
         weekCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
         weekCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
-        weekCalendar.appearance.titleOffset = CGPoint(x: 0, y: 10)
+        weekCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
         
         calendarHeader.text = headerDateFormatter.string(from: Date())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        weekCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
     }
     
     //MARK: Function
@@ -88,6 +93,10 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
         calendarHeader.text = headerDateFormatter.string(from: date)
     }
     
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        let day = Calendar.current.component(.weekday, from: date) - 1
+        if day == 0 { return .systemRed } else { return UIColor(named: "TextColor") }
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
