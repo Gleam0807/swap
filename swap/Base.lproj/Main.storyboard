@@ -413,12 +413,16 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcE-f3-fFJ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcE-f3-fFJ" customClass="FSCalendar">
                                 <rect key="frame" x="16" y="171" width="361" height="60"/>
                                 <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="CCh-TL-7vb"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="t9R-1H-8vH" id="Noh-Bf-KLb"/>
+                                    <outlet property="delegate" destination="t9R-1H-8vH" id="foQ-9J-XWc"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-ta-gNB">
                                 <rect key="frame" x="345" y="239" width="32" height="32"/>
@@ -553,8 +557,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="calendarHeader" destination="LXW-7f-EgH" id="BN5-HM-kwA"/>
                         <outlet property="mainTableView" destination="Uo6-aY-Irb" id="0Me-Uh-qRK"/>
                         <outlet property="tabBar" destination="1Sc-sS-XOC" id="pMu-dX-fn4"/>
+                        <outlet property="weekCalendar" destination="DcE-f3-fFJ" id="LXF-hc-2d6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o97-rt-2EW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

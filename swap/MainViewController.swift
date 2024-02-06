@@ -6,16 +6,42 @@
 //
 
 import UIKit
+import FSCalendar
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     //MARK: Outlet
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var weekCalendar: FSCalendar!
+    @IBOutlet weak var calendarHeader: UILabel!
+    
+    let headerDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY년 MM월"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(identifier: "KST")
+        return formatter
+    }()
     
     override func viewDidLoad() {
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        weekCalendar.dataSource = self
+        weekCalendar.delegate = self
         tabBar.delegate = self
+        
+        weekCalendar.scope = .week
+        weekCalendar.locale = Locale(identifier: "ko_kr")
+        weekCalendar.headerHeight = 0
+        weekCalendar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
+        weekCalendar.appearance.weekdayTextColor = UIColor(named: "TextColor")
+        weekCalendar.appearance.headerTitleColor = .clear
+        weekCalendar.appearance.headerMinimumDissolvedAlpha = 0
+        weekCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
+        weekCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
+        weekCalendar.appearance.titleOffset = CGPoint(x: 0, y: 10)
+        
+        calendarHeader.text = headerDateFormatter.string(from: Date())
     }
     
     //MARK: Function
@@ -53,6 +79,14 @@ class MainViewController: UIViewController {
         }
     }
     
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let currentPage = weekCalendar.currentPage
+        calendarHeader.text = headerDateFormatter.string(from: currentPage)
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendarHeader.text = headerDateFormatter.string(from: date)
+    }
     
 }
 
