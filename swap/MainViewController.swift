@@ -36,7 +36,7 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
         weekCalendar.scope = .week
         weekCalendar.locale = Locale(identifier: "ko_kr")
         weekCalendar.headerHeight = 0
-        weekCalendar.weekdayHeight = 30
+        weekCalendar.weekdayHeight = 24
         weekCalendar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
         weekCalendar.appearance.weekdayTextColor = UIColor(named: "TextColor")
         weekCalendar.appearance.headerTitleColor = .clear
@@ -44,6 +44,8 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
         weekCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
         weekCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
         weekCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
+        weekCalendar.appearance.todayColor = .none
+        weekCalendar.appearance.selectionColor = .red
         
         calendarHeader.text = headerDateFormatter.string(from: Date())
     }

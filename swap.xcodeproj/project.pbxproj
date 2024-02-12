@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3200E6382B6BB454005126BC /* AttaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200E6372B6BB454005126BC /* AttaintViewController.swift */; };
 		3200E63A2B6BD416005126BC /* TrophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200E6392B6BD416005126BC /* TrophyViewController.swift */; };
+		320784832B7A05E50090CB30 /* SwapList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320784822B7A05E50090CB30 /* SwapList.swift */; };
 		321031532B6A6A16004377E9 /* AlarmModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321031522B6A6A16004377E9 /* AlarmModalViewController.swift */; };
 		3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */; };
 		3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232D6DB2B67D745001A7D47 /* MainViewController.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		3200E6372B6BB454005126BC /* AttaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttaintViewController.swift; sourceTree = "<group>"; };
 		3200E6392B6BD416005126BC /* TrophyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrophyViewController.swift; sourceTree = "<group>"; };
+		320784822B7A05E50090CB30 /* SwapList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapList.swift; sourceTree = "<group>"; };
 		321031522B6A6A16004377E9 /* AlarmModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModalViewController.swift; sourceTree = "<group>"; };
 		3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModalViewController.swift; sourceTree = "<group>"; };
 		3232D6DB2B67D745001A7D47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320784812B7A05C20090CB30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				320784822B7A05E50090CB30 /* SwapList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		326F7FDC2B64C93E00A09D9A = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,7 @@
 		326F7FE72B64C93E00A09D9A /* swap */ = {
 			isa = PBXGroup;
 			children = (
+				320784812B7A05C20090CB30 /* Model */,
 				326F7FE82B64C93E00A09D9A /* AppDelegate.swift */,
 				326F7FEA2B64C93E00A09D9A /* SceneDelegate.swift */,
 				326F7FEC2B64C93E00A09D9A /* ViewController.swift */,
@@ -178,6 +189,7 @@
 				328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */,
 				3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */,
 				326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */,
+				320784832B7A05E50090CB30 /* SwapList.swift in Sources */,
 				32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */,
 				32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */,
 				326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */,

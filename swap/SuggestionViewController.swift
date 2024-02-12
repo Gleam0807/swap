@@ -7,10 +7,11 @@
 
 import UIKit
 
+
 class SuggestionViewController: UIViewController {
     //MARK: Outlet
     @IBOutlet weak var SuggestionTableView: UITableView!
-    
+
     override func viewDidLoad() {
         SuggestionTableView.dataSource = self
         SuggestionTableView.delegate = self
@@ -38,9 +39,10 @@ class SuggestionViewController: UIViewController {
     @IBAction func fourthCheckboxChange(_ sender: UIButton) {
         sender.isSelected.toggle()
     }
-    
-    
-    
+    @IBAction func startButtonClicked(_ sender: UIButton) {
+        
+    }
+
 }
 
 extension SuggestionViewController: UITableViewDataSource {
