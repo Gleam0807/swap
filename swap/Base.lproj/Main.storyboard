@@ -169,15 +169,19 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1M-LW-fbW">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1M-LW-fbW">
                                                                     <rect key="frame" x="296" y="17.666666666666664" width="32" height="32"/>
                                                                     <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="F4t-v8-PsB"/>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="wpq-AW-fEt"/>
+                                                                        <constraint firstAttribute="width" secondItem="q1M-LW-fbW" secondAttribute="height" multiplier="1:1" id="TQA-bs-mdY"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="wpq-AW-fEt"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="selected" image="checkmark" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="firstCheckboxChange:" destination="sIZ-Fs-AsL" eventType="touchUpInside" id="tpy-5g-Y2B"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -200,17 +204,23 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4u-Yj-JQ9">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6m-OR-jgY">
                                                                     <rect key="frame" x="296" y="17.666666666666671" width="32" height="32"/>
                                                                     <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="ABJ-S9-sAG"/>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="rfp-sX-fm6"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="4mG-0D-Ese"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="selected" image="checkmark" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="secondCheckboxChange:" destination="sIZ-Fs-AsL" eventType="touchUpInside" id="ZS5-9W-CN9"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="U6m-OR-jgY" firstAttribute="width" secondItem="U6m-OR-jgY" secondAttribute="height" multiplier="1:1" id="Ak7-BB-g1b"/>
+                                                            </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="z4Y-6V-pgl">
                                                             <rect key="frame" x="16.666666666666657" y="166" width="328" height="67"/>
@@ -231,17 +241,23 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGf-KV-bMR">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCC-Do-gDV">
                                                                     <rect key="frame" x="296" y="17.666666666666657" width="32" height="32"/>
                                                                     <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="kCt-1P-HV4"/>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="wbo-0S-rD5"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="ySc-Fo-Npo"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="selected" image="checkmark" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="thirdCheckboxChange:" destination="sIZ-Fs-AsL" eventType="touchUpInside" id="e3W-av-Gon"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="aCC-Do-gDV" firstAttribute="width" secondItem="aCC-Do-gDV" secondAttribute="height" multiplier="1:1" id="23R-Ms-rk4"/>
+                                                            </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pDg-4a-PqS">
                                                             <rect key="frame" x="16.666666666666657" y="249" width="328" height="67"/>
@@ -262,16 +278,19 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0g-WE-VMo">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYg-1F-buh">
                                                                     <rect key="frame" x="296" y="17.666666666666686" width="32" height="32"/>
                                                                     <color key="backgroundColor" name="InputColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="ZIk-d1-oQ8"/>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="aUQ-x9-Mk0"/>
+                                                                        <constraint firstAttribute="width" secondItem="tYg-1F-buh" secondAttribute="height" multiplier="1:1" id="O8m-Yq-DhM"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="aFb-N0-vBV"/>
                                                                     </constraints>
-                                                                    <color key="tintColor" red="1" green="1" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="selected" image="checkmark" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="fourthCheckboxChange:" destination="sIZ-Fs-AsL" eventType="touchUpInside" id="YG2-4t-6aO"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -1612,6 +1631,7 @@
     <resources>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
         <image name="calendar.badge.plus" catalog="system" width="128" height="109"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="crown.fill" catalog="system" width="128" height="92"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
@@ -1638,6 +1658,9 @@
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

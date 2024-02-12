@@ -24,6 +24,9 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
     }()
     
     override func viewDidLoad() {
+//                for key in UserDefaults.standard.dictionaryRepresentation().keys {
+//                    UserDefaults.standard.removeObject(forKey: key.description)
+//                } // <userdefaults clear code>
         mainTableView.dataSource = self
         mainTableView.delegate = self
         weekCalendar.dataSource = self

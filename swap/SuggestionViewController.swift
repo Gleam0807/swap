@@ -26,6 +26,21 @@ class SuggestionViewController: UIViewController {
             present(mainVC, animated: true)
         }
     }
+    @IBAction func firstCheckboxChange(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    @IBAction func secondCheckboxChange(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    @IBAction func thirdCheckboxChange(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    @IBAction func fourthCheckboxChange(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    
+    
+    
 }
 
 extension SuggestionViewController: UITableViewDataSource {
