@@ -10,31 +10,31 @@ import FSCalendar
 
 class RecordViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     //MARK: Outlet
-    @IBOutlet weak var monthCaleandar: FSCalendar!
+    @IBOutlet weak var monthCalendar: FSCalendar!
     
     override func viewDidLoad() {
-        monthCaleandar.dataSource = self
-        monthCaleandar.delegate = self
+        monthCalendar.dataSource = self
+        monthCalendar.delegate = self
         
-        monthCaleandar.appearance.headerMinimumDissolvedAlpha = 0
-        monthCaleandar.rowHeight = 30
-        monthCaleandar.appearance.titleTodayColor = UIColor(named: "TextColor")
-        monthCaleandar.appearance.todayColor = .clear
-        monthCaleandar.appearance.selectionColor = .red
-        monthCaleandar.placeholderType = .none
-        monthCaleandar.locale = Locale(identifier: "ko_kr")
-        monthCaleandar.appearance.headerDateFormat = "YYYY년 MM월 dd일"
-        monthCaleandar.appearance.headerTitleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCaleandar.appearance.headerTitleColor = UIColor(named: "TextColor")
-        monthCaleandar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCaleandar.appearance.weekdayTextColor = UIColor(named: "TextColor")
-        monthCaleandar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCaleandar.appearance.titleDefaultColor = UIColor(named: "TextColor")
-        monthCaleandar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
+        monthCalendar.appearance.headerMinimumDissolvedAlpha = 0
+        monthCalendar.rowHeight = 30
+        monthCalendar.appearance.titleTodayColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.todayColor = .clear
+        monthCalendar.appearance.selectionColor = .red
+        monthCalendar.placeholderType = .none
+        monthCalendar.locale = Locale(identifier: "ko_kr")
+        monthCalendar.appearance.headerDateFormat = "YYYY년 MM월 dd일"
+        monthCalendar.appearance.headerTitleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
+        monthCalendar.appearance.headerTitleColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
+        monthCalendar.appearance.weekdayTextColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
+        monthCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        monthCaleandar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
+        monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -43,7 +43,7 @@ class RecordViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         let headerText = dateFormatter.string(from: date)
         
         calendar.appearance.headerDateFormat = headerText
-        monthCaleandar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
+        monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
