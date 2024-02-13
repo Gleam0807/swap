@@ -794,7 +794,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPr-rN-i5I">
-                                                        <rect key="frame" x="188" y="9" width="141" height="28"/>
+                                                        <rect key="frame" x="188" y="8" width="141" height="30"/>
                                                         <color key="backgroundColor" name="InputColor"/>
                                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                         <color key="tintColor" name="InputColor"/>
@@ -818,6 +818,7 @@
                                                 <constraints>
                                                     <constraint firstItem="hue-5x-Z0V" firstAttribute="leading" secondItem="7zs-sF-d3p" secondAttribute="leading" id="7Tc-Rg-NbC"/>
                                                     <constraint firstAttribute="trailing" secondItem="QPr-rN-i5I" secondAttribute="trailing" id="PE2-3b-hPa"/>
+                                                    <constraint firstItem="QPr-rN-i5I" firstAttribute="top" secondItem="7zs-sF-d3p" secondAttribute="top" constant="8" id="Z5O-C1-KDR"/>
                                                     <constraint firstItem="QPr-rN-i5I" firstAttribute="leading" secondItem="7zs-sF-d3p" secondAttribute="leading" constant="188" id="nBt-bw-Wh7"/>
                                                 </constraints>
                                             </stackView>
@@ -842,28 +843,38 @@
                                                 <rect key="frame" x="16" y="8" width="329" height="46"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zV-4W-OsO">
-                                                        <rect key="frame" x="0.0" y="15" width="43.666666666666664" height="16"/>
+                                                        <rect key="frame" x="0.0" y="15" width="48" height="16"/>
                                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRX-Gt-w0b">
-                                                        <rect key="frame" x="183.66666666666663" y="8" width="145.33333333333337" height="30"/>
+                                                        <rect key="frame" x="188" y="8" width="141" height="30"/>
                                                         <color key="backgroundColor" name="InputColor"/>
-                                                        <color key="tintColor" name="TextColor"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="2024-02-01">
-                                                            <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                        </buttonConfiguration>
+                                                        <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
+                                                        <color key="tintColor" name="InputColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" name="TextColor"/>
+                                                        </state>
+                                                        <state key="selected">
+                                                            <color key="titleColor" name="TextColor"/>
+                                                        </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="endCalendarHidden:" destination="RZl-N0-BeF" eventType="touchUpInside" id="J9h-92-2ft"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="xRX-Gt-w0b" firstAttribute="top" secondItem="NuM-U8-BDi" secondAttribute="top" constant="8" id="MAI-fZ-Jok"/>
                                                     <constraint firstItem="4zV-4W-OsO" firstAttribute="leading" secondItem="NuM-U8-BDi" secondAttribute="leading" id="Mdh-tr-uZz"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xRX-Gt-w0b" secondAttribute="trailing" id="Wyi-b8-jzI"/>
+                                                    <constraint firstItem="xRX-Gt-w0b" firstAttribute="leading" secondItem="NuM-U8-BDi" secondAttribute="leading" constant="188" id="zfz-te-Fvs"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -975,6 +986,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="endDateButton" destination="xRX-Gt-w0b" id="XaD-TC-46k"/>
                         <outlet property="startDateButton" destination="QPr-rN-i5I" id="d90-Gj-V9e"/>
                     </connections>
                 </viewController>

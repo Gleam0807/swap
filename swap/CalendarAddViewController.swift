@@ -11,12 +11,14 @@ import FSCalendar
 class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     //MARK: Outlet
     @IBOutlet weak var startDateButton: UIButton!
+    @IBOutlet weak var endDateButton: UIButton!
     var monthCalendar: FSCalendar!
-    var selectedDate: Date?
-     var dateFormatter: DateFormatter = {
-         let formatter = DateFormatter()
-         formatter.dateFormat = "yyyy-MM-dd"
-         return formatter
+    var selectedStartDate: Date?
+    var selectedEndDate: Date?
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
      }()
     
     override func viewDidLoad() {
@@ -58,12 +60,17 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectedDate = date
+        if startDateButton.isSelected {
+            selectedStartDate = date
+            startDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
+            startDateButton.titleLabel?.font = UIFont(name: "BM JUA_OTF", size: 16.0)
+        } else if endDateButton.isSelected {
+            selectedEndDate = date
+            endDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
+            endDateButton.titleLabel?.font = UIFont(name: "BM JUA_OTF", size: 16.0)
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let headerText = dateFormatter.string(from: date)
-        startDateButton.setTitle(headerText, for: .normal)
-        startDateButton.titleLabel?.font = UIFont(name: "BM JUA_OTF", size: 16.0)
         calendar.isHidden = true
     }
     
@@ -75,9 +82,18 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         }
     }
     @IBAction func startCalendarHidden(_ sender: UIButton) {
-        monthCalendar.isHidden = !sender.isSelected
-        sender.isSelected.toggle()
+        monthCalendar.frame = CGRect(x: sender.frame.minX, y: sender.frame.maxY + 235, width: 200, height: 200)
+        monthCalendar.isHidden = monthCalendar.isHidden ? false : true
+        sender.isSelected = !monthCalendar.isHidden
+        endDateButton.isSelected = false
     }
+    @IBAction func endCalendarHidden(_ sender: UIButton) {
+        monthCalendar.frame = CGRect(x: sender.frame.minX, y: sender.frame.maxY + 305, width: 200, height: 200)
+        monthCalendar.isHidden = monthCalendar.isHidden ? false : true
+        sender.isSelected = !monthCalendar.isHidden
+        startDateButton.isSelected = false
+    }
+    
     
     
 }
