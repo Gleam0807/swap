@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var initialViewController: UIViewController?
         
         if name == nil {
-            //initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            //initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         } else {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         }
