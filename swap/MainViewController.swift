@@ -106,13 +106,16 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return SwapList.swapLists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         
+        let item = SwapList.swapLists[indexPath.row]
+        cell.titleLabel.text = item.title
+        cell.checkButton.isSelected = item.isCompleted
         return cell
     }
     
@@ -128,6 +131,7 @@ extension MainViewController: UITabBarDelegate {
 }
 
 class MainTableViewCell: UITableViewCell {
-    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var checkButton: UIButton!
 }
 

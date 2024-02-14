@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if name == nil {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            //initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+            //initialViewController = storyboard.instantiateViewController(withIdentifier: "SuggestionViewController") as! MainViewController
         } else {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         }
