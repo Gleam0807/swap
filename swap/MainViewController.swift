@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+class MainViewController: UIViewController, FSCalendarDataSource {
     //MARK: Outlet
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
@@ -44,7 +44,7 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
         weekCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
         weekCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
         weekCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
-        weekCalendar.appearance.todayColor = .none
+        weekCalendar.appearance.todayColor = .clear
         weekCalendar.appearance.selectionColor = .red
         
         calendarHeader.text = headerDateFormatter.string(from: Date())
@@ -83,12 +83,54 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
             present(settingVC, animated: true)
         }
     }
-    @IBAction func recordEditButtonClicked(_ sender: UIButton) {
-        if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") {
-            present(recordVC, animated: true)
+    @IBAction func checkButtonClicked(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    
+}
+
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return SwapList.swapLists.isEmpty ? 1 : SwapList.swapLists.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if SwapList.swapLists.isEmpty {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewNoneCell", for: indexPath) as? MainTableViewNoneCell else { return UITableViewCell() }
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            let item = SwapList.swapLists[indexPath.row]
+            cell.titleLabel.text = item.title
+            cell.checkButton.isSelected = item.isCompleted
+            return cell
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if SwapList.swapLists.isEmpty {
+
+        } else {
+            if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") {
+                present(recordVC, animated: true)
+            }
+        }
+    }
+    
+    
+}
+
+extension MainViewController: UITableViewDelegate {
+    
+}
+
+extension MainViewController: UITabBarDelegate {
+    
+}
+
+extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let currentPage = weekCalendar.currentPage
         calendarHeader.text = headerDateFormatter.string(from: currentPage)
@@ -104,34 +146,10 @@ class MainViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSo
     }
 }
 
-extension MainViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SwapList.swapLists.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        
-        let item = SwapList.swapLists[indexPath.row]
-        cell.titleLabel.text = item.title
-        cell.checkButton.isSelected = item.isCompleted
-        return cell
-    }
-    
-    
-}
-
-extension MainViewController: UITableViewDelegate {
-    
-}
-
-extension MainViewController: UITabBarDelegate {
-    
-}
-
 class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
+}
+class MainTableViewNoneCell: UITableViewCell {
 }
 

@@ -7,7 +7,6 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -465,30 +464,40 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1tN-gU-JKq">
                                                     <rect key="frame" x="16" y="8" width="361" height="53"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1H-im-3c4">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1H-im-3c4">
                                                             <rect key="frame" x="0.0" y="0.0" width="321" height="53"/>
                                                             <color key="backgroundColor" name="InputColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="72" id="a3j-pR-zN1"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="30"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3w-25-GVb">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3w-25-GVb">
                                                             <rect key="frame" x="329" y="10.666666666666668" width="32" height="32"/>
                                                             <color key="backgroundColor" name="InputColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="G3w-25-GVb" secondAttribute="height" multiplier="1:1" id="Gih-oE-fVY"/>
                                                                 <constraint firstAttribute="height" constant="32" id="X5J-Yb-qrw"/>
                                                             </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain"/>
+                                                            <color key="tintColor" systemColor="systemGreenColor"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="selected" image="checkmark" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="checkButtonClicked:" destination="t9R-1H-8vH" eventType="touchUpInside" id="J08-Nf-7L2"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" name="MainBackgroundColor"/>
                                                 </stackView>
                                             </subviews>
+                                            <color key="backgroundColor" name="MainBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="1tN-gU-JKq" firstAttribute="top" secondItem="g0F-KI-w3V" secondAttribute="top" constant="8" id="H1O-tA-OlA"/>
                                                 <constraint firstAttribute="trailing" secondItem="1tN-gU-JKq" secondAttribute="trailing" constant="16" id="TW1-Ok-8ut"/>
@@ -502,6 +511,44 @@
                                             <outlet property="checkButton" destination="G3w-25-GVb" id="YF3-pM-hTq"/>
                                             <outlet property="titleLabel" destination="B1H-im-3c4" id="Z1j-i4-wOa"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewNoneCell" rowHeight="69" id="3Iu-Qv-bmo" customClass="MainTableViewNoneCell" customModule="swap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="119" width="393" height="69"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Iu-Qv-bmo" id="Q7g-x2-Cf9" customClass="MainTableViewNoneCell" customModule="swap" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ybK-24-Drn">
+                                                    <rect key="frame" x="140" y="8" width="113" height="72"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="습관이 없어요 😭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUs-ri-pOL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="113" height="72"/>
+                                                            <color key="backgroundColor" name="MainBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="72" id="hTp-Cv-iub"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="30"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="MainBackgroundColor"/>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="MainBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="ybK-24-Drn" firstAttribute="top" secondItem="Q7g-x2-Cf9" secondAttribute="top" constant="8" id="M9b-qa-FJn"/>
+                                                <constraint firstAttribute="trailing" secondItem="ybK-24-Drn" secondAttribute="trailing" constant="140" id="O90-H9-BF4"/>
+                                                <constraint firstItem="ybK-24-Drn" firstAttribute="leading" secondItem="Q7g-x2-Cf9" secondAttribute="leading" constant="140" id="q4O-Pe-7y2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="MainBackgroundColor"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -754,6 +801,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="추가">
                                             <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addButtonClicked:" destination="RZl-N0-BeF" eventType="touchUpInside" id="Spf-zf-Kzu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -909,12 +959,6 @@
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Lfp-qs-dL9"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                        <menu key="menu" id="a9p-QK-hmn">
-                                                            <children>
-                                                                <command title="Item 1" id="waz-79-cZl"/>
-                                                                <command title="Item 2" id="o3X-zm-beo"/>
-                                                            </children>
-                                                        </menu>
                                                         <state key="normal" title="미사용">
                                                             <color key="titleColor" name="TextColor"/>
                                                         </state>
@@ -923,6 +967,9 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="alramseletedButtonClicked:" destination="RZl-N0-BeF" eventType="touchUpInside" id="n5p-K5-lNe"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkQ-2Z-ciR">
                                                         <rect key="frame" x="114.33333333333334" y="0.0" width="32" height="32"/>
@@ -980,8 +1027,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alramSeleted" destination="DJg-D9-1br" id="Wat-sO-9uU"/>
                         <outlet property="endDateButton" destination="xRX-Gt-w0b" id="XaD-TC-46k"/>
                         <outlet property="startDateButton" destination="QPr-rN-i5I" id="d90-Gj-V9e"/>
+                        <outlet property="titleLabel" destination="FjJ-U8-8w9" id="gga-Mp-VyU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6n-jT-1jD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -15,8 +15,7 @@ class SuggestionViewController: UIViewController {
     SwapList(swapId: 1, title: "하루 물 1L 마시기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false),
     SwapList(swapId: 2, title: "책 한 권 읽기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false),
     SwapList(swapId: 3, title: "운동 30분 이상 하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false),
-    SwapList(swapId: 4, title: "영단어 50개 암기하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false)
-    ]
+    SwapList(swapId: 4, title: "영단어 50개 암기하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false)]
     //MARK: Outlet
     @IBOutlet weak var SuggestionTableView: UITableView!
 

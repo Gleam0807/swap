@@ -18,8 +18,8 @@ struct SwapList {
     var endDate: Date
     var isAlarm: Bool
     
-    static func add(title: String) {
-        let newSwap = SwapList(swapId: autoSwapId,title: title, isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false)
+    static func add(title: String, startDate: Date, endDate: Date, isAlarm: Bool) {
+        let newSwap = SwapList(swapId: autoSwapId, title: title, isCompleted: false, startDate: startDate, endDate: endDate, isAlarm: isAlarm)
         swapLists.append(newSwap)
         autoSwapId += 1
     }
