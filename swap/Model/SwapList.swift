@@ -24,6 +24,12 @@ struct SwapList {
         let newSwap = SwapList(swapId: autoSwapId, title: title, isCompleted: false, startDate: startDate, endDate: endDate, isAlarm: isAlarm, isDateCheck: false)
         swapLists.append(newSwap)
     }
+        
+    static func delete(swapId: Int) {
+        if let index = swapLists.firstIndex(where: { $0.swapId == swapId }) {
+            swapLists.remove(at: index)
+        }
+    }
     
     init(swapId: Int, title: String, isCompleted: Bool, startDate: Date, endDate: Date, isAlarm: Bool, isDateCheck: Bool) {
         self.swapId = swapId

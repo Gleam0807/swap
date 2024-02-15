@@ -139,7 +139,16 @@ extension MainViewController: UITableViewDataSource {
 }
 
 extension MainViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print(SwapList.swapLists[indexPath.row].swapId)
+            SwapList.delete(swapId: SwapList.swapLists[indexPath.row].swapId)
+            self.mainTableView.reloadData()
+            success(true)
+        }
+        deleteAction.backgroundColor = .systemRed
+        return UISwipeActionsConfiguration(actions:[deleteAction])
+     }
 }
 
 extension MainViewController: UITabBarDelegate {
