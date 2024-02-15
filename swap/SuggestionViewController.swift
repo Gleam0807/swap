@@ -12,10 +12,10 @@ class SuggestionViewController: UIViewController {
     var defaultCheckList: [Bool] = [false, false, false, false]
     
     var defaultSwapList: [SwapList] = [
-    SwapList(swapId: 1, title: "하루 물 1L 마시기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false),
-    SwapList(swapId: 2, title: "책 한 권 읽기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false),
-    SwapList(swapId: 3, title: "운동 30분 이상 하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false),
-    SwapList(swapId: 4, title: "영단어 50개 암기하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false)]
+    SwapList(swapId: 1, title: "하루 물 1L 마시기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true),
+    SwapList(swapId: 2, title: "책 한 권 읽기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true),
+    SwapList(swapId: 3, title: "운동 30분 이상 하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true),
+    SwapList(swapId: 4, title: "영단어 50개 암기하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)]
     //MARK: Outlet
     @IBOutlet weak var SuggestionTableView: UITableView!
 
@@ -60,6 +60,13 @@ class SuggestionViewController: UIViewController {
         }
         
         SwapList.swapLists = filterList
+        
+        if filterList.isEmpty {
+            let alert = UIAlertController(title: "안내", message: "습관추천이 필요하지 않을 시 [Jump]버튼으로 Swap을 이용하실 수 있습니다", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
+        }
         
         if let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainViewController") {
             mainVC.modalPresentationStyle = .fullScreen

@@ -50,19 +50,19 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         
         alramDropDownTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            alramDropDownTableView.topAnchor.constraint(equalTo: alramSeleted.bottomAnchor),
+            alramDropDownTableView.topAnchor.constraint(equalTo: alramSeleted.bottomAnchor, constant: -5),
             alramDropDownTableView.leadingAnchor.constraint(equalTo: alramSeleted.leadingAnchor),
             alramDropDownTableView.widthAnchor.constraint(equalTo: alramSeleted.widthAnchor),
             alramDropDownTableView.heightAnchor.constraint(equalToConstant: 80)
         ])
         alramDropDownTableView.backgroundColor = UIColor(named: "InputColor")
-        alramDropDownTableView.layer.cornerRadius = 10
         alramDropDownTableView.layer.masksToBounds = true
         alramDropDownTableView.separatorStyle = .singleLine
         alramDropDownTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         // FSCalendar 생성 및 설정
         monthCalendar = FSCalendar(frame: CGRect(x: startDateButton.frame.minX, y: startDateButton.frame.maxY + 230, width: 200, height: 200))
+
         monthCalendar.backgroundColor = UIColor(named: "InputColor")
         monthCalendar.layer.cornerRadius = 20
         monthCalendar.layer.masksToBounds = true
@@ -98,9 +98,17 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
             endDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
             endDateButton.titleLabel?.font = UIFont(name: "BM JUA_OTF", size: 16.0)
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         calendar.isHidden = true
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        let day = Calendar.current.component(.weekday, from: date) - 1
+        print(day)
+        if Calendar.current.shortWeekdaySymbols[day] == "일" {
+            return .systemRed
+        } else {
+            return UIColor(named: "TextColor")
+        }
     }
     
     //MARK: Action
@@ -127,16 +135,28 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         startDateButton.isSelected = false
     }
     @IBAction func addButtonClicked(_ sender: UIButton) {
-        guard let title = titleLabel.text,
+        guard let title = titleLabel.text, !title.isEmpty,
               let startDate = selectedStartDate,
               let endDate = selectedEndDate
         else {
+            let alert = UIAlertController(title: "올바르지 않은 정보", message: "습관명을 입력해주세요.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
             return
         }
-        SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram)
         
+        guard startDate <= endDate else {
+            let alert = UIAlertController(title: "올바르지 않은 날짜", message: "시작일이 종료일보다 이전이어야 합니다.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram)
+        NotificationCenter.default.post(name: Notification.Name("willDissmiss"), object: nil)
         self.dismiss(animated: true)
-        print(SwapList.swapLists)
     }
     
     

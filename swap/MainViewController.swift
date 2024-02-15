@@ -14,12 +14,13 @@ class MainViewController: UIViewController, FSCalendarDataSource {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var weekCalendar: FSCalendar!
     @IBOutlet weak var calendarHeader: UILabel!
+    var calendarDate: Date?
     
     let headerDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY년 MM월"
+        formatter.dateFormat = "yyyy년 MM월"
         formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(identifier: "KST")
+        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }()
     
@@ -48,6 +49,12 @@ class MainViewController: UIViewController, FSCalendarDataSource {
         weekCalendar.appearance.selectionColor = .red
         
         calendarHeader.text = headerDateFormatter.string(from: Date())
+        SwapList.swapLists.isEmpty ? nil : weekCalendar.select(SwapList.swapLists[0].startDate)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("willDissmiss"), object: nil)
+    }
+    
+    @objc private func reloadTableView() {
+        mainTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,18 +98,27 @@ class MainViewController: UIViewController, FSCalendarDataSource {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SwapList.swapLists.isEmpty ? 1 : SwapList.swapLists.count
+        var useCount = 0
+        for i in 0..<SwapList.swapLists.count {
+            if SwapList.swapLists[i].isDateCheck {
+                useCount += 1
+            }
+        }
+        return useCount > 0 ? useCount : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if SwapList.swapLists.isEmpty {
+        let useIndexes = SwapList.swapLists.enumerated().filter { $0.element.isDateCheck }.map { $0.offset }
+        
+        if useIndexes.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewNoneCell", for: indexPath) as? MainTableViewNoneCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         } else {
+            let useIndex = useIndexes[indexPath.row]
+            let item = SwapList.swapLists[useIndex]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-            let item = SwapList.swapLists[indexPath.row]
             cell.titleLabel.text = item.title
             cell.checkButton.isSelected = item.isCompleted
             return cell
@@ -137,6 +153,23 @@ extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        
+        for i in 0..<SwapList.swapLists.count {
+            let swapStartDateComponents = calendar.dateComponents([.year, .month, .day], from: SwapList.swapLists[i].startDate)
+            let swapEndDateComponents = calendar.dateComponents([.year, .month, .day], from: SwapList.swapLists[i].endDate)
+            if let date = calendar.date(from: dateComponents),
+               let swapStartDate = calendar.date(from: swapStartDateComponents),
+               let swapEndDate = calendar.date(from: swapEndDateComponents) {
+                if date >= swapStartDate && date <= swapEndDate {
+                    SwapList.swapLists[i].isDateCheck = true
+                } else {
+                    SwapList.swapLists[i].isDateCheck = false
+                }
+            }
+        }
+        reloadTableView()
         calendarHeader.text = headerDateFormatter.string(from: date)
     }
     
