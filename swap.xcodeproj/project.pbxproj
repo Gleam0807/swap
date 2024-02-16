@@ -20,6 +20,7 @@
 		326F7FF22B64C93F00A09D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FF12B64C93F00A09D9A /* Assets.xcassets */; };
 		326F7FF52B64C93F00A09D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FF32B64C93F00A09D9A /* LaunchScreen.storyboard */; };
 		328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328653452B664C5000BDEB2D /* SuggestionViewController.swift */; };
+		328CDB4C2B7F48FB00BC00A2 /* SwapRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */; };
 		32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32989A532B6CC690000EA449 /* RecordViewController.swift */; };
 		32F30CD72B64E41400551652 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 32F30CD62B64E41400551652 /* fonts */; };
 		32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */; };
@@ -42,6 +43,7 @@
 		326F7FF42B64C93F00A09D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		326F7FF62B64C93F00A09D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		328653452B664C5000BDEB2D /* SuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
+		328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapRecord.swift; sourceTree = "<group>"; };
 		32989A532B6CC690000EA449 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		32F30CD62B64E41400551652 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = swap/fonts; sourceTree = "<group>"; };
 		32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				320784822B7A05E50090CB30 /* SwapList.swift */,
+				328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			files = (
 				321031532B6A6A16004377E9 /* AlarmModalViewController.swift in Sources */,
 				328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */,
+				328CDB4C2B7F48FB00BC00A2 /* SwapRecord.swift in Sources */,
 				3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */,
 				326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */,
 				320784832B7A05E50090CB30 /* SwapList.swift in Sources */,

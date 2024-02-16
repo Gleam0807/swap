@@ -116,10 +116,12 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         isDropdownShow.toggle()
         alramDropDownTableView.isHidden = !isDropdownShow
     }
-    @IBAction func alarmButtonClicked(_ sender: UIButton) {
-        if let alarmVC = storyboard?.instantiateViewController(withIdentifier: "AlarmModalViewController") {
-            alarmVC.modalPresentationStyle = .overFullScreen
-            present(alarmVC, animated: true)
+    @IBAction func alarmButtonClicked(_ sender: UIButton) {        
+        if isAlram {
+            if let alarmVC = storyboard?.instantiateViewController(withIdentifier: "AlarmModalViewController") {
+                alarmVC.modalPresentationStyle = .overFullScreen
+                present(alarmVC, animated: true)
+            }
         }
     }
     @IBAction func startCalendarHidden(_ sender: UIButton) {

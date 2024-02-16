@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import UserNotifications
 
 struct SwapList {
     static var swapLists = [SwapList]()
@@ -18,10 +20,12 @@ struct SwapList {
     var endDate: Date
     var isAlarm: Bool
     var isDateCheck: Bool
+    var alramDate: Date?
+    var sound = UNMutableNotificationContent()
     
     static func add(title: String, startDate: Date, endDate: Date, isAlarm: Bool) {
         autoSwapId += 1
-        let newSwap = SwapList(swapId: autoSwapId, title: title, isCompleted: false, startDate: startDate, endDate: endDate, isAlarm: isAlarm, isDateCheck: false)
+        let newSwap = SwapList(swapId: autoSwapId, title: title, isCompleted: false, startDate: startDate, endDate: endDate, isAlarm: isAlarm, isDateCheck: false, alramDate: nil)
         swapLists.append(newSwap)
     }
         
@@ -31,7 +35,7 @@ struct SwapList {
         }
     }
     
-    init(swapId: Int, title: String, isCompleted: Bool, startDate: Date, endDate: Date, isAlarm: Bool, isDateCheck: Bool) {
+    init(swapId: Int, title: String, isCompleted: Bool, startDate: Date, endDate: Date, isAlarm: Bool, isDateCheck: Bool, alramDate: Date?) {
         self.swapId = swapId
         self.title = title
         self.isCompleted = isCompleted
@@ -39,5 +43,6 @@ struct SwapList {
         self.endDate = endDate
         self.isAlarm = isAlarm
         self.isDateCheck = isDateCheck
+        self.alramDate = alramDate
     }
 }
