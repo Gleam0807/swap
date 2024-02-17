@@ -157,8 +157,9 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         }
         
         SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram)
-        NotificationCenter.default.post(name: Notification.Name("willDissmiss"), object: nil)
-        self.dismiss(animated: true)
+        self.dismiss(animated: true) {
+            NotificationCenter.default.post(name: Notification.Name("addDismissed"), object: nil)
+        }
     }
     
     

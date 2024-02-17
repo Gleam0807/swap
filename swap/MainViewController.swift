@@ -49,12 +49,14 @@ class MainViewController: UIViewController, FSCalendarDataSource {
         weekCalendar.appearance.selectionColor = .red
         
         calendarHeader.text = headerDateFormatter.string(from: Date())
-        SwapList.swapLists.isEmpty ? nil : weekCalendar.select(SwapList.swapLists[0].startDate)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("willDissmiss"), object: nil)
+        if !SwapList.swapLists.isEmpty {
+            weekCalendar.select(SwapList.swapLists[0].startDate)
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("addDismissed"), object: nil)
     }
     
     @objc private func reloadTableView() {
-        mainTableView.reloadData()
+        self.mainTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,10 +128,15 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if SwapList.swapLists.isEmpty {
-
-        } else {
-            if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") {
+        if !SwapList.swapLists.isEmpty {
+            if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") as? RecordViewController {
+                for i in 0..<SwapList.swapLists.count {
+                    recordVC.swapId = SwapList.swapLists[i].swapId
+                    recordVC.swapTitle = SwapList.swapLists[i].title
+                    recordVC.startDate = SwapList.swapLists[i].startDate
+                    recordVC.endDate = SwapList.swapLists[i].endDate
+                    recordVC.selectedDate = calendarDate ?? Date()
+                }
                 present(recordVC, animated: true)
             }
         }
@@ -162,6 +169,7 @@ extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendarDate = date
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
         
