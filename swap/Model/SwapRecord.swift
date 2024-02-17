@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 struct SwapRecord {
     static var swapRecords = [SwapRecord]()
@@ -16,14 +17,14 @@ struct SwapRecord {
     var endDate: Date
     var recordDate: Date
     var memo: String
-    var images: String
+    var images: [String]
     
-    static func add(swapId: Int, title: String, startDate: Date, endDate: Date, recordDate: Date, memo: String, images: String) {
+    static func add(swapId: Int, title: String, startDate: Date, endDate: Date, recordDate: Date, memo: String, images: [String]) {
         let newSwap = SwapRecord(swapId: swapId, title: title, startDate: startDate, endDate: endDate, recordDate: recordDate, memo: memo, images: images)
         swapRecords.append(newSwap)
     }
     
-    init(swapId: Int, title: String, startDate: Date, endDate: Date, recordDate: Date, memo: String, images: String) {
+    init(swapId: Int, title: String, startDate: Date, endDate: Date, recordDate: Date, memo: String, images: [String]) {
         self.swapId = swapId
         self.title = title
         self.startDate = startDate
