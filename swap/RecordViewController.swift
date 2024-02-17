@@ -65,13 +65,6 @@ class RecordViewController: UIViewController {
         // 이미지를 표시할 UIImageView 배열
         let imageViews = [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage]
 
-        if !imageArray.isEmpty {
-            for (index, image) in imageArray.enumerated() {
-                guard index < imageViews.count else { break }
-                print(image)
-                imageViews[index]?.image = image
-            }
-        }
         // itemProviders에서 각 이미지를 로드하여 UIImageView에 설정
         for (index, itemProvider) in itemProviders.enumerated() {
             // 이미지를 표시할 UIImageView가 없으면 종료
@@ -182,6 +175,18 @@ extension RecordViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        for swapRecord in SwapRecord.swapRecords {
+            if !swapRecord.images.isEmpty {
+                for (index, image) in swapRecord.images.enumerated() {
+                    guard index < [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage].count else { break }
+                    [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage][index].image = image
+                }
+                break
+            }
+            cell.secondImage.image = nil
+            cell.thirdImage.image = nil
+            cell.fourthImage.image = nil
+        }
         showImage(for: cell)
         return cell
     }
