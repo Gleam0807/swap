@@ -31,8 +31,6 @@ class RecordViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         memoTextView.delegate = self
-        memoTextView.text = "메모"
-        memoTextView.textColor = .lightGray
         
         monthCalendar.appearance.headerMinimumDissolvedAlpha = 0
         monthCalendar.rowHeight = 30
@@ -61,6 +59,13 @@ class RecordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         titleLabel.text = swapTitle
+        if let swapId = swapId, let swapRecord = SwapRecord.swapRecords.first(where: { $0.swapId == swapId && $0.recordDate == selectedDate }), !swapRecord.memo.isEmpty {
+            memoTextView.text = swapRecord.memo
+            memoTextView.textColor = .swapTextColor
+        } else {
+            memoTextView.text = "메모"
+            memoTextView.textColor = .lightGray
+        }
         monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
     }
     
@@ -97,13 +102,11 @@ class RecordViewController: UIViewController {
             return
         }
         
-        if SwapRecord.isDuplicate(swapId: swapId) {
+        if SwapRecord.isDuplicate(swapId: swapId, recordDate: selectedDate) {
             SwapRecord.update(swapId: swapId, memo: memo, images: imageArray)
-            self.dismiss(animated: true)
-            return
+        } else {
+            SwapRecord.add(swapId: swapId, title: title, startDate: startDate, endDate: endDate, recordDate: selectedDate, memo: memo, images: imageArray)
         }
-        
-        SwapRecord.add(swapId: swapId, title: title, startDate: startDate, endDate: endDate, recordDate: selectedDate, memo: memo, images: imageArray)
         self.dismiss(animated: true)
     }
 }
@@ -148,18 +151,17 @@ extension RecordViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        for swapRecord in SwapRecord.swapRecords {
-            if !swapRecord.images.isEmpty {
-                for (index, image) in swapRecord.images.enumerated() {
-                    guard index < [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage].count else { break }
-                    [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage][index].image = image
-                }
-                break
+        if let swapId = swapId, let swapRecord = SwapRecord.swapRecords.first(where: { $0.swapId == swapId && $0.recordDate == selectedDate }), !swapRecord.images.isEmpty {
+            for (index, image) in swapRecord.images.prefix(4).enumerated() {
+                guard index < [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage].count else { break }
+                [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage][index].image = image
             }
+        } else {
             cell.secondImage.image = nil
             cell.thirdImage.image = nil
             cell.fourthImage.image = nil
         }
+
         showImage(for: cell)
         return cell
     }
@@ -177,27 +179,42 @@ extension RecordViewController: UICollectionViewDataSource {
 }
 
 extension RecordViewController: FSCalendarDelegate {
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let currentPage = monthCalendar.currentPage
+        if let selectedDate = selectedDate {
+            let currentPageMonth = DateFormatter().displayDateFormatter.string(from: currentPage)
+            let seletedPageMonth = DateFormatter().displayDateFormatter.string(from: selectedDate)
+            if currentPageMonth == seletedPageMonth {
+                let headerText = DateFormatter().recordDisplayDateFormatter.string(from: selectedDate)
+                monthCalendar.appearance.headerDateFormat = headerText
+            } else {
+                let headerText = DateFormatter().recordDisplayDateFormatter.string(from: currentPage)
+                monthCalendar.appearance.headerDateFormat = headerText
+            }
+        }
+    }
+    
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
         let eventScaleFactor: CGFloat = 7.0
         cell.eventIndicator.transform = CGAffineTransform(scaleX: eventScaleFactor, y: eventScaleFactor)
-        cell.eventIndicator.color = UIColor.swapButtonColor?.withAlphaComponent(0.85)
+        //cell.eventIndicator.color = UIColor.swapButtonColor?.withAlphaComponent(0.85)
     }
 
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         return false
     }
+
 }
 
 extension RecordViewController: FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for swap in SwapList.swapLists {
-            if date >= swap.startDate, date <= swap.endDate {
+        if let startDate = startDate, let endDate = endDate {
+            if date >= startDate, date <= endDate {
                 return 1
             }
         }
         return 0
     }
-    
 }
 
 extension RecordViewController: FSCalendarDelegateAppearance {

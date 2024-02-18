@@ -11,7 +11,7 @@ extension UIViewController {
     func isDateInRange(startDate: Date, endDate: Date, target: Date) -> Bool {
         let isStarted = startDate <= target
         let isEnd = endDate < target
-        return isStarted && !isEnd
+        return startDate == endDate ? true : isStarted && !isEnd
     }
 }
 

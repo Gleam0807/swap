@@ -24,8 +24,8 @@ struct SwapRecord {
         swapRecords.append(newSwap)
     }
     
-    static func isDuplicate(swapId: Int) -> Bool {
-        return swapRecords.contains { $0.swapId == swapId }
+    static func isDuplicate(swapId: Int, recordDate: Date) -> Bool {
+        return swapRecords.contains { $0.swapId == swapId && $0.recordDate == recordDate }
     }
     
     static func update(swapId: Int, memo: String, images: [UIImage]) {

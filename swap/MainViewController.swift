@@ -127,10 +127,12 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !SwapList.swapLists.isEmpty {
             if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") as? RecordViewController {
-                recordVC.swapId = SwapList.swapLists[indexPath.row].swapId
-                recordVC.swapTitle = SwapList.swapLists[indexPath.row].title
-                recordVC.startDate = SwapList.swapLists[indexPath.row].startDate
-                recordVC.endDate = SwapList.swapLists[indexPath.row].endDate
+                let useIndexes = SwapList.swapLists.enumerated().filter { $0.element.isDateCheck }.map { $0.offset }
+                let useIndex = useIndexes[indexPath.row]
+                recordVC.swapId = SwapList.swapLists[useIndex].swapId
+                recordVC.swapTitle = SwapList.swapLists[useIndex].title
+                recordVC.startDate = SwapList.swapLists[useIndex].startDate
+                recordVC.endDate = SwapList.swapLists[useIndex].endDate
                 recordVC.selectedDate = calendarDate
                 present(recordVC, animated: true)
             }
