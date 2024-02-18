@@ -8,13 +8,17 @@
 import UIKit
 import FSCalendar
 
-class MainViewController: UIViewController, FSCalendarDataSource {
+protocol SwapDataDelegate {
+    func reloadData()
+}
+
+class MainViewController: UIViewController {
     //MARK: Outlet
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var weekCalendar: FSCalendar!
     @IBOutlet weak var calendarHeader: UILabel!
-    var calendarDate: Date?
+    var calendarDate = Date()
     
     let headerDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -25,9 +29,9 @@ class MainViewController: UIViewController, FSCalendarDataSource {
     }()
     
     override func viewDidLoad() {
-//                for key in UserDefaults.standard.dictionaryRepresentation().keys {
-//                    UserDefaults.standard.removeObject(forKey: key.description)
-//                } // <userdefaults clear code>
+        //                for key in UserDefaults.standard.dictionaryRepresentation().keys {
+        //                    UserDefaults.standard.removeObject(forKey: key.description)
+        //                } // <userdefaults clear code>
         mainTableView.dataSource = self
         mainTableView.delegate = self
         weekCalendar.dataSource = self
@@ -38,28 +42,24 @@ class MainViewController: UIViewController, FSCalendarDataSource {
         weekCalendar.locale = Locale(identifier: "ko_kr")
         weekCalendar.headerHeight = 0
         weekCalendar.weekdayHeight = 24
-        weekCalendar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        weekCalendar.appearance.weekdayTextColor = UIColor(named: "TextColor")
+        weekCalendar.appearance.weekdayFont = .swapTextFont
+        weekCalendar.appearance.weekdayTextColor = .swapTextColor
         weekCalendar.appearance.headerTitleColor = .clear
         weekCalendar.appearance.headerMinimumDissolvedAlpha = 0
-        weekCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        weekCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
+        weekCalendar.appearance.titleFont = .swapTextFont
+        weekCalendar.appearance.titleDefaultColor = .swapTextColor
         weekCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
         weekCalendar.appearance.todayColor = .clear
         weekCalendar.appearance.selectionColor = .red
         
-        calendarHeader.text = headerDateFormatter.string(from: Date())
+        calendarHeader.text = DateFormatter().displayDateFormatter.string(from: Date())
         if !SwapList.swapLists.isEmpty {
             weekCalendar.select(SwapList.swapLists[0].startDate)
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("addDismissed"), object: nil)
-    }
-    
-    @objc private func reloadTableView() {
-        self.mainTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.mainTableView.reloadData()
         weekCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
     }
     
@@ -83,7 +83,9 @@ class MainViewController: UIViewController, FSCalendarDataSource {
     
     //MARK: Action
     @IBAction func calendarAddButtonClicked(_ sender: UIButton) {
-        if let calendarAddVC = storyboard?.instantiateViewController(withIdentifier: "CalendarAddViewController") {
+        if let calendarAddVC = storyboard?.instantiateViewController(withIdentifier: "CalendarAddViewController") as? CalendarAddViewController {
+            calendarAddVC.currentDate = calendarDate
+            calendarAddVC.swapDataDelegate = self
             present(calendarAddVC, animated: true)
         }
     }
@@ -100,12 +102,7 @@ class MainViewController: UIViewController, FSCalendarDataSource {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var useCount = 0
-        for i in 0..<SwapList.swapLists.count {
-            if SwapList.swapLists[i].isDateCheck {
-                useCount += 1
-            }
-        }
+        let useCount = SwapList.swapLists.filter{ $0.isDateCheck }.count
         return useCount > 0 ? useCount : 1
     }
     
@@ -113,13 +110,13 @@ extension MainViewController: UITableViewDataSource {
         let useIndexes = SwapList.swapLists.enumerated().filter { $0.element.isDateCheck }.map { $0.offset }
         
         if useIndexes.isEmpty {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewNoneCell", for: indexPath) as? MainTableViewNoneCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewNoneCell.identifier, for: indexPath) as? MainTableViewNoneCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         } else {
             let useIndex = useIndexes[indexPath.row]
             let item = SwapList.swapLists[useIndex]
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             cell.titleLabel.text = item.title
             cell.checkButton.isSelected = item.isCompleted
@@ -134,7 +131,7 @@ extension MainViewController: UITableViewDataSource {
                 recordVC.swapTitle = SwapList.swapLists[indexPath.row].title
                 recordVC.startDate = SwapList.swapLists[indexPath.row].startDate
                 recordVC.endDate = SwapList.swapLists[indexPath.row].endDate
-                recordVC.selectedDate = calendarDate ?? Date()
+                recordVC.selectedDate = calendarDate
                 present(recordVC, animated: true)
             }
         }
@@ -146,14 +143,13 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            print(SwapList.swapLists[indexPath.row].swapId)
             SwapList.delete(swapId: SwapList.swapLists[indexPath.row].swapId)
             self.mainTableView.reloadData()
             success(true)
         }
         deleteAction.backgroundColor = .systemRed
         return UISwipeActionsConfiguration(actions:[deleteAction])
-     }
+    }
 }
 
 extension MainViewController: UITabBarDelegate {
@@ -163,41 +159,41 @@ extension MainViewController: UITabBarDelegate {
 extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let currentPage = weekCalendar.currentPage
-        calendarHeader.text = headerDateFormatter.string(from: currentPage)
+        calendarHeader.text = DateFormatter().displayDateFormatter.string(from: currentPage)
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendarDate = date
-        let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
-        
-        for i in 0..<SwapList.swapLists.count {
-            let swapStartDateComponents = calendar.dateComponents([.year, .month, .day], from: SwapList.swapLists[i].startDate)
-            let swapEndDateComponents = calendar.dateComponents([.year, .month, .day], from: SwapList.swapLists[i].endDate)
-            if let date = calendar.date(from: dateComponents),
-               let swapStartDate = calendar.date(from: swapStartDateComponents),
-               let swapEndDate = calendar.date(from: swapEndDateComponents) {
-                if date >= swapStartDate && date <= swapEndDate {
-                    SwapList.swapLists[i].isDateCheck = true
-                } else {
-                    SwapList.swapLists[i].isDateCheck = false
-                }
-            }
-        }
-        reloadTableView()
-        calendarHeader.text = headerDateFormatter.string(from: date)
+        SwapList.isSwapInRange(target: calendarDate)
+        self.mainTableView.reloadData()
+        calendarHeader.text = DateFormatter().displayDateFormatter.string(from: date)
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let day = Calendar.current.component(.weekday, from: date) - 1
-        if day == 0 { return .systemRed } else { return UIColor(named: "TextColor") }
+        if day == 0 {
+            return .systemRed
+        } else {
+            return .swapTextColor
+        }
     }
 }
 
+extension MainViewController: FSCalendarDataSource {}
+
 class MainTableViewCell: UITableViewCell {
+    static let identifier = "MainTableViewCell"
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
 }
+
 class MainTableViewNoneCell: UITableViewCell {
+    static let identifier = "MainTableViewNoneCell"
+}
+
+extension MainViewController: SwapDataDelegate {
+    func reloadData() {
+        self.mainTableView.reloadData()
+    }
 }
 

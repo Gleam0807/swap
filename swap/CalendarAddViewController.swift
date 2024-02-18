@@ -16,6 +16,7 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
     let options = ["미사용", "사용"]
     var isDropdownShow = false
     var isAlram = false
+    var currentDate: Date?
     
     @IBOutlet weak var startDateButton: UIButton!
     @IBOutlet weak var endDateButton: UIButton!
@@ -29,6 +30,8 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
      }()
+    
+    var swapDataDelegate: SwapDataDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +58,7 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
             alramDropDownTableView.widthAnchor.constraint(equalTo: alramSeleted.widthAnchor),
             alramDropDownTableView.heightAnchor.constraint(equalToConstant: 80)
         ])
-        alramDropDownTableView.backgroundColor = UIColor(named: "InputColor")
+        alramDropDownTableView.backgroundColor = .swapInputColor
         alramDropDownTableView.layer.masksToBounds = true
         alramDropDownTableView.separatorStyle = .singleLine
         alramDropDownTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -63,7 +66,7 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         // FSCalendar 생성 및 설정
         monthCalendar = FSCalendar(frame: CGRect(x: startDateButton.frame.minX, y: startDateButton.frame.maxY + 230, width: 200, height: 200))
 
-        monthCalendar.backgroundColor = UIColor(named: "InputColor")
+        monthCalendar.backgroundColor = .swapInputColor
         monthCalendar.layer.cornerRadius = 20
         monthCalendar.layer.masksToBounds = true
         monthCalendar.isHidden = true
@@ -72,18 +75,18 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         
         monthCalendar.appearance.headerMinimumDissolvedAlpha = 0
         monthCalendar.rowHeight = 20
-        monthCalendar.appearance.titleTodayColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.titleTodayColor = .swapTextColor
         monthCalendar.appearance.todayColor = .clear
         monthCalendar.appearance.selectionColor = .red
         monthCalendar.placeholderType = .none
         monthCalendar.locale = Locale(identifier: "ko_kr")
         monthCalendar.appearance.headerDateFormat = "YYYY년 MM월 dd일"
-        monthCalendar.appearance.headerTitleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCalendar.appearance.headerTitleColor = UIColor(named: "TextColor")
-        monthCalendar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCalendar.appearance.weekdayTextColor = UIColor(named: "TextColor")
-        monthCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.headerTitleFont = .swapTextFont
+        monthCalendar.appearance.headerTitleColor = .swapTextColor
+        monthCalendar.appearance.weekdayFont = .swapTextFont
+        monthCalendar.appearance.weekdayTextColor = .swapTextColor
+        monthCalendar.appearance.titleFont = .swapTextFont
+        monthCalendar.appearance.titleDefaultColor = .swapTextColor
         monthCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
         view.addSubview(monthCalendar)
     }
@@ -92,11 +95,11 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         if startDateButton.isSelected {
             selectedStartDate = date
             startDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
-            startDateButton.titleLabel?.font = UIFont(name: "BM JUA_OTF", size: 16.0)
+            startDateButton.titleLabel?.font = .swapTextFont
         } else if endDateButton.isSelected {
             selectedEndDate = date
             endDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
-            endDateButton.titleLabel?.font = UIFont(name: "BM JUA_OTF", size: 16.0)
+            endDateButton.titleLabel?.font = .swapTextFont
         }
         calendar.isHidden = true
     }
@@ -107,7 +110,7 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         if Calendar.current.shortWeekdaySymbols[day] == "일" {
             return .systemRed
         } else {
-            return UIColor(named: "TextColor")
+            return .swapTextColor
         }
     }
     
@@ -156,10 +159,15 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
             return
         }
         
-        SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram)
-        self.dismiss(animated: true) {
-            NotificationCenter.default.post(name: Notification.Name("addDismissed"), object: nil)
+        if let currentDate = currentDate {
+            let isDateInRange = isDateInRange(startDate: startDate, endDate: endDate, target: currentDate)
+            SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: isDateInRange)
+        } else {
+            SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: false)
         }
+        
+        swapDataDelegate.reloadData()
+        self.dismiss(animated: true)
     }
     
     
@@ -177,10 +185,10 @@ extension CalendarAddViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell") ?? UITableViewCell(style: .default, reuseIdentifier: "DropdownCell")
         let selectedBackgroundView = UIView()
-        cell.backgroundColor = UIColor(named: "InputColor")
-        cell.textLabel?.font = UIFont(name: "BM JUA_OTF", size: 16.0)
+        cell.backgroundColor = .swapInputColor
+        cell.textLabel?.font = .swapTextFont
         cell.textLabel?.textAlignment = .center
-        selectedBackgroundView.backgroundColor = UIColor(named: "ButtonColor")
+        selectedBackgroundView.backgroundColor = .swapButtonColor
         cell.selectedBackgroundView = selectedBackgroundView
         cell.textLabel?.text = options[indexPath.row]
         return cell

@@ -19,6 +19,9 @@
 		326F7FF02B64C93E00A09D9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FEE2B64C93E00A09D9A /* Main.storyboard */; };
 		326F7FF22B64C93F00A09D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FF12B64C93F00A09D9A /* Assets.xcassets */; };
 		326F7FF52B64C93F00A09D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F7FF32B64C93F00A09D9A /* LaunchScreen.storyboard */; };
+		327876F22B81A810003C1F20 /* UIViewController++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327876F12B81A810003C1F20 /* UIViewController++Extension.swift */; };
+		327876F42B81B548003C1F20 /* UIColor++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327876F32B81B548003C1F20 /* UIColor++Extension.swift */; };
+		327876F62B81B7CC003C1F20 /* UIFont++Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327876F52B81B7CC003C1F20 /* UIFont++Extenstion.swift */; };
 		328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328653452B664C5000BDEB2D /* SuggestionViewController.swift */; };
 		328CDB4C2B7F48FB00BC00A2 /* SwapRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */; };
 		32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32989A532B6CC690000EA449 /* RecordViewController.swift */; };
@@ -42,6 +45,9 @@
 		326F7FF12B64C93F00A09D9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		326F7FF42B64C93F00A09D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		326F7FF62B64C93F00A09D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		327876F12B81A810003C1F20 /* UIViewController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController++Extension.swift"; sourceTree = "<group>"; };
+		327876F32B81B548003C1F20 /* UIColor++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++Extension.swift"; sourceTree = "<group>"; };
+		327876F52B81B7CC003C1F20 /* UIFont++Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont++Extenstion.swift"; sourceTree = "<group>"; };
 		328653452B664C5000BDEB2D /* SuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
 		328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapRecord.swift; sourceTree = "<group>"; };
 		32989A532B6CC690000EA449 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 		326F7FE72B64C93E00A09D9A /* swap */ = {
 			isa = PBXGroup;
 			children = (
+				327876F72B81B867003C1F20 /* Extension */,
 				320784812B7A05C20090CB30 /* Model */,
 				326F7FE82B64C93E00A09D9A /* AppDelegate.swift */,
 				326F7FEA2B64C93E00A09D9A /* SceneDelegate.swift */,
@@ -108,6 +115,16 @@
 				326F7FF62B64C93F00A09D9A /* Info.plist */,
 			);
 			path = swap;
+			sourceTree = "<group>";
+		};
+		327876F72B81B867003C1F20 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				327876F12B81A810003C1F20 /* UIViewController++Extension.swift */,
+				327876F32B81B548003C1F20 /* UIColor++Extension.swift */,
+				327876F52B81B7CC003C1F20 /* UIFont++Extenstion.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +207,7 @@
 			files = (
 				321031532B6A6A16004377E9 /* AlarmModalViewController.swift in Sources */,
 				328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */,
+				327876F22B81A810003C1F20 /* UIViewController++Extension.swift in Sources */,
 				328CDB4C2B7F48FB00BC00A2 /* SwapRecord.swift in Sources */,
 				3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */,
 				326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */,
@@ -197,10 +215,12 @@
 				32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */,
 				32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */,
 				326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */,
+				327876F42B81B548003C1F20 /* UIColor++Extension.swift in Sources */,
 				326F7FEB2B64C93E00A09D9A /* SceneDelegate.swift in Sources */,
 				3200E6382B6BB454005126BC /* AttaintViewController.swift in Sources */,
 				3200E63A2B6BD416005126BC /* TrophyViewController.swift in Sources */,
 				3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */,
+				327876F62B81B7CC003C1F20 /* UIFont++Extenstion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

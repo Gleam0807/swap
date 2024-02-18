@@ -25,16 +25,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lXW-mr-du1">
-                                <rect key="frame" x="24" y="179" width="82" height="24"/>
+                                <rect key="frame" x="23.999999999999993" y="179" width="86.333333333333314" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evh-p5-k1R">
-                                        <rect key="frame" x="0.0" y="0.0" width="58" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="28"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
                                         <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hqr-hW-ZHw">
-                                        <rect key="frame" x="58" y="1.9999999999999982" width="24" height="20.666666666666664"/>
+                                        <rect key="frame" x="62.333333333333329" y="3.9999999999999982" width="24" height="20.666666666666664"/>
                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="RqN-jp-F8b"/>
@@ -44,7 +44,7 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="left" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="닉네임을 입력해주세요." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8S-h6-kVr">
-                                <rect key="frame" x="16" y="219" width="361" height="80"/>
+                                <rect key="frame" x="16" y="223" width="361" height="80"/>
                                 <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="bhg-kX-iYD"/>
@@ -59,7 +59,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eko-19-CAb">
-                                <rect key="frame" x="151" y="652" width="91.333333333333314" height="46"/>
+                                <rect key="frame" x="151" y="652" width="91" height="46"/>
                                 <color key="backgroundColor" name="ButtonColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="vAk-cU-Nn8"/>
@@ -131,13 +131,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="많은 사용자들이 사용하고 있는 습관을 추천해드릴게요!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8k-lc-LCr">
-                                <rect key="frame" x="48" y="139" width="297" height="48"/>
+                                <rect key="frame" x="48" y="139" width="297" height="56"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JA8-Mv-Tkf">
-                                <rect key="frame" x="0.0" y="203" width="393" height="489"/>
+                                <rect key="frame" x="0.0" y="211.00000000000003" width="393" height="475.66666666666674"/>
                                 <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionTableViewCell" rowHeight="348" id="h7J-zR-K5c" customClass="SuggestionTableViewCell" customModule="swap" customModuleProvider="target">
@@ -305,10 +305,10 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="w2n-tb-Vse">
-                                <rect key="frame" x="48" y="708" width="297" height="46"/>
+                                <rect key="frame" x="48" y="702.66666666666663" width="297" height="51.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBb-qS-khy">
-                                        <rect key="frame" x="0.0" y="0.0" width="136.66666666666666" height="46"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="136.66666666666666" height="51.333333333333336"/>
                                         <color key="backgroundColor" name="ButtonColor"/>
                                         <color key="tintColor" name="TextColor"/>
                                         <state key="normal" title="Button"/>
@@ -334,7 +334,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pns-LP-S1a">
-                                        <rect key="frame" x="160.66666666666663" y="0.0" width="136.33333333333337" height="46"/>
+                                        <rect key="frame" x="160.66666666666663" y="0.0" width="136.33333333333337" height="51.333333333333336"/>
                                         <color key="backgroundColor" name="ButtonColor"/>
                                         <color key="tintColor" name="TextColor"/>
                                         <state key="normal" title="Button"/>
@@ -520,36 +520,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ybK-24-Drn">
-                                                    <rect key="frame" x="140" y="8" width="113" height="72"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="습관이 없어요 😭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUs-ri-pOL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="113" height="72"/>
-                                                            <color key="backgroundColor" name="MainBackgroundColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="72" id="hTp-Cv-iub"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="30"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                    </subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="습관이 없어요 😭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUs-ri-pOL">
+                                                    <rect key="frame" x="143" y="-1.6666666666666643" width="107" height="72.333333333333314"/>
                                                     <color key="backgroundColor" name="MainBackgroundColor"/>
-                                                </stackView>
+                                                    <color key="tintColor" name="MainBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="72" id="hTp-Cv-iub"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
+                                                    <color key="textColor" name="TextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="30"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" name="MainBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="ybK-24-Drn" firstAttribute="top" secondItem="Q7g-x2-Cf9" secondAttribute="top" constant="8" id="M9b-qa-FJn"/>
-                                                <constraint firstAttribute="trailing" secondItem="ybK-24-Drn" secondAttribute="trailing" constant="140" id="O90-H9-BF4"/>
-                                                <constraint firstItem="ybK-24-Drn" firstAttribute="leading" secondItem="Q7g-x2-Cf9" secondAttribute="leading" constant="140" id="q4O-Pe-7y2"/>
+                                                <constraint firstItem="vUs-ri-pOL" firstAttribute="centerX" secondItem="Q7g-x2-Cf9" secondAttribute="centerX" id="ez3-da-joB"/>
+                                                <constraint firstItem="vUs-ri-pOL" firstAttribute="centerY" secondItem="Q7g-x2-Cf9" secondAttribute="centerY" id="vWX-AM-4n8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MainBackgroundColor"/>
+                                        <color key="tintColor" name="MainBackgroundColor"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -636,7 +631,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2024년 2월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jER-yU-pWO">
-                                <rect key="frame" x="16" y="75" width="361" height="32"/>
+                                <rect key="frame" x="16" y="75" width="361" height="37.333333333333343"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="32"/>
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
@@ -651,14 +646,14 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgF-GI-JeW">
-                                <rect key="frame" x="16" y="115" width="361" height="56"/>
+                                <rect key="frame" x="16" y="120.33333333333331" width="361" height="56"/>
                                 <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="ttd-N6-kZJ"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jax-Be-QXJ">
-                                <rect key="frame" x="0.0" y="187" width="393" height="576"/>
+                                <rect key="frame" x="0.0" y="192.33333333333331" width="393" height="570.66666666666674"/>
                                 <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="LXl-tQ-AGn">
@@ -672,13 +667,13 @@
                                                     <rect key="frame" x="16" y="8" width="361" height="134"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하루 물 1L 마시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYa-6l-uTZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="105" height="16"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="114.33333333333333" height="18.666666666666668"/>
                                                             <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                             <color key="textColor" name="TextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPu-48-Ora">
-                                                            <rect key="frame" x="0.0" y="20" width="361" height="114"/>
+                                                            <rect key="frame" x="0.0" y="22.666666666666664" width="361" height="111.33333333333334"/>
                                                             <color key="backgroundColor" name="InputColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -779,10 +774,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="5GH-Qz-zEA">
-                                <rect key="frame" x="8" y="75" width="377" height="30"/>
+                                <rect key="frame" x="8" y="75" width="377" height="51.333333333333343"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAl-md-H7B">
-                                        <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="52" height="51.333333333333336"/>
                                         <color key="tintColor" red="1" green="0.2891837807" blue="0.37511192030000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="취소">
@@ -790,13 +785,13 @@
                                         </buttonConfiguration>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 습관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-aR-0wU">
-                                        <rect key="frame" x="146" y="0.0" width="85" height="30"/>
+                                        <rect key="frame" x="147.66666666666666" y="0.0" width="90" height="51.333333333333336"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
                                         <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZt-Uw-M2K">
-                                        <rect key="frame" x="327" y="0.0" width="50" height="30"/>
+                                        <rect key="frame" x="333.66666666666669" y="0.0" width="43.333333333333314" height="51.333333333333336"/>
                                         <color key="tintColor" red="0.73333334920000004" green="0.86274516580000005" blue="0.3058823645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="추가">
@@ -815,7 +810,7 @@
                                 </constraints>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 습관명" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="FjJ-U8-8w9">
-                                <rect key="frame" x="16" y="137" width="361" height="120"/>
+                                <rect key="frame" x="16" y="158.33333333333334" width="361" height="120.00000000000003"/>
                                 <color key="backgroundColor" name="InputColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="GAQ-s3-8yE"/>
@@ -830,7 +825,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b3j-Dk-75s">
-                                <rect key="frame" x="16" y="289" width="361" height="134"/>
+                                <rect key="frame" x="16" y="310.33333333333331" width="361" height="134"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5a-nm-y7h">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="63"/>
@@ -839,7 +834,7 @@
                                                 <rect key="frame" x="16" y="8" width="329" height="47"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hue-5x-Z0V">
-                                                        <rect key="frame" x="0.0" y="15.666666666666686" width="48" height="16"/>
+                                                        <rect key="frame" x="0.0" y="14.333333333333373" width="48" height="18.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -894,7 +889,7 @@
                                                 <rect key="frame" x="16" y="8" width="329" height="47"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zV-4W-OsO">
-                                                        <rect key="frame" x="0.0" y="15.666666666666686" width="48" height="16"/>
+                                                        <rect key="frame" x="0.0" y="14.333333333333373" width="48" height="18.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -945,22 +940,22 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXE-Xb-2QP">
-                                <rect key="frame" x="16" y="463" width="361" height="48"/>
+                                <rect key="frame" x="16" y="484.33333333333331" width="361" height="47.999999999999943"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="154" translatesAutoresizingMaskIntoConstraints="NO" id="foE-oX-rBz">
                                         <rect key="frame" x="16" y="8" width="329" height="32"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-oO-Syk">
-                                                <rect key="frame" x="0.0" y="8" width="28.666666666666668" height="16"/>
+                                                <rect key="frame" x="0.0" y="6.6666666666666874" width="29.666666666666668" height="18.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JML-W1-OlZ">
-                                                <rect key="frame" x="182.66666666666663" y="0.0" width="146.33333333333337" height="32"/>
+                                                <rect key="frame" x="183.66666666666663" y="0.0" width="145.33333333333337" height="32"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJg-D9-1br">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="105.33333333333333" height="32"/>
                                                         <color key="backgroundColor" name="InputColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Lfp-qs-dL9"/>
@@ -979,7 +974,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkQ-2Z-ciR">
-                                                        <rect key="frame" x="114.33333333333334" y="0.0" width="32" height="32"/>
+                                                        <rect key="frame" x="113.33333333333334" y="0.0" width="32" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="32" id="W5q-cs-12Y"/>
                                                             <constraint firstAttribute="width" secondItem="QkQ-2Z-ciR" secondAttribute="height" multiplier="1:1" id="cnE-HV-wcA"/>
@@ -1053,7 +1048,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eP1-NW-OAr">
-                                <rect key="frame" x="56" y="268" width="281" height="316"/>
+                                <rect key="frame" x="56" y="265.33333333333337" width="281" height="321.33333333333337"/>
                                 <color key="backgroundColor" name="ModalBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1071,10 +1066,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="9gY-rB-RsJ">
-                                <rect key="frame" x="61.666666666666657" y="284" width="269.66666666666674" height="30"/>
+                                <rect key="frame" x="59.666666666666657" y="281.33333333333331" width="273.66666666666674" height="32.666666666666686"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GkS-N6-XVC">
-                                        <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="52" height="32.666666666666664"/>
                                         <color key="tintColor" red="1" green="0.2891837807" blue="0.37511192030000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="취소">
@@ -1085,13 +1080,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etr-17-kg2">
-                                        <rect key="frame" x="114.33333333333336" y="0.0" width="40.666666666666671" height="30"/>
+                                        <rect key="frame" x="116.00000000000001" y="0.0" width="41.666666666666671" height="32.666666666666664"/>
                                         <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
                                         <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DS-gB-Coi">
-                                        <rect key="frame" x="219.00000000000003" y="0.0" width="50.666666666666657" height="30"/>
+                                        <rect key="frame" x="221.66666666666666" y="0.0" width="51.999999999999972" height="32.666666666666664"/>
                                         <color key="tintColor" red="0.73333334920000004" green="0.86274516580000005" blue="0.3058823645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="저장">
@@ -1112,19 +1107,19 @@
                                 <locale key="locale" localeIdentifier="ko"/>
                             </datePicker>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8M-fl-r1i">
-                                <rect key="frame" x="72" y="498" width="249" height="46"/>
+                                <rect key="frame" x="72" y="498.00000000000006" width="249" height="48.666666666666686"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="aBM-re-hnD">
-                                        <rect key="frame" x="16" y="8" width="217" height="30"/>
+                                        <rect key="frame" x="16" y="8" width="217" height="32.666666666666664"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FE-RT-kuO">
-                                                <rect key="frame" x="0.0" y="7" width="39.666666666666664" height="16"/>
+                                                <rect key="frame" x="0.0" y="7.0000000000000018" width="41.666666666666664" height="18.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SK6-sK-8hb">
-                                                <rect key="frame" x="119.66666666666666" y="0.0" width="97.333333333333343" height="30"/>
+                                                <rect key="frame" x="121.66666666666666" y="0.0" width="95.333333333333343" height="32.666666666666664"/>
                                                 <color key="backgroundColor" name="InputColor"/>
                                                 <color key="tintColor" name="TextColor"/>
                                                 <state key="normal" title="Button"/>
@@ -1192,13 +1187,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsj-ef-yhB">
-                                <rect key="frame" x="56" y="275.66666666666669" width="281" height="326.00000000000006"/>
+                                <rect key="frame" x="56" y="274.33333333333326" width="281" height="328.66666666666674"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-Gy-Sc5">
-                                        <rect key="frame" x="7.3333333333333428" y="16" width="266.33333333333326" height="30"/>
+                                        <rect key="frame" x="3.6666666666666572" y="15.999999999999996" width="273.66666666666674" height="32.666666666666657"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IY4-r7-tpc">
-                                                <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="52" height="32.666666666666664"/>
                                                 <color key="tintColor" red="1" green="0.2891837807" blue="0.37511192030000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="취소">
@@ -1210,13 +1205,13 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcA-Rg-Xce">
-                                                <rect key="frame" x="114.3333333333333" y="0.0" width="37.333333333333329" height="30"/>
+                                                <rect key="frame" x="116.00000000000001" y="0.0" width="41.666666666666671" height="32.666666666666664"/>
                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="24"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHz-zt-bAX">
-                                                <rect key="frame" x="215.66666666666666" y="0.0" width="50.666666666666657" height="30"/>
+                                                <rect key="frame" x="221.66666666666666" y="0.0" width="51.999999999999972" height="32.666666666666664"/>
                                                 <color key="tintColor" red="0.73333334920000004" green="0.86274516580000005" blue="0.3058823645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="저장">
@@ -1226,7 +1221,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="enY-sp-qr2">
-                                        <rect key="frame" x="16" y="62" width="249" height="224"/>
+                                        <rect key="frame" x="16" y="64.666666666666686" width="249" height="224"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2I-ee-64J">
                                                 <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
@@ -1235,7 +1230,7 @@
                                                         <rect key="frame" x="8" y="8" width="233" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rP3-SW-Yow">
-                                                                <rect key="frame" x="0.0" y="9" width="56" height="16"/>
+                                                                <rect key="frame" x="0.0" y="7.6666666666666874" width="56" height="18.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                                 <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1276,13 +1271,13 @@
                                                         <rect key="frame" x="8" y="8" width="233" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트로피" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-Dc-tCn">
-                                                                <rect key="frame" x="0.0" y="9" width="56" height="16"/>
+                                                                <rect key="frame" x="0.0" y="7.6666666666666874" width="56" height="18.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                                 <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqv-CZ-VOf">
-                                                                <rect key="frame" x="136" y="2" width="97" height="30"/>
+                                                                <rect key="frame" x="136" y="0.66666666666668561" width="97" height="32.666666666666664"/>
                                                                 <color key="backgroundColor" name="InputColor"/>
                                                                 <color key="tintColor" name="TextColor"/>
                                                                 <state key="normal" title="Button"/>
@@ -1321,13 +1316,13 @@
                                                         <rect key="frame" x="8" y="8" width="233" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nI-Nu-5dh">
-                                                                <rect key="frame" x="0.0" y="9" width="56" height="16"/>
+                                                                <rect key="frame" x="0.0" y="7.6666666666666874" width="56" height="18.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                                 <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfZ-EW-HjU">
-                                                                <rect key="frame" x="136" y="2" width="97" height="30"/>
+                                                                <rect key="frame" x="136" y="0.66666666666668561" width="97" height="32.666666666666664"/>
                                                                 <color key="backgroundColor" name="InputColor"/>
                                                                 <color key="tintColor" name="TextColor"/>
                                                                 <state key="normal" title="Button"/>
@@ -1372,16 +1367,16 @@
                                                 <rect key="frame" x="0.0" y="174" width="249" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="tIX-GJ-TXO">
-                                                        <rect key="frame" x="8" y="7.9999999999999432" width="233" height="34"/>
+                                                        <rect key="frame" x="8" y="8" width="233" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="고객센터" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NX-g7-RsW">
-                                                                <rect key="frame" x="0.0" y="9" width="56" height="16"/>
+                                                                <rect key="frame" x="0.0" y="7.6666666666666305" width="56" height="18.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                                 <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mp1-sT-Rcm">
-                                                                <rect key="frame" x="136" y="2" width="97" height="30"/>
+                                                                <rect key="frame" x="136" y="0.66666666666662877" width="97" height="32.666666666666664"/>
                                                                 <color key="backgroundColor" name="InputColor"/>
                                                                 <color key="tintColor" name="TextColor"/>
                                                                 <state key="normal" title="Button"/>
@@ -1475,13 +1470,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트로피 전시장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIE-9X-aUn">
-                                <rect key="frame" x="16" y="75" width="361" height="32"/>
+                                <rect key="frame" x="16" y="75" width="361" height="37.333333333333343"/>
                                 <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="32"/>
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OXa-gP-m7S">
-                                <rect key="frame" x="0.0" y="123" width="393" height="640"/>
+                                <rect key="frame" x="0.0" y="128.33333333333331" width="393" height="634.66666666666674"/>
                                 <color key="backgroundColor" name="MainBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="R0q-my-0uk">
@@ -1495,13 +1490,13 @@
                                                     <rect key="frame" x="16" y="8" width="361" height="134"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="누적로그인횟수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIm-K9-yCN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="89.666666666666671" height="16"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="97" height="18.666666666666668"/>
                                                             <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
                                                             <color key="textColor" name="TextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74F-Sg-Il0">
-                                                            <rect key="frame" x="0.0" y="20" width="361" height="114"/>
+                                                            <rect key="frame" x="0.0" y="22.666666666666664" width="361" height="111.33333333333334"/>
                                                             <color key="backgroundColor" name="InputColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

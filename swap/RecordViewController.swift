@@ -25,6 +25,7 @@ class RecordViewController: UIViewController {
     var imageArray: [UIImage] = []
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         monthCalendar.dataSource = self
         monthCalendar.delegate = self
         collectionView.dataSource = self
@@ -35,23 +36,25 @@ class RecordViewController: UIViewController {
         
         monthCalendar.appearance.headerMinimumDissolvedAlpha = 0
         monthCalendar.rowHeight = 30
-        monthCalendar.appearance.titleTodayColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.titleTodayColor = .swapTextColor
         monthCalendar.appearance.todayColor = .clear
         monthCalendar.appearance.selectionColor = .red
         monthCalendar.placeholderType = .none
         monthCalendar.locale = Locale(identifier: "ko_kr")
         monthCalendar.appearance.headerDateFormat = "YYYY년 MM월 dd일"
-        monthCalendar.appearance.headerTitleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCalendar.appearance.headerTitleColor = UIColor(named: "TextColor")
-        monthCalendar.appearance.weekdayFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCalendar.appearance.weekdayTextColor = UIColor(named: "TextColor")
-        monthCalendar.appearance.titleFont = UIFont(name: "BM JUA_OTF", size: 16.0)
-        monthCalendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
+        monthCalendar.appearance.headerTitleFont = .swapTextFont
+        monthCalendar.appearance.headerTitleColor = .swapTextColor
+        monthCalendar.appearance.weekdayFont = .swapTextFont
+        monthCalendar.appearance.weekdayTextColor = .swapTextColor
+        monthCalendar.appearance.titleFont = .swapTextFont
+        monthCalendar.appearance.titleDefaultColor = .swapTextColor
         monthCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
     
+        // 선택된 날짜 정보에 header에 표시
         if let selectedDate = selectedDate {
-            print(selectedDate)
-            monthCalendar.select(selectedDate, scrollToDate: false)
+            let headerText = DateFormatter().recordDisplayDateFormatter.string(from: selectedDate)
+            monthCalendar.appearance.headerDateFormat = headerText
+            monthCalendar.select(selectedDate)
         }
     }
     
@@ -72,7 +75,6 @@ class RecordViewController: UIViewController {
 
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                  
                     guard let image = image as? UIImage else { return }
                 
                     DispatchQueue.main.async {
@@ -92,54 +94,25 @@ class RecordViewController: UIViewController {
               let selectedDate = selectedDate,
               let memo = memoTextView.text
         else {
-            print("빈값존재")
             return
         }
         
         if SwapRecord.isDuplicate(swapId: swapId) {
             SwapRecord.update(swapId: swapId, memo: memo, images: imageArray)
-            print(SwapRecord.swapRecords)
             self.dismiss(animated: true)
             return
         }
         
         SwapRecord.add(swapId: swapId, title: title, startDate: startDate, endDate: endDate, recordDate: selectedDate, memo: memo, images: imageArray)
-        print(SwapRecord.swapRecords)
         self.dismiss(animated: true)
     }
-    
 }
 
-extension RecordViewController: FSCalendarDelegate, FSCalendarDataSource {
-    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let eventScaleFactor: CGFloat = 7.0
-        cell.eventIndicator.transform = CGAffineTransform(scaleX: eventScaleFactor, y: eventScaleFactor)
-        cell.eventIndicator.color = UIColor(named: "ButtonColor")?.withAlphaComponent(0.85)
-    }
-    
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for swap in SwapList.swapLists {
-            if date >= swap.startDate, date <= swap.endDate {
-                return 1
-            }
-        }
-    
-        return 0
-    }
-
-    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        return false
-    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        let day = Calendar.current.component(.weekday, from: date) - 1
-        if day == 0 {
-            return .systemRed
-        } else {
-            return UIColor(named: "TextColor")
-        }
-    }
-    
+class CollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var firstImage: UIImageView!
+    @IBOutlet weak var secondImage: UIImageView!
+    @IBOutlet weak var thirdImage: UIImageView!
+    @IBOutlet weak var fourthImage: UIImageView!
 }
 
 extension RecordViewController: PHPickerViewControllerDelegate {
@@ -159,7 +132,7 @@ extension RecordViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor(named: "TextColor")
+            textView.textColor = .swapTextColor
         }
     }
 }
@@ -201,14 +174,40 @@ extension RecordViewController: UICollectionViewDataSource {
     
         self.present(imagePicker, animated: true)
     }
-    
+}
+
+extension RecordViewController: FSCalendarDelegate {
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let eventScaleFactor: CGFloat = 7.0
+        cell.eventIndicator.transform = CGAffineTransform(scaleX: eventScaleFactor, y: eventScaleFactor)
+        cell.eventIndicator.color = UIColor.swapButtonColor?.withAlphaComponent(0.85)
+    }
+
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        return false
+    }
+}
+
+extension RecordViewController: FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        for swap in SwapList.swapLists {
+            if date >= swap.startDate, date <= swap.endDate {
+                return 1
+            }
+        }
+        return 0
+    }
     
 }
 
-class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var firstImage: UIImageView!
-    @IBOutlet weak var secondImage: UIImageView!
-    @IBOutlet weak var thirdImage: UIImageView!
-    @IBOutlet weak var fourthImage: UIImageView!
+extension RecordViewController: FSCalendarDelegateAppearance {
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        let day = Calendar.current.component(.weekday, from: date) - 1
+        if day == 0 {
+            return .systemRed
+        } else {
+            return .swapTextColor
+        }
+    }
 }
 
