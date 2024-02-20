@@ -15,6 +15,7 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var swapId: Int?
     var swapTitle: String?
@@ -47,6 +48,10 @@ class RecordViewController: UIViewController {
         monthCalendar.appearance.titleFont = .swapTextFont
         monthCalendar.appearance.titleDefaultColor = .swapTextColor
         monthCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
+        
+        progressView.transform = progressView.transform.scaledBy(x: 1, y: 0.8)
+        progressView.clipsToBounds = true
+        progressView.layer.cornerRadius = 10
     
         // 선택된 날짜 정보에 header에 표시
         if let selectedDate = selectedDate {
