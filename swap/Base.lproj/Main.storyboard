@@ -1666,7 +1666,7 @@
                                     </textView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gzb-lj-lZe">
                                         <rect key="frame" x="0.0" y="98" width="361" height="132"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="ModalBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gMG-TA-hts">
                                             <size key="itemSize" width="360" height="540"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1686,7 +1686,7 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fho-R9-Jca">
                                                                     <rect key="frame" x="0.0" y="1.6666666666666572" width="360" height="125"/>
-                                                                    <color key="backgroundColor" name="InputColor"/>
+                                                                    <color key="backgroundColor" name="ModalBackgroundColor"/>
                                                                     <color key="tintColor" name="TextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="128" id="k5v-o8-hSJ"/>
@@ -1741,7 +1741,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uFl-zN-QcB">
-                                <rect key="frame" x="16" y="609" width="361" height="63"/>
+                                <rect key="frame" x="16" y="609" width="361" height="81"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="달성목표" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyk-dK-xj2">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="35"/>
@@ -1761,8 +1761,31 @@
                                         <color key="progressTintColor" name="ButtonColor"/>
                                         <color key="trackTintColor" name="InputColor"/>
                                     </progressView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WSo-8R-rrk">
+                                        <rect key="frame" x="0.0" y="71" width="361" height="10"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDA-xa-uPn">
+                                                <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="10"/>
+                                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="10"/>
+                                                <color key="textColor" name="TextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPF-fI-9n6">
+                                                <rect key="frame" x="180.66666666666663" y="0.0" width="180.33333333333337" height="10"/>
+                                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="10"/>
+                                                <color key="textColor" name="TextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="Ou4-kK-Adt"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WSo-8R-rrk" secondAttribute="trailing" id="1Xt-ZD-DbG"/>
+                                    <constraint firstItem="WSo-8R-rrk" firstAttribute="leading" secondItem="uFl-zN-QcB" secondAttribute="leading" id="H8U-BJ-pbC"/>
+                                    <constraint firstItem="WSo-8R-rrk" firstAttribute="top" secondItem="RTc-Xv-WPy" secondAttribute="bottom" constant="8" symbolic="YES" id="MM8-1a-Y9U"/>
                                     <constraint firstItem="RTc-Xv-WPy" firstAttribute="top" secondItem="wyk-dK-xj2" secondAttribute="bottom" constant="8" symbolic="YES" id="PVb-ff-i6y"/>
                                     <constraint firstAttribute="trailing" secondItem="RTc-Xv-WPy" secondAttribute="trailing" id="dLN-fG-Kfq"/>
                                     <constraint firstItem="RTc-Xv-WPy" firstAttribute="leading" secondItem="uFl-zN-QcB" secondAttribute="leading" id="llO-sg-nwb"/>
@@ -1791,6 +1814,8 @@
                         <outlet property="collectionView" destination="gzb-lj-lZe" id="wHR-Gu-6wo"/>
                         <outlet property="memoTextView" destination="ke7-g2-4IW" id="k33-E2-LDm"/>
                         <outlet property="monthCalendar" destination="Fom-xZ-uhH" id="ODJ-7m-VJd"/>
+                        <outlet property="progressEndDateLabel" destination="DPF-fI-9n6" id="OzK-nt-JBd"/>
+                        <outlet property="progressStartDateLabel" destination="tDA-xa-uPn" id="v2c-bO-elB"/>
                         <outlet property="progressView" destination="RTc-Xv-WPy" id="QvE-W4-6rr"/>
                         <outlet property="titleLabel" destination="iZE-gC-ovj" id="WKw-xW-cLb"/>
                     </connections>
@@ -1830,9 +1855,6 @@
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

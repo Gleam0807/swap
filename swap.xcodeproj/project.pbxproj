@@ -13,6 +13,7 @@
 		321031532B6A6A16004377E9 /* AlarmModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321031522B6A6A16004377E9 /* AlarmModalViewController.swift */; };
 		3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */; };
 		3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232D6DB2B67D745001A7D47 /* MainViewController.swift */; };
+		3261EE4F2B84EA0600A2944C /* SwapCompletedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */; };
 		326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F7FE82B64C93E00A09D9A /* AppDelegate.swift */; };
 		326F7FEB2B64C93E00A09D9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F7FEA2B64C93E00A09D9A /* SceneDelegate.swift */; };
 		326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F7FEC2B64C93E00A09D9A /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 		321031522B6A6A16004377E9 /* AlarmModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModalViewController.swift; sourceTree = "<group>"; };
 		3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModalViewController.swift; sourceTree = "<group>"; };
 		3232D6DB2B67D745001A7D47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCompletedList.swift; sourceTree = "<group>"; };
 		326F7FE52B64C93E00A09D9A /* swap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		326F7FE82B64C93E00A09D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		326F7FEA2B64C93E00A09D9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			children = (
 				320784822B7A05E50090CB30 /* SwapList.swift */,
 				328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */,
+				3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				3200E63A2B6BD416005126BC /* TrophyViewController.swift in Sources */,
 				3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */,
 				327876F62B81B7CC003C1F20 /* UIFont++Extenstion.swift in Sources */,
+				3261EE4F2B84EA0600A2944C /* SwapCompletedList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

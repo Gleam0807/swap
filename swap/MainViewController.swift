@@ -96,6 +96,7 @@ class MainViewController: UIViewController {
     }
     @IBAction func checkButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
+        print(sender.tag)
     }
     
 }
@@ -120,6 +121,7 @@ extension MainViewController: UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             cell.titleLabel.text = item.title
             cell.checkButton.isSelected = item.isCompleted
+            cell.checkButton.tag = indexPath.row
             return cell
         }
     }

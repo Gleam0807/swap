@@ -16,6 +16,8 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var progressStartDateLabel: UILabel!
+    @IBOutlet weak var progressEndDateLabel: UILabel!
     
     var swapId: Int?
     var swapTitle: String?
@@ -48,10 +50,7 @@ class RecordViewController: UIViewController {
         monthCalendar.appearance.titleFont = .swapTextFont
         monthCalendar.appearance.titleDefaultColor = .swapTextColor
         monthCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
-        
-        progressView.transform = progressView.transform.scaledBy(x: 1, y: 0.8)
-        progressView.clipsToBounds = true
-        progressView.layer.cornerRadius = 10
+        progressSetting()
     
         // 선택된 날짜 정보에 header에 표시
         if let selectedDate = selectedDate {
@@ -72,6 +71,25 @@ class RecordViewController: UIViewController {
             memoTextView.textColor = .lightGray
         }
         monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
+    }
+    
+    func progressSetting() {
+        progressView.transform = progressView.transform.scaledBy(x: 1, y: 0.8)
+        progressView.clipsToBounds = true
+        progressView.layer.cornerRadius = 10
+        
+        if let startDate = startDate, let endDate = endDate, let selectedDate = selectedDate {
+            let calendar = Calendar.current
+            progressStartDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:startDate))"
+            progressEndDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:endDate))"
+            let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day ?? 0
+            let elapsedDays = calendar.dateComponents([.day], from: startDate, to: selectedDate).day ?? 0
+            let progress = startDate == endDate ? 1.0 : Float(elapsedDays) / Float(totalDays)
+            let progressPercentage = Int(progress * 100)
+            print(progress)
+            print(progressPercentage)
+            progressView.setProgress(progress, animated: true)
+        }
     }
     
     func showImage(for cell: CollectionViewCell) {

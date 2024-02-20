@@ -30,4 +30,11 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }
+    var recordProgressDateFormatter: DateFormatter {
+        let formatter = self
+        formatter.dateFormat = "yy/MM/dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        return formatter
+    }
 }
