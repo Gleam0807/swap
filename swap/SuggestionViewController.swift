@@ -60,7 +60,6 @@ class SuggestionViewController: UIViewController {
         }
         
         SwapList.swapLists = filterList
-        print(filterList)
         
         if filterList.isEmpty {
             let alert = UIAlertController(title: "[ 안내 ]", message: "습관추천이 필요하지 않을 시 [Jump]버튼으로 Swap을 이용하실 수 있습니다", preferredStyle: .alert)

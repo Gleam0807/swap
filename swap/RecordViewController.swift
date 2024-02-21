@@ -78,16 +78,15 @@ class RecordViewController: UIViewController {
         progressView.clipsToBounds = true
         progressView.layer.cornerRadius = 10
         
-        if let startDate = startDate, let endDate = endDate, let selectedDate = selectedDate {
+        if let startDate = startDate, let endDate = endDate {
             let calendar = Calendar.current
             progressStartDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:startDate))"
             progressEndDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:endDate))"
             let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day ?? 0
-            let elapsedDays = calendar.dateComponents([.day], from: startDate, to: selectedDate).day ?? 0
-            let progress = startDate == endDate ? 1.0 : Float(elapsedDays) / Float(totalDays)
-            let progressPercentage = Int(progress * 100)
-            print(progress)
-            print(progressPercentage)
+            let completedCount = SwapCompletedList.swapCompletedLists.filter { $0.swapId == swapId && $0.isCompleted }.count
+            
+            let progress = Float(completedCount) / Float(totalDays)
+            //let progressPercentage = Int(progress * 100)
             progressView.setProgress(progress, animated: true)
         }
     }

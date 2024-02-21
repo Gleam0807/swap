@@ -106,7 +106,6 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let day = Calendar.current.component(.weekday, from: date) - 1
-        print(day)
         if Calendar.current.shortWeekdaySymbols[day] == "일" {
             return .systemRed
         } else {

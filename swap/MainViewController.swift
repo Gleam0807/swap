@@ -23,8 +23,6 @@ class MainViewController: UIViewController {
     let headerDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월"
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }()
     
@@ -55,6 +53,12 @@ class MainViewController: UIViewController {
         calendarHeader.text = DateFormatter().displayDateFormatter.string(from: Date())
         if !SwapList.swapLists.isEmpty {
             weekCalendar.select(SwapList.swapLists[0].startDate)
+        } else {
+            weekCalendar.select(calendarDate)
+        }
+        
+        if let selectedDate = weekCalendar.selectedDate {
+            calendarDate = selectedDate
         }
     }
     
@@ -96,12 +100,23 @@ class MainViewController: UIViewController {
     }
     @IBAction func checkButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
-        print(sender.tag)
+        let swapId = SwapList.swapLists[sender.tag].swapId
+        SwapCompletedList.addToUpdate(swapId: swapId, completedDate: calendarDate, isCompleted: sender.isSelected)
     }
     
 }
 
 extension MainViewController: UITableViewDataSource {
+    func compltedUpdate(_ cell: MainTableViewCell, _ useIndex: Int) {
+        if let compltedIndexes = SwapCompletedList.swapCompletedLists.firstIndex(where: { $0.swapId == SwapList.swapLists[useIndex].swapId && $0.completedDate == calendarDate }) {
+            let completedItem = SwapCompletedList.swapCompletedLists[compltedIndexes]
+            cell.checkButton.isSelected = completedItem.isCompleted
+        } else {
+            SwapCompletedList.addToUpdate(swapId: SwapList.swapLists[useIndex].swapId, completedDate: calendarDate, isCompleted: false)
+            self.mainTableView.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let useCount = SwapList.swapLists.filter{ $0.isDateCheck }.count
         return useCount > 0 ? useCount : 1
@@ -120,8 +135,8 @@ extension MainViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             cell.titleLabel.text = item.title
-            cell.checkButton.isSelected = item.isCompleted
-            cell.checkButton.tag = indexPath.row
+            compltedUpdate(cell, useIndex)
+            cell.checkButton.tag = useIndex
             return cell
         }
     }

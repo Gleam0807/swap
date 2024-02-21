@@ -16,10 +16,14 @@ struct SwapCompletedList {
     var completedDate: Date
     var isCompleted: Bool
     
-    static func add(swapId: Int, completedDate: Date, isCompleted: Bool) {
-        autoSwapCompletedId += 1
-        let newSwap = SwapCompletedList(swapId: swapId, swapCompletedId: autoSwapCompletedId, completedDate: completedDate, isCompleted: isCompleted)
-        swapCompletedLists.append(newSwap)
+    static func addToUpdate(swapId: Int, completedDate: Date, isCompleted: Bool) {
+        if let swapIndex = swapCompletedLists.firstIndex(where: { $0.swapId == swapId && $0.completedDate == completedDate }) {
+            swapCompletedLists[swapIndex].isCompleted = isCompleted
+        } else {
+            autoSwapCompletedId += 1
+            let newSwap = SwapCompletedList(swapId: swapId, swapCompletedId: autoSwapCompletedId, completedDate: completedDate, isCompleted: isCompleted)
+            swapCompletedLists.append(newSwap)
+        }
     }
     
     init(swapId: Int, swapCompletedId: Int, completedDate: Date, isCompleted: Bool) {
