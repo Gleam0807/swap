@@ -8,6 +8,10 @@
 import UIKit
 import FSCalendar
 
+protocol AlarmVCDataDelegate {
+    func alarmDateSet(alramTime: Date)
+}
+
 class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     //MARK: Outlet
     @IBOutlet weak var titleLabel: UITextField!
@@ -17,6 +21,7 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
     var isDropdownShow = false
     var isAlram = false
     var currentDate: Date?
+    var seletedTimeDate: Date!
     
     @IBOutlet weak var startDateButton: UIButton!
     @IBOutlet weak var endDateButton: UIButton!
@@ -120,8 +125,9 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
     }
     @IBAction func alarmButtonClicked(_ sender: UIButton) {        
         if isAlram {
-            if let alarmVC = storyboard?.instantiateViewController(withIdentifier: "AlarmModalViewController") {
+            if let alarmVC = storyboard?.instantiateViewController(withIdentifier: "AlarmModalViewController") as? AlarmModalViewController {
                 alarmVC.modalPresentationStyle = .overFullScreen
+                alarmVC.alarmVCDataDelegate = self
                 present(alarmVC, animated: true)
             }
         }
@@ -164,12 +170,17 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         } else {
             SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: false)
         }
-        
+    
         swapDataDelegate.reloadData()
+        SwapList.scheduleNotificationsForRange(title: title, startDate: startDate, endDate: endDate, selectedTimeDate: seletedTimeDate)
         self.dismiss(animated: true)
     }
-    
-    
+}
+
+extension CalendarAddViewController: AlarmVCDataDelegate {
+    func alarmDateSet(alramTime: Date) {
+        seletedTimeDate = alramTime
+    }
 }
 
 extension CalendarAddViewController: UITableViewDelegate {

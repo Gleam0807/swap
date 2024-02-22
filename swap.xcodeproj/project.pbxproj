@@ -14,6 +14,7 @@
 		3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */; };
 		3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232D6DB2B67D745001A7D47 /* MainViewController.swift */; };
 		3261EE4F2B84EA0600A2944C /* SwapCompletedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */; };
+		3261EE542B863C8800A2944C /* Clock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3261EE532B863C8800A2944C /* Clock.mp3 */; };
 		326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F7FE82B64C93E00A09D9A /* AppDelegate.swift */; };
 		326F7FEB2B64C93E00A09D9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F7FEA2B64C93E00A09D9A /* SceneDelegate.swift */; };
 		326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F7FEC2B64C93E00A09D9A /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 		3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModalViewController.swift; sourceTree = "<group>"; };
 		3232D6DB2B67D745001A7D47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCompletedList.swift; sourceTree = "<group>"; };
+		3261EE532B863C8800A2944C /* Clock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Clock.mp3; path = ../../../Downloads/Clock.mp3; sourceTree = "<group>"; };
 		326F7FE52B64C93E00A09D9A /* swap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		326F7FE82B64C93E00A09D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		326F7FEA2B64C93E00A09D9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		326F7FDC2B64C93E00A09D9A = {
 			isa = PBXGroup;
 			children = (
+				3261EE532B863C8800A2944C /* Clock.mp3 */,
 				32F30CD62B64E41400551652 /* fonts */,
 				326F7FE72B64C93E00A09D9A /* swap */,
 				326F7FE62B64C93E00A09D9A /* Products */,
@@ -197,6 +200,7 @@
 				326F7FF52B64C93F00A09D9A /* LaunchScreen.storyboard in Resources */,
 				326F7FF22B64C93F00A09D9A /* Assets.xcassets in Resources */,
 				326F7FF02B64C93E00A09D9A /* Main.storyboard in Resources */,
+				3261EE542B863C8800A2944C /* Clock.mp3 in Resources */,
 				32F30CD72B64E41400551652 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
