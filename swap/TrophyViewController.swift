@@ -10,9 +10,12 @@ import UIKit
 class TrophyViewController: UIViewController {
     //MARK: Outlet
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         tabBar.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     //MARK: Function
@@ -32,9 +35,28 @@ class TrophyViewController: UIViewController {
      
         }
     }
-    
 }
 
 extension TrophyViewController: UITabBarDelegate {
     
+}
+
+extension TrophyViewController: UICollectionViewDelegate {
+    
+}
+
+extension TrophyViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrohpyCollectionViewCell", for: indexPath) as! TrohpyCollectionViewCell
+        cell.firstImage.image = UIImage(named: "swap_splash")
+        return cell
+    }
+}
+
+class TrohpyCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var firstImage: UIImageView!
 }

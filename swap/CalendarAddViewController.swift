@@ -172,7 +172,9 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         }
     
         swapDataDelegate.reloadData()
-        SwapList.scheduleNotificationsForRange(title: title, startDate: startDate, endDate: endDate, selectedTimeDate: seletedTimeDate)
+        if isAlram == true {
+            SwapList.scheduleNotificationsForRange(title: title, startDate: startDate, endDate: endDate, selectedTimeDate: seletedTimeDate)
+        }
         self.dismiss(animated: true)
     }
 }
