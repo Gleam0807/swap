@@ -37,6 +37,13 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }
+    var currentConvertedDate: DateFormatter {
+        let formatter = self
+        formatter.dateFormat = "yyyy-mm-dd HH:mm:ss"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        return formatter
+    }
     var alarmConvertedDate: DateFormatter {
         let formatter = self
         formatter.dateFormat = "HH:mm:ss"

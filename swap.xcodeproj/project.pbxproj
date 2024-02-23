@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		3200E6382B6BB454005126BC /* AttaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200E6372B6BB454005126BC /* AttaintViewController.swift */; };
 		3200E63A2B6BD416005126BC /* TrophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200E6392B6BD416005126BC /* TrophyViewController.swift */; };
-		320784832B7A05E50090CB30 /* SwapList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320784822B7A05E50090CB30 /* SwapList.swift */; };
+		320784832B7A05E50090CB30 /* SwapList_struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320784822B7A05E50090CB30 /* SwapList_struct.swift */; };
 		321031532B6A6A16004377E9 /* AlarmModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321031522B6A6A16004377E9 /* AlarmModalViewController.swift */; };
 		3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */; };
 		3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232D6DB2B67D745001A7D47 /* MainViewController.swift */; };
 		324581912B87434100B3CC52 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 324581902B87434100B3CC52 /* Realm */; };
 		324581932B87434100B3CC52 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 324581922B87434100B3CC52 /* RealmSwift */; };
-		324581982B8746B000B3CC52 /* SwapListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324581972B8746B000B3CC52 /* SwapListObject.swift */; };
+		3249F8402B88C5D900B1EDE5 /* SwapList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F83F2B88C5D900B1EDE5 /* SwapList.swift */; };
 		3261EE4F2B84EA0600A2944C /* SwapCompletedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */; };
 		3261EE542B863C8800A2944C /* Clock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3261EE532B863C8800A2944C /* Clock.mp3 */; };
 		326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F7FE82B64C93E00A09D9A /* AppDelegate.swift */; };
@@ -38,11 +38,11 @@
 /* Begin PBXFileReference section */
 		3200E6372B6BB454005126BC /* AttaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttaintViewController.swift; sourceTree = "<group>"; };
 		3200E6392B6BD416005126BC /* TrophyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrophyViewController.swift; sourceTree = "<group>"; };
-		320784822B7A05E50090CB30 /* SwapList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapList.swift; sourceTree = "<group>"; };
+		320784822B7A05E50090CB30 /* SwapList_struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapList_struct.swift; sourceTree = "<group>"; };
 		321031522B6A6A16004377E9 /* AlarmModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModalViewController.swift; sourceTree = "<group>"; };
 		3223ABC32B6A75D0007600CC /* SettingModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModalViewController.swift; sourceTree = "<group>"; };
 		3232D6DB2B67D745001A7D47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		324581972B8746B000B3CC52 /* SwapListObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapListObject.swift; sourceTree = "<group>"; };
+		3249F83F2B88C5D900B1EDE5 /* SwapList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapList.swift; sourceTree = "<group>"; };
 		3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCompletedList.swift; sourceTree = "<group>"; };
 		3261EE532B863C8800A2944C /* Clock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Clock.mp3; path = ../../../Downloads/Clock.mp3; sourceTree = "<group>"; };
 		326F7FE52B64C93E00A09D9A /* swap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,19 +80,12 @@
 		320784812B7A05C20090CB30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				320784822B7A05E50090CB30 /* SwapList.swift */,
+				320784822B7A05E50090CB30 /* SwapList_struct.swift */,
 				328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */,
 				3261EE4E2B84EA0600A2944C /* SwapCompletedList.swift */,
+				3249F83F2B88C5D900B1EDE5 /* SwapList.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		324581942B87465B00B3CC52 /* RealmObject */ = {
-			isa = PBXGroup;
-			children = (
-				324581972B8746B000B3CC52 /* SwapListObject.swift */,
-			);
-			path = RealmObject;
 			sourceTree = "<group>";
 		};
 		326F7FDC2B64C93E00A09D9A = {
@@ -116,7 +109,6 @@
 		326F7FE72B64C93E00A09D9A /* swap */ = {
 			isa = PBXGroup;
 			children = (
-				324581942B87465B00B3CC52 /* RealmObject */,
 				327876F72B81B867003C1F20 /* Extension */,
 				320784812B7A05C20090CB30 /* Model */,
 				326F7FE82B64C93E00A09D9A /* AppDelegate.swift */,
@@ -230,16 +222,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3249F8402B88C5D900B1EDE5 /* SwapList.swift in Sources */,
 				321031532B6A6A16004377E9 /* AlarmModalViewController.swift in Sources */,
 				328653462B664C5000BDEB2D /* SuggestionViewController.swift in Sources */,
 				327876F22B81A810003C1F20 /* UIViewController++Extension.swift in Sources */,
 				328CDB4C2B7F48FB00BC00A2 /* SwapRecord.swift in Sources */,
 				3223ABC42B6A75D0007600CC /* SettingModalViewController.swift in Sources */,
 				326F7FED2B64C93E00A09D9A /* ViewController.swift in Sources */,
-				320784832B7A05E50090CB30 /* SwapList.swift in Sources */,
+				320784832B7A05E50090CB30 /* SwapList_struct.swift in Sources */,
 				32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */,
 				32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */,
-				324581982B8746B000B3CC52 /* SwapListObject.swift in Sources */,
 				326F7FE92B64C93E00A09D9A /* AppDelegate.swift in Sources */,
 				327876F42B81B548003C1F20 /* UIColor++Extension.swift in Sources */,
 				326F7FEB2B64C93E00A09D9A /* SceneDelegate.swift in Sources */,

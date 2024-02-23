@@ -10,15 +10,10 @@ import UIKit
 
 class SuggestionViewController: UIViewController {
     var defaultCheckList: [Bool] = [false, false, false, false]
-    
-    var defaultSwapList: [SwapList] = [
-    SwapList(swapId: 1, title: "하루 물 1L 마시기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true, alramDate: nil),
-    SwapList(swapId: 2, title: "책 한 권 읽기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true, alramDate: nil),
-    SwapList(swapId: 3, title: "운동 30분 이상 하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true, alramDate: nil),
-    SwapList(swapId: 4, title: "영단어 50개 암기하기", isCompleted: false, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true, alramDate: nil)]
+    var isCheckedList = false
     //MARK: Outlet
     @IBOutlet weak var SuggestionTableView: UITableView!
-
+    
     override func viewDidLoad() {
         SuggestionTableView.dataSource = self
         SuggestionTableView.delegate = self
@@ -51,17 +46,26 @@ class SuggestionViewController: UIViewController {
         defaultCheckList[3] = sender.isSelected
     }
     @IBAction func startButtonClicked(_ sender: UIButton) {
-        var filterList: [SwapList] = []
-        for i in 0..<defaultSwapList.count {
-            if defaultCheckList[i] {
-                let swap = defaultSwapList[i]
-                filterList.append(swap)
+        for (index, isChecked) in defaultCheckList.enumerated() {
+            switch index {
+            case 0 where isChecked:
+                let _ = SwapList.add(title: "하루 물 1L 마시기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
+                isCheckedList = true
+            case 1 where isChecked:
+                let _ = SwapList.add(title: "책 한 권 읽기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
+                isCheckedList = true
+            case 2 where isChecked:
+                let _ = SwapList.add(title: "운동 30분 이상 하기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
+                isCheckedList = true
+            case 3 where isChecked:
+                let _ = SwapList.add(title: "영단어 50개 암기하기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
+                isCheckedList = true
+            default:
+                break
             }
         }
         
-        SwapList.swapLists = filterList
-        
-        if filterList.isEmpty {
+        if !isCheckedList {
             let alert = UIAlertController(title: "[ 안내 ]", message: "습관추천이 필요하지 않을 시 [Jump]버튼으로 Swap을 이용하실 수 있습니다", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
             alert.addAction(okButton)
@@ -73,7 +77,6 @@ class SuggestionViewController: UIViewController {
             present(mainVC, animated: true)
         }
     }
-
 }
 
 extension SuggestionViewController: UITableViewDataSource {

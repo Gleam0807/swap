@@ -7,10 +7,13 @@
 
 import UIKit
 import FSCalendar
+import RealmSwift
 
 protocol SwapDataDelegate {
     func reloadData()
 }
+let realm = try! Realm()
+let swapLists = realm.objects(SwapList.self)
 
 class MainViewController: UIViewController {
     //MARK: Outlet
@@ -51,8 +54,8 @@ class MainViewController: UIViewController {
         weekCalendar.appearance.selectionColor = .red
         
         calendarHeader.text = DateFormatter().displayDateFormatter.string(from: Date())
-        if !SwapList.swapLists.isEmpty {
-            weekCalendar.select(SwapList.swapLists[0].startDate)
+        if let firstSwapList = swapLists.first {
+            weekCalendar.select(firstSwapList.startDate)
         } else {
             weekCalendar.select(calendarDate)
         }
@@ -100,56 +103,56 @@ class MainViewController: UIViewController {
     }
     @IBAction func checkButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
-        let swapId = SwapList.swapLists[sender.tag].swapId
-        SwapCompletedList.addToUpdate(swapId: swapId, completedDate: calendarDate, isCompleted: sender.isSelected)
+        //let swapId = SwapList.swapLists[sender.tag].swapId
+        //SwapCompletedList.addToUpdate(swapId: swapId, completedDate: calendarDate, isCompleted: sender.isSelected)
     }
     
 }
 
 extension MainViewController: UITableViewDataSource {
-    func compltedUpdate(_ cell: MainTableViewCell, _ useIndex: Int) {
-        if let compltedIndexes = SwapCompletedList.swapCompletedLists.firstIndex(where: { $0.swapId == SwapList.swapLists[useIndex].swapId && $0.completedDate == calendarDate }) {
-            let completedItem = SwapCompletedList.swapCompletedLists[compltedIndexes]
-            cell.checkButton.isSelected = completedItem.isCompleted
-        } else {
-            SwapCompletedList.addToUpdate(swapId: SwapList.swapLists[useIndex].swapId, completedDate: calendarDate, isCompleted: false)
-            self.mainTableView.reloadData()
-        }
-    }
+//    func compltedUpdate(_ cell: MainTableViewCell, _ useIndex: Int) {
+//        if let compltedIndexes = SwapCompletedList.swapCompletedLists.firstIndex(where: { $0.swapId == SwapList.swapLists[useIndex].swapId && $0.completedDate == calendarDate }) {
+//            let completedItem = SwapCompletedList.swapCompletedLists[compltedIndexes]
+//            cell.checkButton.isSelected = completedItem.isCompleted
+//        } else {
+//            SwapCompletedList.addToUpdate(swapId: SwapList.swapLists[useIndex].swapId, completedDate: calendarDate, isCompleted: false)
+//            self.mainTableView.reloadData()
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let useCount = SwapList.swapLists.filter{ $0.isDateCheck }.count
+        let useCount = SwapList.isSwapInRange(target: self.calendarDate).count
         return useCount > 0 ? useCount : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let useIndexes = SwapList.swapLists.enumerated().filter { $0.element.isDateCheck }.map { $0.offset }
+        let datas = SwapList.isSwapInRange(target: self.calendarDate)
         
-        if useIndexes.isEmpty {
+        if datas.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewNoneCell.identifier, for: indexPath) as? MainTableViewNoneCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         } else {
-            let useIndex = useIndexes[indexPath.row]
-            let item = SwapList.swapLists[useIndex]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+
+            let item = datas[indexPath.row]
             cell.titleLabel.text = item.title
-            compltedUpdate(cell, useIndex)
-            cell.checkButton.tag = useIndex
+            //compltedUpdate(cell, item.swapId)
+            cell.checkButton.tag = item.swapId
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !SwapList.swapLists.isEmpty {
+        let datas = SwapList.isSwapInRange(target: self.calendarDate)
+        if !datas.isEmpty {
             if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") as? RecordViewController {
-                let useIndexes = SwapList.swapLists.enumerated().filter { $0.element.isDateCheck }.map { $0.offset }
-                let useIndex = useIndexes[indexPath.row]
-                recordVC.swapId = SwapList.swapLists[useIndex].swapId
-                recordVC.swapTitle = SwapList.swapLists[useIndex].title
-                recordVC.startDate = SwapList.swapLists[useIndex].startDate
-                recordVC.endDate = SwapList.swapLists[useIndex].endDate
+                let item = datas[indexPath.row]
+                recordVC.swapId = item.swapId
+                recordVC.swapTitle = item.title
+                recordVC.startDate = item.startDate
+                recordVC.endDate = item.endDate
                 recordVC.selectedDate = calendarDate
                 present(recordVC, animated: true)
             }
@@ -160,7 +163,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            SwapList.delete(swapId: SwapList.swapLists[indexPath.row].swapId)
+            SwapList.delete(swapId: swapLists[indexPath.row].swapId)
             self.mainTableView.reloadData()
             success(true)
         }
@@ -181,7 +184,6 @@ extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendarDate = date
-        SwapList.isSwapInRange(target: calendarDate)
         self.mainTableView.reloadData()
         calendarHeader.text = DateFormatter().displayDateFormatter.string(from: date)
     }

@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController {
     //MARK: Outlet
     @IBOutlet weak var nickNameField: UITextField!
+    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     // MARK: function

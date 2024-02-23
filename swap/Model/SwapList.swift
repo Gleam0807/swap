@@ -1,56 +1,75 @@
 //
-//  SwapList.swift
+//  SwapListObject.swift
 //  swap
 //
-//  Created by SUNG on 2/12/24.
+//  Created by SUNG on 2/23/24.
 //
 
 import UIKit
 import AVFoundation
 import UserNotifications
+import RealmSwift
 
-struct SwapList {
-    static var swapLists = [SwapList]()
-    static var autoSwapId: Int = swapLists.count
+class SwapList: Object {
+    @objc dynamic var swapId: Int = 0
+    @objc dynamic var title: String = ""
+    @objc dynamic var isCompleted: Bool = false
+    @objc dynamic var startDate: Date = Date()
+    @objc dynamic var endDate: Date = Date()
+    @objc dynamic var isAlarm: Bool = false
+    @objc dynamic var isDateCheck: Bool = false
+    @objc dynamic var alramDate: Date? = nil
+
+    override static func primaryKey() -> String? {
+        return "swapId"
+    }
     
-    var swapId: Int
-    var title: String
-    var isCompleted: Bool
-    var startDate: Date
-    var endDate: Date
-    var isAlarm: Bool
-    var isDateCheck: Bool
-    var alramDate: Date?
+    static func incrementID() -> Int {
+        let realm = try! Realm()
+        return (realm.objects(SwapList.self).max(ofProperty: "swapId") as Int? ?? 0) + 1
+    }
     
     static func add(title: String, startDate: Date, endDate: Date, isAlarm: Bool, isDateCheck: Bool) {
-        autoSwapId += 1
-        let newSwap = SwapList(swapId: autoSwapId, title: title, isCompleted: false, startDate: startDate, endDate: endDate, isAlarm: isAlarm, isDateCheck: isDateCheck, alramDate: nil)
-        swapLists.append(newSwap)
-    }
-        
-    static func delete(swapId: Int) {
-        if let index = swapLists.firstIndex(where: { $0.swapId == swapId }) {
-            swapLists.remove(at: index)
+        let newSwap = SwapList()
+        newSwap.swapId = incrementID()
+        newSwap.title = title
+        newSwap.startDate = startDate
+        newSwap.endDate = endDate
+        newSwap.isAlarm = isAlarm
+        newSwap.isDateCheck = isDateCheck
+
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(newSwap)
         }
     }
     
-    static func isSwapInRange(target: Date) {
-        let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: target)
-        
-        for i in 0..<SwapList.swapLists.count {
-            let swapStartDateComponents = calendar.dateComponents([.year, .month, .day], from: SwapList.swapLists[i].startDate)
-            let swapEndDateComponents = calendar.dateComponents([.year, .month, .day], from: SwapList.swapLists[i].endDate)
-            if let date = calendar.date(from: dateComponents),
-               let swapStartDate = calendar.date(from: swapStartDateComponents),
-               let swapEndDate = calendar.date(from: swapEndDateComponents) {
-                if date >= swapStartDate && date <= swapEndDate {
-                    SwapList.swapLists[i].isDateCheck = true
-                } else {
-                    SwapList.swapLists[i].isDateCheck = false
-                }
+    static func delete(swapId: Int) {
+        let realm = try! Realm()
+        if let swapToDelete = realm.objects(SwapList.self).filter("swapId == %@", swapId).first {
+            try! realm.write {
+                realm.delete(swapToDelete)
             }
         }
+    }
+    
+    static func isSwapInRange(target: Date) -> [SwapList] {
+        print("target\(target)")
+        let calendar = Calendar.current
+        let realm = try! Realm()
+        let targetDateComponents = calendar.dateComponents([.year, .month, .day], from: target)
+        let datas = realm.objects(SwapList.self).filter { swapList in
+            // swapList의 startDate와 endDate를 년월일로 변환합니다.
+            let startComponents = calendar.dateComponents([.year, .month, .day], from: swapList.startDate)
+            let endComponents = calendar.dateComponents([.year, .month, .day], from: swapList.endDate)
+
+            // target이 startDate와 endDate 사이에 있는지 확인합니다.
+            let isWithinRange = calendar.compare(target, to: swapList.startDate, toGranularity: .day) != .orderedAscending &&
+                                calendar.compare(target, to: swapList.endDate, toGranularity: .day) != .orderedDescending
+            print(isWithinRange)
+            return isWithinRange
+        }
+        return Array(datas)
     }
     
     static func scheduleNotification(title: String, seletedTimeDate: Date, identifierCnt: Int) {
@@ -60,18 +79,18 @@ struct SwapList {
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Clock.mp3"))
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: seletedTimeDate)
-        
+
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false) //테스트용
         let request = UNNotificationRequest(identifier: "SwapAlarm_\(identifierCnt)", content: content, trigger: trigger)
-        
+
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
                 print("Notification Error: ", error)
             }
         }
     }
-    
+
     static func scheduleNotificationsForRange(title: String, startDate: Date, endDate: Date, selectedTimeDate: Date) {
         let calendar = Calendar.current
         var alarmDate = startDate
@@ -85,16 +104,5 @@ struct SwapList {
             alarmDate = calendar.date(byAdding: .day, value: 1, to: alarmDate)!
             identifierCnt += 1
         }
-    }
-    
-    init(swapId: Int, title: String, isCompleted: Bool, startDate: Date, endDate: Date, isAlarm: Bool, isDateCheck: Bool, alramDate: Date?) {
-        self.swapId = swapId
-        self.title = title
-        self.isCompleted = isCompleted
-        self.startDate = startDate
-        self.endDate = endDate
-        self.isAlarm = isAlarm
-        self.isDateCheck = isDateCheck
-        self.alramDate = alramDate
     }
 }
