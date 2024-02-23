@@ -121,13 +121,12 @@ extension MainViewController: UITableViewDataSource {
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let useCount = SwapList.isSwapInRange(target: self.calendarDate).count
+        let useCount = swapLists.filter("isDateCheck == true").count
         return useCount > 0 ? useCount : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let datas = SwapList.isSwapInRange(target: self.calendarDate)
-        
+        let datas = swapLists.filter("isDateCheck == true")
         if datas.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewNoneCell.identifier, for: indexPath) as? MainTableViewNoneCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -145,7 +144,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let datas = SwapList.isSwapInRange(target: self.calendarDate)
+        let datas = swapLists.filter("isDateCheck == true")
         if !datas.isEmpty {
             if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") as? RecordViewController {
                 let item = datas[indexPath.row]
@@ -163,7 +162,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            let datas = SwapList.isSwapInRange(target: self.calendarDate)
+            let datas = swapLists.filter("isDateCheck == true")
             SwapList.delete(swapId: datas[indexPath.row].swapId)
             self.mainTableView.reloadData()
             success(true)
@@ -185,6 +184,7 @@ extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendarDate = date
+        SwapList.isSwapInRange(target: calendarDate)
         self.mainTableView.reloadData()
         calendarHeader.text = DateFormatter().displayDateFormatter.string(from: date)
     }

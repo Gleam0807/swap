@@ -53,16 +53,27 @@ class SwapList: Object {
         }
     }
     
-    static func isSwapInRange(target: Date) -> [SwapList] {
-        print("target\(target)")
-        let calendar = Calendar.current
+    static func isSwapInRange(target: Date) {
         let realm = try! Realm()
-        let datas = realm.objects(SwapList.self).filter { swapList in
-            let startOfSelect = calendar.startOfDay(for: target)
-            let endOfToSelect = calendar.date(byAdding: .day, value: 1, to: startOfSelect)!
-            return swapList.startDate >= startOfSelect && swapList.endDate <= endOfToSelect
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: target)
+        let swapLists = realm.objects(SwapList.self)
+
+        try! realm.write {
+            for swap in swapLists {
+                let swapStartDateComponents = calendar.dateComponents([.year, .month, .day], from: swap.startDate)
+                let swapEndDateComponents = calendar.dateComponents([.year, .month, .day], from: swap.endDate)
+                if let date = calendar.date(from: dateComponents),
+                   let swapStartDate = calendar.date(from: swapStartDateComponents),
+                   let swapEndDate = calendar.date(from: swapEndDateComponents) {
+                    if date >= swapStartDate && date <= swapEndDate {
+                        swap.isDateCheck = true
+                    } else {
+                        swap.isDateCheck = false
+                    }
+                }
+            }
         }
-        return Array(datas)
     }
     
     static func scheduleNotification(title: String, seletedTimeDate: Date, identifierCnt: Int) {
