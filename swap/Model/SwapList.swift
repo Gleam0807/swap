@@ -57,17 +57,10 @@ class SwapList: Object {
         print("target\(target)")
         let calendar = Calendar.current
         let realm = try! Realm()
-        let targetDateComponents = calendar.dateComponents([.year, .month, .day], from: target)
         let datas = realm.objects(SwapList.self).filter { swapList in
-            // swapList의 startDate와 endDate를 년월일로 변환합니다.
-            let startComponents = calendar.dateComponents([.year, .month, .day], from: swapList.startDate)
-            let endComponents = calendar.dateComponents([.year, .month, .day], from: swapList.endDate)
-
-            // target이 startDate와 endDate 사이에 있는지 확인합니다.
-            let isWithinRange = calendar.compare(target, to: swapList.startDate, toGranularity: .day) != .orderedAscending &&
-                                calendar.compare(target, to: swapList.endDate, toGranularity: .day) != .orderedDescending
-            print(isWithinRange)
-            return isWithinRange
+            let startOfSelect = calendar.startOfDay(for: target)
+            let endOfToSelect = calendar.date(byAdding: .day, value: 1, to: startOfSelect)!
+            return swapList.startDate >= startOfSelect && swapList.endDate <= endOfToSelect
         }
         return Array(datas)
     }

@@ -163,7 +163,8 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            SwapList.delete(swapId: swapLists[indexPath.row].swapId)
+            let datas = SwapList.isSwapInRange(target: self.calendarDate)
+            SwapList.delete(swapId: datas[indexPath.row].swapId)
             self.mainTableView.reloadData()
             success(true)
         }
