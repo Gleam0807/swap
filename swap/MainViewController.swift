@@ -12,10 +12,9 @@ import RealmSwift
 protocol SwapDataDelegate {
     func reloadData()
 }
-let realm = try! Realm()
-let swapLists = realm.objects(SwapList.self)
 
 class MainViewController: UIViewController {
+    let swapListRepository = SwapListRepository()
     //MARK: Outlet
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
@@ -54,7 +53,7 @@ class MainViewController: UIViewController {
         weekCalendar.appearance.selectionColor = .red
         
         calendarHeader.text = DateFormatter().displayDateFormatter.string(from: Date())
-        if let firstSwapList = swapLists.first {
+        if let firstSwapList = swapListRepository.fetch().first {
             weekCalendar.select(firstSwapList.startDate)
         } else {
             weekCalendar.select(calendarDate)
@@ -66,6 +65,7 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        swapListRepository.isSwapInRange(target: calendarDate)
         self.mainTableView.reloadData()
         weekCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
     }
@@ -121,12 +121,13 @@ extension MainViewController: UITableViewDataSource {
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let useCount = swapLists.filter("isDateCheck == true").count
+        let useCount = swapListRepository.dateRangeFilter().count
         return useCount > 0 ? useCount : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let datas = swapLists.filter("isDateCheck == true")
+        let datas = swapListRepository.dateRangeFilter()
+
         if datas.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewNoneCell.identifier, for: indexPath) as? MainTableViewNoneCell else { return UITableViewCell() }
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -144,7 +145,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let datas = swapLists.filter("isDateCheck == true")
+        let datas = swapListRepository.dateRangeFilter()
         if !datas.isEmpty {
             if let recordVC = storyboard?.instantiateViewController(withIdentifier: "RecordViewController") as? RecordViewController {
                 let item = datas[indexPath.row]
@@ -162,8 +163,8 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            let datas = swapLists.filter("isDateCheck == true")
-            SwapList.delete(swapId: datas[indexPath.row].swapId)
+            let datas = self.swapListRepository.dateRangeFilter()
+            self.swapListRepository.delete(swapId: datas[indexPath.row].swapId)
             self.mainTableView.reloadData()
             success(true)
         }
@@ -184,7 +185,7 @@ extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendarDate = date
-        SwapList.isSwapInRange(target: calendarDate)
+        swapListRepository.isSwapInRange(target: calendarDate)
         self.mainTableView.reloadData()
         calendarHeader.text = DateFormatter().displayDateFormatter.string(from: date)
     }

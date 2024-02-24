@@ -9,6 +9,7 @@ import UIKit
 
 
 class SuggestionViewController: UIViewController {
+    let swapListRepository = SwapListRepository()
     var defaultCheckList: [Bool] = [false, false, false, false]
     var isCheckedList = false
     //MARK: Outlet
@@ -47,21 +48,23 @@ class SuggestionViewController: UIViewController {
     }
     @IBAction func startButtonClicked(_ sender: UIButton) {
         for (index, isChecked) in defaultCheckList.enumerated() {
-            switch index {
-            case 0 where isChecked:
-                let _ = SwapList.add(title: "하루 물 1L 마시기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
+            if isChecked && index >= 0 && index <= 3 {
+                var title = ""
+                switch index {
+                case 0:
+                    title = "하루 물 1L 마시기"
+                case 1:
+                    title = "책 한 권 읽기"
+                case 2:
+                    title = "운동 30분 이상 하기"
+                case 3:
+                    title = "영단어 50개 암기하기"
+                default:
+                    break
+                }
+                let newSwapList = SwapList(title: title, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
+                swapListRepository.add(newSwapList)
                 isCheckedList = true
-            case 1 where isChecked:
-                let _ = SwapList.add(title: "책 한 권 읽기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
-                isCheckedList = true
-            case 2 where isChecked:
-                let _ = SwapList.add(title: "운동 30분 이상 하기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
-                isCheckedList = true
-            case 3 where isChecked:
-                let _ = SwapList.add(title: "영단어 50개 암기하기", startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
-                isCheckedList = true
-            default:
-                break
             }
         }
         

@@ -13,6 +13,7 @@ protocol AlarmVCDataDelegate {
 }
 
 class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+    let swapListRepository = SwapListRepository()
     //MARK: Outlet
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var alramSeleted: UIButton!
@@ -166,14 +167,14 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         
         if let currentDate = currentDate {
             let isDateInRange = isDateInRange(startDate: startDate, endDate: endDate, target: currentDate)
-            SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: isDateInRange)
+            swapListRepository.add(SwapList(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: isDateInRange))
+            
         } else {
-            SwapList.add(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: false)
+            swapListRepository.add(SwapList(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: false))
         }
-    
         swapDataDelegate.reloadData()
         if isAlram == true {
-            SwapList.scheduleNotificationsForRange(title: title, startDate: startDate, endDate: endDate, selectedTimeDate: seletedTimeDate)
+            swapListRepository.scheduleNotificationsForRange(title: title, startDate: startDate, endDate: endDate, selectedTimeDate: seletedTimeDate)
         }
         self.dismiss(animated: true)
     }

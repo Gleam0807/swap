@@ -11,11 +11,10 @@ import RealmSwift
 class ViewController: UIViewController {
     //MARK: Outlet
     @IBOutlet weak var nickNameField: UITextField!
-    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print("realm 위치 \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
     // MARK: function
