@@ -30,6 +30,8 @@
 		328CDB4C2B7F48FB00BC00A2 /* SwapRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */; };
 		32989A542B6CC690000EA449 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32989A532B6CC690000EA449 /* RecordViewController.swift */; };
 		32E56C542B89CF1F00CFE176 /* SwapListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E56C532B89CF1F00CFE176 /* SwapListRepository.swift */; };
+		32E56C562B89E64100CFE176 /* SwapCompletedListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E56C552B89E64100CFE176 /* SwapCompletedListRepository.swift */; };
+		32E56C582B89F3C500CFE176 /* SwapRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E56C572B89F3C500CFE176 /* SwapRecordRepository.swift */; };
 		32F30CD72B64E41400551652 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 32F30CD62B64E41400551652 /* fonts */; };
 		32F461C22B691A5200BA4799 /* CalendarAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */; };
 		32F958252B724EAE005064AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 32F958242B724EAE005064AE /* FSCalendar */; };
@@ -59,6 +61,8 @@
 		328CDB4B2B7F48FB00BC00A2 /* SwapRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapRecord.swift; sourceTree = "<group>"; };
 		32989A532B6CC690000EA449 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		32E56C532B89CF1F00CFE176 /* SwapListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapListRepository.swift; sourceTree = "<group>"; };
+		32E56C552B89E64100CFE176 /* SwapCompletedListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCompletedListRepository.swift; sourceTree = "<group>"; };
+		32E56C572B89F3C500CFE176 /* SwapRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapRecordRepository.swift; sourceTree = "<group>"; };
 		32F30CD62B64E41400551652 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = swap/fonts; sourceTree = "<group>"; };
 		32F461C12B691A5200BA4799 /* CalendarAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				32E56C532B89CF1F00CFE176 /* SwapListRepository.swift */,
+				32E56C552B89E64100CFE176 /* SwapCompletedListRepository.swift */,
+				32E56C572B89F3C500CFE176 /* SwapRecordRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -245,6 +251,8 @@
 				32E56C542B89CF1F00CFE176 /* SwapListRepository.swift in Sources */,
 				3200E6382B6BB454005126BC /* AttaintViewController.swift in Sources */,
 				3200E63A2B6BD416005126BC /* TrophyViewController.swift in Sources */,
+				32E56C582B89F3C500CFE176 /* SwapRecordRepository.swift in Sources */,
+				32E56C562B89E64100CFE176 /* SwapCompletedListRepository.swift in Sources */,
 				3232D6DC2B67D745001A7D47 /* MainViewController.swift in Sources */,
 				327876F62B81B7CC003C1F20 /* UIFont++Extenstion.swift in Sources */,
 				3261EE4F2B84EA0600A2944C /* SwapCompletedList.swift in Sources */,

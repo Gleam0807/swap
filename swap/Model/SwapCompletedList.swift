@@ -6,29 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct SwapCompletedList {
-    static var swapCompletedLists = [SwapCompletedList]()
-    static var autoSwapCompletedId: Int = swapCompletedLists.count
+class SwapCompletedList: Object {
+    @Persisted(primaryKey: true) var swapCompletedId: Int
+    @Persisted var swapId: Int
+    @Persisted var completedDate: Date
+    @Persisted var isCompleted: Bool
     
-    var swapId: Int
-    var swapCompletedId: Int
-    var completedDate: Date
-    var isCompleted: Bool
-    
-    static func addToUpdate(swapId: Int, completedDate: Date, isCompleted: Bool) {
-        if let swapIndex = swapCompletedLists.firstIndex(where: { $0.swapId == swapId && $0.completedDate == completedDate }) {
-            swapCompletedLists[swapIndex].isCompleted = isCompleted
-        } else {
-            autoSwapCompletedId += 1
-            let newSwap = SwapCompletedList(swapId: swapId, swapCompletedId: autoSwapCompletedId, completedDate: completedDate, isCompleted: isCompleted)
-            swapCompletedLists.append(newSwap)
-        }
-    }
-    
-    init(swapId: Int, swapCompletedId: Int, completedDate: Date, isCompleted: Bool) {
+    convenience init(swapId: Int, completedDate: Date, isCompleted: Bool) {
+        self.init()
         self.swapId = swapId
-        self.swapCompletedId = swapCompletedId
         self.completedDate = completedDate
         self.isCompleted = isCompleted
     }

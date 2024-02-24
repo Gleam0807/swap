@@ -10,6 +10,8 @@ import FSCalendar
 import PhotosUI
 
 class RecordViewController: UIViewController {
+    let swapCompletedListRepository = SwapCompletedListRepository()
+    let swapRecordRepository = SwapRecordRepository()
     //MARK: Outlet
     @IBOutlet weak var monthCalendar: FSCalendar!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +28,7 @@ class RecordViewController: UIViewController {
     var selectedDate: Date?
     var itemProviders: [NSItemProvider] = []
     var imageArray: [UIImage] = []
+    var imageData = Data()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +66,7 @@ class RecordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         titleLabel.text = swapTitle
-        if let swapId = swapId, let swapRecord = SwapRecord.swapRecords.first(where: { $0.swapId == swapId && $0.recordDate == selectedDate }), !swapRecord.memo.isEmpty {
+        if let swapId = swapId, let swapRecord = swapRecordRepository.selectedDateEqualToRecordedDate(swapId, selectedDate ?? Date()).first, !swapRecord.memo.isEmpty {
             memoTextView.text = swapRecord.memo
             memoTextView.textColor = .swapTextColor
         } else {
@@ -78,12 +81,12 @@ class RecordViewController: UIViewController {
         progressView.clipsToBounds = true
         progressView.layer.cornerRadius = 10
         
-        if let startDate = startDate, let endDate = endDate {
+        if let startDate = startDate, let endDate = endDate, let swapId = swapId {
             let calendar = Calendar.current
             progressStartDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:startDate))"
             progressEndDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:endDate))"
             let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day ?? 0
-            let completedCount = SwapCompletedList.swapCompletedLists.filter { $0.swapId == swapId && $0.isCompleted }.count
+            guard let completedCount = swapCompletedListRepository.completeCountfilter(swapId) else { return }
             
             let progress = Float(completedCount) / Float(totalDays)
             //let progressPercentage = Int(progress * 100)
@@ -124,10 +127,16 @@ class RecordViewController: UIViewController {
             return
         }
         
-        if SwapRecord.isDuplicate(swapId: swapId, recordDate: selectedDate) {
-            SwapRecord.update(swapId: swapId, memo: memo, images: imageArray)
+        for image in imageArray {
+            if let data = image.jpegData(compressionQuality: 0.8) {
+                imageData.append(data)
+            }
+        }
+        
+        if swapRecordRepository.isDuplicate(swapId: swapId, recordDate: selectedDate) {
+            swapRecordRepository.update(swapId: swapId, recordDate: selectedDate, memo: memo, images: imageArray)
         } else {
-            SwapRecord.add(swapId: swapId, title: title, startDate: startDate, endDate: endDate, recordDate: selectedDate, memo: memo, images: imageArray)
+            swapRecordRepository.add(SwapRecord(recordDate: selectedDate, swapId: swapId, title: title, startDate: startDate, endDate: endDate, memo: memo, images: imageData))
         }
         self.dismiss(animated: true)
     }
@@ -173,17 +182,32 @@ extension RecordViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        if let swapId = swapId, let swapRecord = SwapRecord.swapRecords.first(where: { $0.swapId == swapId && $0.recordDate == selectedDate }), !swapRecord.images.isEmpty {
-            for (index, image) in swapRecord.images.prefix(4).enumerated() {
-                guard index < [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage].count else { break }
-                [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage][index].image = image
+        if let swapId = swapId {
+            let imageData = swapRecordRepository.fetchImages(swapId: swapId, recordDate: selectedDate ?? Date())
+            if !imageData.isEmpty {
+                // 이미지 뷰들을 순회하면서 이미지를 설정
+                let imageViews = [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage]
+                for (index, imageView) in imageViews.enumerated() {
+                    guard index < imageData.count else { break }
+                    if let image = UIImage(data: imageData[index]) {
+                        imageView?.image = image
+                    }
+                }
             }
         } else {
+            // 이미지가 없는 경우 이미지 뷰를 초기화
             cell.secondImage.image = nil
             cell.thirdImage.image = nil
             cell.fourthImage.image = nil
         }
-
+        // UIImage 배열에 있는 이미지를 UIImageView에 설정
+//        if let swapId = swapId, let selectedDate = selectedDate {
+//            for (index, image) in swapRecordRepository.fetchImages(swapId: swapId, recordDate: selectedDate).enumerated() {
+//                if index < imageViews.count {
+//                    imageViews[index]?.image = image
+//                }
+//            }
+//        } 수정필요
         showImage(for: cell)
         return cell
     }

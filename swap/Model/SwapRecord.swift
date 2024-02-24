@@ -6,44 +6,26 @@
 //
 
 import UIKit
-import PhotosUI
+import RealmSwift
 
-struct SwapRecord {
-    static var swapRecords = [SwapRecord]()
+class SwapRecord: Object {
+    @Persisted(primaryKey: true) var recordId: Int
+    @Persisted var recordDate: Date
+    @Persisted var swapId: Int
+    @Persisted var title: String
+    @Persisted var startDate: Date
+    @Persisted var endDate: Date
+    @Persisted var memo: String
+    @Persisted var images: Data?
     
-    var swapId: Int
-    var title: String
-    var startDate: Date
-    var endDate: Date
-    var recordDate: Date
-    var memo: String
-    var images: [UIImage]
-    
-    static func add(swapId: Int, title: String, startDate: Date, endDate: Date, recordDate: Date, memo: String, images: [UIImage]) {
-        let newSwap = SwapRecord(swapId: swapId, title: title, startDate: startDate, endDate: endDate, recordDate: recordDate, memo: memo, images: images)
-        swapRecords.append(newSwap)
-    }
-    
-    static func isDuplicate(swapId: Int, recordDate: Date) -> Bool {
-        return swapRecords.contains { $0.swapId == swapId && $0.recordDate == recordDate }
-    }
-    
-    static func update(swapId: Int, memo: String, images: [UIImage]) {
-        guard let swapIndex = swapRecords.firstIndex(where: { $0.swapId == swapId }) else { return }
-        
-        swapRecords[swapIndex].memo = memo
-        swapRecords[swapIndex].images = images
-    }
-    
-    init(swapId: Int, title: String, startDate: Date, endDate: Date, recordDate: Date, memo: String, images: [UIImage]) {
+    convenience init(recordDate: Date, swapId: Int, title: String, startDate: Date, endDate: Date, memo: String, images: Data? = nil) {
+        self.init()
+        self.recordDate = recordDate
         self.swapId = swapId
         self.title = title
         self.startDate = startDate
         self.endDate = endDate
-        self.recordDate = recordDate
         self.memo = memo
         self.images = images
     }
-        
-
 }
