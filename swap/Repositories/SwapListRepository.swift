@@ -22,15 +22,15 @@ protocol SwapListRepositoryType {
 }
 
 let config = Realm.Configuration(
-    schemaVersion: 3,  // 새로운 스키마 버전 설정
+    schemaVersion: 4,  // 새로운 스키마 버전 설정
     // 마이그레이션 블록 정의
     migrationBlock: { migration, oldSchemaVersion in
-        if oldSchemaVersion < 3 {
+        if oldSchemaVersion < 4 {
             // 이전 버전과 호환되지 않는 변경사항을 처리하는 로직 추가
             // 예: 이전 버전의 스키마를 새로운 버전으로 변환하는 작업 수행
-            // migration.enumerateObjects(ofType: SwapList.className()) { oldObject, newObject in
-            //     newObject!["newProperty"] = someValue
-            // }
+//             migration.enumerateObjects(ofType: SwapRecord.className()) { oldObject, newObject in
+//                 newObject!["newProperty"] = someValue
+//             }
         }
     }
 )

@@ -28,7 +28,10 @@ class RecordViewController: UIViewController {
     var selectedDate: Date?
     var itemProviders: [NSItemProvider] = []
     var imageArray: [UIImage] = []
-    var imageData = Data()
+    var firstImageData: Data? = nil
+    var secondImageData: Data? = nil
+    var thirdImageData: Data? = nil
+    var fourthImageData: Data? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +57,7 @@ class RecordViewController: UIViewController {
         monthCalendar.appearance.titleDefaultColor = .swapTextColor
         monthCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
         progressSetting()
-    
+        
         // 선택된 날짜 정보에 header에 표시
         if let selectedDate = selectedDate {
             let headerText = DateFormatter().recordDisplayDateFormatter.string(from: selectedDate)
@@ -73,6 +76,7 @@ class RecordViewController: UIViewController {
             memoTextView.text = "메모"
             memoTextView.textColor = .lightGray
         }
+        collectionView.isScrollEnabled = false
         monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
     }
     
@@ -97,19 +101,19 @@ class RecordViewController: UIViewController {
     func showImage(for cell: CollectionViewCell) {
         // 이미지를 표시할 UIImageView 배열
         let imageViews = [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage]
-
+        
         // itemProviders에서 각 이미지를 로드하여 UIImageView에 설정
         for (index, itemProvider) in itemProviders.enumerated() {
-            // 이미지를 표시할 UIImageView가 없으면 종료
             guard index < imageViews.count else { break }
-
+            
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                     guard let image = image as? UIImage else { return }
-                
+                    
                     DispatchQueue.main.async {
                         self.imageArray.append(image)
                         imageViews[index]?.image = image
+                        self.collectionView.isScrollEnabled = true
                     }
                 }
             }
@@ -127,16 +131,28 @@ class RecordViewController: UIViewController {
             return
         }
         
-        for image in imageArray {
-            if let data = image.jpegData(compressionQuality: 0.8) {
-                imageData.append(data)
+        if !imageArray.isEmpty {
+            if imageArray.count >= 1 {
+                firstImageData = imageArray[0].jpegData(compressionQuality: 0.8)
+            }
+            
+            if imageArray.count >= 2 {
+                secondImageData = imageArray[1].jpegData(compressionQuality: 0.8)
+            }
+            
+            if imageArray.count >= 3 {
+                thirdImageData = imageArray[2].jpegData(compressionQuality: 0.8)
+            }
+            
+            if imageArray.count >= 4 {
+                fourthImageData = imageArray[3].jpegData(compressionQuality: 0.8)
             }
         }
         
         if swapRecordRepository.isDuplicate(swapId: swapId, recordDate: selectedDate) {
             swapRecordRepository.update(swapId: swapId, recordDate: selectedDate, memo: memo, images: imageArray)
         } else {
-            swapRecordRepository.add(SwapRecord(recordDate: selectedDate, swapId: swapId, title: title, startDate: startDate, endDate: endDate, memo: memo, images: imageData))
+            swapRecordRepository.add(SwapRecord(recordDate: selectedDate, swapId: swapId, title: title, startDate: startDate, endDate: endDate, memo: memo, firstImage: firstImageData, secondImage: secondImageData, thirdImage: thirdImageData, fourthImage: fourthImageData))
         }
         self.dismiss(animated: true)
     }
@@ -185,29 +201,19 @@ extension RecordViewController: UICollectionViewDataSource {
         if let swapId = swapId {
             let imageData = swapRecordRepository.fetchImages(swapId: swapId, recordDate: selectedDate ?? Date())
             if !imageData.isEmpty {
-                // 이미지 뷰들을 순회하면서 이미지를 설정
                 let imageViews = [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage]
                 for (index, imageView) in imageViews.enumerated() {
-                    guard index < imageData.count else { break }
-                    if let image = UIImage(data: imageData[index]) {
+                    guard let imageData = imageData[index] else { break }
+                    if let image = UIImage(data: imageData) {
                         imageView?.image = image
                     }
                 }
             }
         } else {
-            // 이미지가 없는 경우 이미지 뷰를 초기화
             cell.secondImage.image = nil
             cell.thirdImage.image = nil
             cell.fourthImage.image = nil
         }
-        // UIImage 배열에 있는 이미지를 UIImageView에 설정
-//        if let swapId = swapId, let selectedDate = selectedDate {
-//            for (index, image) in swapRecordRepository.fetchImages(swapId: swapId, recordDate: selectedDate).enumerated() {
-//                if index < imageViews.count {
-//                    imageViews[index]?.image = image
-//                }
-//            }
-//        } 수정필요
         showImage(for: cell)
         return cell
     }
@@ -219,7 +225,7 @@ extension RecordViewController: UICollectionViewDataSource {
         
         let imagePicker = PHPickerViewController(configuration: config)
         imagePicker.delegate = self
-    
+        
         self.present(imagePicker, animated: true)
     }
 }
@@ -245,11 +251,11 @@ extension RecordViewController: FSCalendarDelegate {
         cell.eventIndicator.transform = CGAffineTransform(scaleX: eventScaleFactor, y: eventScaleFactor)
         //cell.eventIndicator.color = UIColor.swapButtonColor?.withAlphaComponent(0.85)
     }
-
+    
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         return false
     }
-
+    
 }
 
 extension RecordViewController: FSCalendarDataSource {

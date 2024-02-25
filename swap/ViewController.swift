@@ -14,7 +14,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("realm 위치 \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
     // MARK: function

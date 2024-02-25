@@ -16,9 +16,12 @@ class SwapRecord: Object {
     @Persisted var startDate: Date
     @Persisted var endDate: Date
     @Persisted var memo: String
-    @Persisted var images: Data?
+    @Persisted var firstImage: Data?
+    @Persisted var secondImage: Data?
+    @Persisted var thirdImage: Data?
+    @Persisted var fourthImage: Data?
     
-    convenience init(recordDate: Date, swapId: Int, title: String, startDate: Date, endDate: Date, memo: String, images: Data? = nil) {
+    convenience init(recordDate: Date, swapId: Int, title: String, startDate: Date, endDate: Date, memo: String, firstImage: Data? = nil, secondImage: Data? = nil, thirdImage: Data? = nil, fourthImage: Data? = nil) {
         self.init()
         self.recordDate = recordDate
         self.swapId = swapId
@@ -26,6 +29,10 @@ class SwapRecord: Object {
         self.startDate = startDate
         self.endDate = endDate
         self.memo = memo
-        self.images = images
+        self.firstImage = firstImage
+        self.secondImage = secondImage
+        self.thirdImage = thirdImage
+        self.fourthImage = fourthImage
     }
+
 }
