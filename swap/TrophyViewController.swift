@@ -52,7 +52,7 @@ extension TrophyViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrohpyCollectionViewCell", for: indexPath) as! TrohpyCollectionViewCell
-        cell.firstImage.image = UIImage(named: "swap_splash")
+        //cell.firstImage.image = UIImage(named: "swap_splash")
         return cell
     }
 }

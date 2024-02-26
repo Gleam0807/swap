@@ -17,6 +17,7 @@ protocol SwapListRepositoryType {
     func delete(swapId: Int)
     func dateRangeFilter() -> [SwapList]
     func isSwapInRange(target: Date)
+    func dateAttaintRangeFilter(target: String) -> [SwapList]
     func scheduleNotificationsForRange(title: String, startDate: Date, endDate: Date, selectedTimeDate: Date)
     func scheduleNotification(title: String, seletedTimeDate: Date, identifierCnt: Int)
 }
@@ -87,6 +88,35 @@ class SwapListRepository: SwapListRepositoryType {
             }
         }
     }
+    
+    func dateAttaintRangeFilter(target: String) -> [SwapList] {
+        let swapLists = realm.objects(SwapList.self)
+        let filteredSwapLists = swapLists.filter { swapList in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyyMM"
+
+            // startDate 가져오기 특이사항: DB와 하루차이로 인한 +1 처리
+            let startDate = swapList.startDate
+            let StartDateAddDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            let startDateString = dateFormatter.string(from: StartDateAddDay!)
+
+            // endDate 가져오기
+            let endDate = swapList.endDate
+            let EndDateAddDay = Calendar.current.date(byAdding: .day, value: 1, to: endDate)
+            let endDateString = dateFormatter.string(from: EndDateAddDay!)
+
+            let startIndex = startDateString.index(startDateString.startIndex, offsetBy: 6)
+            let startSubstring = startDateString[..<startIndex]
+            
+            let endIndex = endDateString.index(endDateString.startIndex, offsetBy: 6)
+            let endSubstring = endDateString[..<endIndex]
+            
+            return target >= String(startSubstring) && target <= String(endSubstring)
+        }
+        
+        return Array(filteredSwapLists)
+    }
+
     
     func scheduleNotification(title: String, seletedTimeDate: Date, identifierCnt: Int) {
         let content = UNMutableNotificationContent()

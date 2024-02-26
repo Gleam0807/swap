@@ -104,22 +104,17 @@ class MainViewController: UIViewController {
     }
     @IBAction func checkButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
-        let swapId = swapListRepository.fetch()[sender.tag].swapId
-        
-        swapCompletedListRepository.addToUpdate(SwapCompletedList(swapId: swapId, completedDate: calendarDate, isCompleted: sender.isSelected))
+        swapCompletedListRepository.addToUpdate(SwapCompletedList(swapId: sender.tag, completedDate: calendarDate, isCompleted: sender.isSelected))
     }
     
 }
 
 extension MainViewController: UITableViewDataSource {
     func compltedUpdate(_ cell: MainTableViewCell, _ useIndex: Int) {
-        let swapLists = swapListRepository.fetch()
-        let swapId = swapLists[useIndex].swapId
-        
-        if let completedItem = swapCompletedListRepository.completeCheckfilter(swapId, calendarDate).first {
+        if let completedItem = swapCompletedListRepository.completeCheckfilter(useIndex, calendarDate).first {
             cell.checkButton.isSelected = completedItem.isCompleted
         } else {
-            swapCompletedListRepository.addToUpdate(SwapCompletedList(swapId: swapId, completedDate: calendarDate, isCompleted: false))
+            swapCompletedListRepository.addToUpdate(SwapCompletedList(swapId: useIndex, completedDate: calendarDate, isCompleted: false))
             self.mainTableView.reloadData()
         }
     }
@@ -142,8 +137,8 @@ extension MainViewController: UITableViewDataSource {
 
             let item = datas[indexPath.row]
             cell.titleLabel.text = item.title
-            compltedUpdate(cell, indexPath.row)
-            cell.checkButton.tag = indexPath.row
+            compltedUpdate(cell, item.swapId)
+            cell.checkButton.tag = item.swapId
             return cell
         }
     }
