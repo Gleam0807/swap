@@ -9,7 +9,6 @@ import UIKit
 import FSCalendar
 
 enum Metric {
-    static var completedViewHeight: CGFloat = 108
     static let collectionViewHeight: CGFloat = 90
     static let cellWidth: CGFloat = UIScreen.main.bounds.width
 }
@@ -96,7 +95,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)01"
         }
-        Metric.completedViewHeight = 108
         attaintTableView.reloadData()
     }
     @objc func febButtonClicked() {
@@ -106,7 +104,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)02"
         }
-        Metric.completedViewHeight = 90
         attaintTableView.reloadData()
     }
     @objc func marButtonClicked() {
@@ -116,7 +113,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)03"
         }
-        Metric.completedViewHeight = 108
         attaintTableView.reloadData()
     }
     @objc func aprButtonClicked() {
@@ -126,7 +122,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)04"
         }
-        Metric.completedViewHeight = 90
         attaintTableView.reloadData()
     }
     @objc func mayButtonClicked() {
@@ -136,7 +131,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)05"
         }
-        Metric.completedViewHeight = 108
         attaintTableView.reloadData()
     }
     @objc func junButtonClicked() {
@@ -146,7 +140,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)06"
         }
-        Metric.completedViewHeight = 90
         attaintTableView.reloadData()
     }
     @objc func julButtonClicked() {
@@ -156,7 +149,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)07"
         }
-        Metric.completedViewHeight = 108
         attaintTableView.reloadData()
     }
     @objc func augButtonClicked() {
@@ -166,7 +158,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)08"
         }
-        Metric.completedViewHeight = 108
         attaintTableView.reloadData()
     }
     @objc func sepButtonClicked() {
@@ -176,7 +167,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)09"
         }
-        Metric.completedViewHeight = 90
         attaintTableView.reloadData()
     }
     @objc func octButtonClicked() {
@@ -186,7 +176,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)10"
         }
-        Metric.completedViewHeight = 108
         attaintTableView.reloadData()
     }
     @objc func novButtonClicked() {
@@ -196,7 +185,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)11"
         }
-        Metric.completedViewHeight = 90
         attaintTableView.reloadData()
     }
     @objc func decButtonClicked() {
@@ -206,7 +194,6 @@ class AttaintViewController: UIViewController {
             }
             selectedMonth = "\(viewYear)12"
         }
-        Metric.completedViewHeight = 108
         attaintTableView.reloadData()
     }
     
@@ -246,8 +233,6 @@ extension AttaintViewController: UITableViewDataSource {
         let datas = swapListRepository.dateAttaintRangeFilter(target: selectedMonth)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AttaintTableViewCell", for: indexPath) as? AttaintTableViewCell else { return UITableViewCell() }
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        print(Metric.completedViewHeight)
-        cell.completedView.heightAnchor.constraint(equalToConstant: Metric.completedViewHeight).isActive = true
         let item = datas[indexPath.row]
         cell.titelLabel.text = item.title
         let imageChangedDay = swapCompletedListRepository.completedfilter(item.swapId, selectedMonth)
