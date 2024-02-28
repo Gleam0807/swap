@@ -413,7 +413,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wgb-Xl-uJs">
-                                <rect key="frame" x="16" y="131" width="90" height="24"/>
+                                <rect key="frame" x="16" y="131" width="58" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-Ea-MnD">
                                         <rect key="frame" x="0.0" y="0.0" width="58" height="24"/>
@@ -421,14 +421,6 @@
                                         <color key="textColor" name="TextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dDm-Nh-oJF">
-                                        <rect key="frame" x="66" y="0.0" width="24" height="24"/>
-                                        <color key="tintColor" name="TextColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="XzO-Ii-wVl"/>
-                                            <constraint firstAttribute="width" constant="24" id="iM3-ub-sY5"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcE-f3-fFJ" customClass="FSCalendar">
@@ -1416,7 +1408,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsj-ef-yhB">
-                                <rect key="frame" x="56" y="275.66666666666669" width="281" height="326.00000000000006"/>
+                                <rect key="frame" x="56" y="304.66666666666669" width="281" height="268.00000000000006"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-Gy-Sc5">
                                         <rect key="frame" x="7.3333333333333428" y="16" width="266.33333333333326" height="30"/>
@@ -1450,7 +1442,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="enY-sp-qr2">
-                                        <rect key="frame" x="16" y="62" width="249" height="224"/>
+                                        <rect key="frame" x="16" y="62" width="249" height="166"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2I-ee-64J">
                                                 <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
@@ -1493,53 +1485,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWs-RP-Dln">
-                                                <rect key="frame" x="0.0" y="58" width="249" height="50"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="e3W-Jc-KAI">
-                                                        <rect key="frame" x="8" y="8" width="233" height="34"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트로피" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-Dc-tCn">
-                                                                <rect key="frame" x="0.0" y="9" width="56" height="16"/>
-                                                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                                <color key="textColor" name="TextColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqv-CZ-VOf">
-                                                                <rect key="frame" x="136" y="2" width="97" height="30"/>
-                                                                <color key="backgroundColor" name="InputColor"/>
-                                                                <color key="tintColor" name="TextColor"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="선택">
-                                                                    <fontDescription key="titleFontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="16"/>
-                                                                </buttonConfiguration>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" name="ButtonColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="Tqv-CZ-VOf" firstAttribute="leading" secondItem="YWs-RP-Dln" secondAttribute="leading" constant="144" id="J9g-dp-64C"/>
-                                                    <constraint firstAttribute="bottom" secondItem="e3W-Jc-KAI" secondAttribute="bottom" constant="8" id="LfB-lN-OA3"/>
-                                                    <constraint firstItem="e3W-Jc-KAI" firstAttribute="leading" secondItem="YWs-RP-Dln" secondAttribute="leading" constant="8" id="P6P-rH-RiK"/>
-                                                    <constraint firstItem="NVE-Dc-tCn" firstAttribute="leading" secondItem="YWs-RP-Dln" secondAttribute="leading" constant="8" id="PGT-qQ-x47"/>
-                                                    <constraint firstItem="e3W-Jc-KAI" firstAttribute="top" secondItem="YWs-RP-Dln" secondAttribute="top" constant="8" id="kAk-y1-koX"/>
-                                                    <constraint firstAttribute="trailing" secondItem="e3W-Jc-KAI" secondAttribute="trailing" constant="8" id="kSz-xW-6tX"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Tqv-CZ-VOf" secondAttribute="trailing" constant="8" id="pSy-qW-TWF"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mm-ft-uzN">
-                                                <rect key="frame" x="0.0" y="116" width="249" height="50"/>
+                                                <rect key="frame" x="0.0" y="58" width="249" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="uJN-Qu-DmI">
                                                         <rect key="frame" x="8" y="8" width="233" height="34"/>
@@ -1593,10 +1540,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPn-cZ-OSy">
-                                                <rect key="frame" x="0.0" y="174" width="249" height="50"/>
+                                                <rect key="frame" x="0.0" y="116" width="249" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="tIX-GJ-TXO">
-                                                        <rect key="frame" x="8" y="7.9999999999999432" width="233" height="34"/>
+                                                        <rect key="frame" x="8" y="8" width="233" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="고객센터" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NX-g7-RsW">
                                                                 <rect key="frame" x="0.0" y="9" width="56" height="16"/>
@@ -2072,7 +2019,6 @@
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="text.book.closed.fill" catalog="system" width="115" height="128"/>
-        <image name="trophy.fill" catalog="system" width="128" height="128"/>
         <image name="visitTrophyFirst" width="158" height="175.33332824707031"/>
         <namedColor name="ButtonColor">
             <color red="0.80000001192092896" green="0.83499997854232788" blue="0.68199998140335083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
