@@ -35,6 +35,8 @@ class RecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        dismissKeyboard()
         monthCalendar.dataSource = self
         monthCalendar.delegate = self
         collectionView.dataSource = self
@@ -45,7 +47,7 @@ class RecordViewController: UIViewController {
         monthCalendar.rowHeight = 30
         monthCalendar.appearance.titleTodayColor = .swapTextColor
         monthCalendar.appearance.todayColor = .clear
-        monthCalendar.appearance.selectionColor = .red
+        monthCalendar.appearance.selectionColor = .systemRed
         monthCalendar.placeholderType = .none
         monthCalendar.locale = Locale(identifier: "ko_kr")
         monthCalendar.appearance.headerDateFormat = "YYYY년 MM월 dd일"
@@ -77,7 +79,7 @@ class RecordViewController: UIViewController {
             memoTextView.textColor = .lightGray
         }
         collectionView.isScrollEnabled = false
-        monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
+        monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .systemRed
     }
     
     func progressSetting() {
@@ -156,6 +158,9 @@ class RecordViewController: UIViewController {
         }
         self.dismiss(animated: true)
     }
+    @IBAction func cancelButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }
 
 class CollectionViewCell: UICollectionViewCell {
@@ -205,7 +210,8 @@ extension RecordViewController: UICollectionViewDataSource {
                 for (index, imageView) in imageViews.enumerated() {
                     guard let imageData = imageData[index] else { break }
                     if let image = UIImage(data: imageData) {
-                        imageView?.image = image
+                        let resizedImage = image.resize(targetSize: .init(width: 50, height: 50))
+                        imageView?.image = resizedImage
                     }
                 }
             }
@@ -280,3 +286,23 @@ extension RecordViewController: FSCalendarDelegateAppearance {
     }
 }
 
+extension UIImage {
+    func resize(targetSize: CGSize, opaque: Bool = false) -> UIImage? {
+        // 1. context를 획득 (사이즈, 투명도, scale 입력)
+        // scale의 값이 0이면 현재 화면 기준으로 scale을 잡고, sclae의 값이 1이면 self(이미지) 크기 기준으로 설정
+        UIGraphicsBeginImageContextWithOptions(targetSize, opaque, 1)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        context.interpolationQuality = .high
+        
+        // 2. 그리기
+        let newRect = CGRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
+        draw(in: newRect)
+        
+        // 3. 그려진 이미지 가져오기
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // 4. context 종료
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+}

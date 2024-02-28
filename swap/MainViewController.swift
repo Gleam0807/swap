@@ -9,6 +9,10 @@ import UIKit
 import FSCalendar
 import RealmSwift
 
+protocol NickNameUpdateDelegate {
+    func nickNameUpdate()
+}
+
 protocol SwapDataDelegate {
     func reloadData()
 }
@@ -21,6 +25,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var weekCalendar: FSCalendar!
     @IBOutlet weak var calendarHeader: UILabel!
+    @IBOutlet weak var nicknameLabel: UILabel!
+    
     var calendarDate = Date()
     
     let headerDateFormatter: DateFormatter = {
@@ -33,6 +39,9 @@ class MainViewController: UIViewController {
         //                for key in UserDefaults.standard.dictionaryRepresentation().keys {
         //                    UserDefaults.standard.removeObject(forKey: key.description)
         //                } // <userdefaults clear code>
+        super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        dismissKeyboard()
         mainTableView.dataSource = self
         mainTableView.delegate = self
         weekCalendar.dataSource = self
@@ -51,14 +60,10 @@ class MainViewController: UIViewController {
         weekCalendar.appearance.titleDefaultColor = .swapTextColor
         weekCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
         weekCalendar.appearance.todayColor = .clear
-        weekCalendar.appearance.selectionColor = .red
+        weekCalendar.appearance.selectionColor = .systemRed
         
         calendarHeader.text = DateFormatter().displayDateFormatter.string(from: Date())
-        if let firstSwapList = swapListRepository.fetch().first {
-            weekCalendar.select(firstSwapList.startDate)
-        } else {
-            weekCalendar.select(calendarDate)
-        }
+        weekCalendar.select(calendarDate)
         
         if let selectedDate = weekCalendar.selectedDate {
             calendarDate = selectedDate
@@ -66,12 +71,19 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if let nickName = fetchUserDefaults(key: "nickname") {
+            nicknameLabel.text = "\(nickName)님"
+        }
         swapListRepository.isSwapInRange(target: calendarDate)
         self.mainTableView.reloadData()
-        weekCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
+        weekCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .systemRed
     }
     
     //MARK: Function
+    func fetchUserDefaults(key: String) -> String? {
+        return UserDefaults.standard.string(forKey: key)
+    }
+    
     func presentTabBar(withIdentifier identifier: String) {
         if let viewController = storyboard?.instantiateViewController(withIdentifier: identifier) {
             viewController.modalPresentationStyle = .fullScreen
@@ -98,7 +110,8 @@ class MainViewController: UIViewController {
         }
     }
     @IBAction func settingButtonClicked(_ sender: UIButton) {
-        if let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingModalViewController") {
+        if let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingModalViewController") as? SettingModalViewController {
+            settingVC.nickNameUpdateDelegate = self
             present(settingVC, animated: true)
         }
     }
@@ -214,6 +227,14 @@ class MainTableViewNoneCell: UITableViewCell {
 extension MainViewController: SwapDataDelegate {
     func reloadData() {
         self.mainTableView.reloadData()
+    }
+}
+
+extension MainViewController: NickNameUpdateDelegate {
+    func nickNameUpdate() {
+        if let nickName = fetchUserDefaults(key: "nickname") {
+            nicknameLabel.text = "\(nickName)님"
+        }
     }
 }
 

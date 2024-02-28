@@ -14,6 +14,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        dismissKeyboard()
     }
     
     // MARK: function
@@ -35,7 +37,7 @@ class ViewController: UIViewController {
             return
         }
         
-        //saveUserDefaults(key: "nickname", value: nickname)
+        saveUserDefaults(key: "nickname", value: nickname)
     
         if let suggestionVC = storyboard?.instantiateViewController(withIdentifier: "SuggestionViewController") {
             nickNameField.text = ""

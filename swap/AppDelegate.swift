@@ -21,19 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var initialViewController: UIViewController?
         
         if name == nil {
-            //initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            //initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         } else {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         }
         
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
+        VisitManager.shared.increaseVisitCountIfNeeded()
         
         requestNotificationAuthorization()
         UNUserNotificationCenter.current().delegate = self
-        
-        VisitManager.shared.increaseVisitCountIfNeeded()
         
         return true
     }
@@ -54,6 +53,7 @@ class VisitManager {
         // 이전 방문 날짜가 없거나 오늘과 다른 날짜라면 방문 횟수 증가
         if lastVisitDate == nil || !Calendar.current.isDate(currentDate, inSameDayAs: lastVisitDate!) {
             var visitCount = userDefaults.integer(forKey: visitCountKey)
+            print(visitCount)
             if visitCount == 0 {
                 visitCount = 1
             } else {

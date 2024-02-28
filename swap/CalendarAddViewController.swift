@@ -41,11 +41,13 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        dismissKeyboard()
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .red
+        monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .systemRed
     }
     
     //MARK: function
@@ -83,7 +85,7 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         monthCalendar.rowHeight = 20
         monthCalendar.appearance.titleTodayColor = .swapTextColor
         monthCalendar.appearance.todayColor = .clear
-        monthCalendar.appearance.selectionColor = .red
+        monthCalendar.appearance.selectionColor = .systemRed
         monthCalendar.placeholderType = .none
         monthCalendar.locale = Locale(identifier: "ko_kr")
         monthCalendar.appearance.headerDateFormat = "YYYY년 MM월 dd일"
@@ -178,6 +180,12 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         }
         self.dismiss(animated: true)
     }
+    @IBAction func cancelButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    
+    
 }
 
 extension CalendarAddViewController: AlarmVCDataDelegate {
