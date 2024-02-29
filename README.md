@@ -1,4 +1,4 @@
-# MyPetBox - 습관을 관리하고 트로피를 수집하는 앱
+# Swap - 습관을 관리하고 트로피를 수집하는 앱
 
 <div align="center">
 
