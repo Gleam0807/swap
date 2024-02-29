@@ -95,15 +95,17 @@ class SwapListRepository: SwapListRepositoryType {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyyMM"
 
-            // startDate 가져오기 특이사항: DB와 하루차이로 인한 +1 처리
+            // startDate 가져오기 특이사항: 시뮬레이터 테스트 시 DB와 하루차이로 인한 +1 처리
             let startDate = swapList.startDate
-            let StartDateAddDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
-            let startDateString = dateFormatter.string(from: StartDateAddDay!)
+//            let StartDateAddDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+//            let startDateString = dateFormatter.string(from: StartDateAddDay!)
+            let startDateString = dateFormatter.string(from: startDate)
 
             // endDate 가져오기
             let endDate = swapList.endDate
-            let EndDateAddDay = Calendar.current.date(byAdding: .day, value: 1, to: endDate)
-            let endDateString = dateFormatter.string(from: EndDateAddDay!)
+//            let EndDateAddDay = Calendar.current.date(byAdding: .day, value: 1, to: endDate)
+//            let endDateString = dateFormatter.string(from: EndDateAddDay!)
+            let endDateString = dateFormatter.string(from: endDate)
 
             let startIndex = startDateString.index(startDateString.startIndex, offsetBy: 6)
             let startSubstring = startDateString[..<startIndex]

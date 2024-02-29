@@ -36,7 +36,7 @@ class AttaintViewController: UIViewController {
         attaintTableView.dataSource = self
         attaintTableView.delegate = self
         
-        scrollToIndex(index: 1)
+        //scrollToIndex(index: 1)
     }
     
     //MARK: Function
