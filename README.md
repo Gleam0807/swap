@@ -7,6 +7,5 @@
 [![swift](https://img.shields.io/badge/swift-v5.9-orange?logo=swift)]()
 [![firebase](https://img.shields.io/badge/Firebase-v8.15.0-red?logo=firebase)]()
 
-![main_Image.png](https://github.com/hyeji-K/MyPetDAPP/blob/readme/image/main_Image.png)
 
 </div align="center">
