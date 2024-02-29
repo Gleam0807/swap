@@ -53,7 +53,7 @@ class VisitManager {
         // 이전 방문 날짜가 없거나 오늘과 다른 날짜라면 방문 횟수 증가
         if lastVisitDate == nil || !Calendar.current.isDate(currentDate, inSameDayAs: lastVisitDate!) {
             var visitCount = userDefaults.integer(forKey: visitCountKey)
-            print(visitCount)
+  
             if visitCount == 0 {
                 visitCount = 1
             } else {

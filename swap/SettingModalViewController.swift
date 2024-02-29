@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import MessageUI
 
 class SettingModalViewController: UIViewController {
     var nickNameUpdateDelegate: NickNameUpdateDelegate!
     //MARK: Outlet
     @IBOutlet weak var nicknameSettingLabel: UITextField!
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? 1.0    // 앱 버전
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,10 @@ class SettingModalViewController: UIViewController {
     }
     
     @IBAction func detailInfoButtonClicked(_ sender: Any) {
-        
+        let alert = UIAlertController(title: "앱 정보", message: "Version: \(appVersion)", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func inquiryButtonClicked(_ sender: Any) {
