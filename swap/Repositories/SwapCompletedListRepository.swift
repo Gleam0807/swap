@@ -12,6 +12,7 @@ protocol SwapCompletedListRepositoryType {
     func incrementID() -> Int
     func fetch() -> [SwapCompletedList]
     func addToUpdate(_ swapCompletedLists: SwapCompletedList)
+    func delete(swapId: Int)
     func completeCheckfilter(_ swapId: Int, _ completedDate: Date) -> [SwapCompletedList]
     func completeCountfilter(_ swapId: Int) -> Int?
     func completedfilter(_ swapId: Int, _ target: String) -> [Int]
@@ -37,6 +38,14 @@ class SwapCompletedListRepository: SwapCompletedListRepositoryType {
             try! realm.write {
                 swapCompletedList.swapCompletedId = incrementID()
                 realm.add(swapCompletedList)
+            }
+        }
+    }
+    
+    func delete(swapId: Int) {
+        if let swapToDelete = realm.objects(SwapCompletedList.self).filter("swapId == %@", swapId).first {
+            try! realm.write {
+                realm.delete(swapToDelete)
             }
         }
     }

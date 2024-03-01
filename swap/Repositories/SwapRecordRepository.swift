@@ -12,6 +12,7 @@ import RealmSwift
 protocol SwapRecordRepositoryType {
     func incrementID() -> Int
     func add(_ swapRecord: SwapRecord)
+    func delete(swapId: Int)
     func isDuplicate(swapId: Int, recordDate: Date) -> Bool
     func update(swapId: Int, recordDate: Date, memo: String, images: [UIImage])
     func selectedDateEqualToRecordedDate(_ swapId: Int, _ selectedDate: Date) -> [SwapRecord]
@@ -29,6 +30,14 @@ class SwapRecordRepository: SwapRecordRepositoryType {
         try! realm.write {
             swapRecord.recordId = incrementID()
             realm.add(swapRecord)
+        }
+    }
+    
+    func delete(swapId: Int) {
+        if let swapToDelete = realm.objects(SwapRecord.self).filter("swapId == %@", swapId).first {
+            try! realm.write {
+                realm.delete(swapToDelete)
+            }
         }
     }
     

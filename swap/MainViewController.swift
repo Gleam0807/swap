@@ -20,6 +20,7 @@ protocol SwapDataDelegate {
 class MainViewController: UIViewController {
     let swapListRepository = SwapListRepository()
     let swapCompletedListRepository = SwapCompletedListRepository()
+    let swapRecordRepository = SwapRecordRepository()
     //MARK: Outlet
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
@@ -36,9 +37,9 @@ class MainViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        //                for key in UserDefaults.standard.dictionaryRepresentation().keys {
-        //                    UserDefaults.standard.removeObject(forKey: key.description)
-        //                } // <userdefaults clear code>
+//                        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+//                            UserDefaults.standard.removeObject(forKey: key.description)
+//                        } // <userdefaults clear code>
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         dismissKeyboard()
@@ -176,6 +177,8 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             let datas = self.swapListRepository.dateRangeFilter()
+            self.swapRecordRepository.delete(swapId: datas[indexPath.row].swapId)
+            self.swapCompletedListRepository.delete(swapId: datas[indexPath.row].swapId)
             self.swapListRepository.delete(swapId: datas[indexPath.row].swapId)
             self.mainTableView.reloadData()
             success(true)

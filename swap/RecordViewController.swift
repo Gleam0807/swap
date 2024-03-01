@@ -210,8 +210,8 @@ extension RecordViewController: UICollectionViewDataSource {
                 for (index, imageView) in imageViews.enumerated() {
                     guard let imageData = imageData[index] else { break }
                     if let image = UIImage(data: imageData) {
-                        let resizedImage = image.resize(targetSize: .init(width: 50, height: 50))
-                        imageView?.image = resizedImage
+                        //let resizedImage = image.resize(targetSize: .init(width: 50, height: 50))
+                        imageView?.image = image
                     }
                 }
             }
