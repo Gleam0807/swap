@@ -24,7 +24,7 @@
 
 **개발 인원** 1인
 
-**앱스토어 링크** [AppStore](https://apps.apple.com/kr/app/mypetbox/id6444332365?l)
+**앱스토어 링크** [AppStore] (심사중)
 
 # Trouble Shooting(트러블 슈팅)
 ## 1. FSCalendar에서 주간달력 사용 시 일자가 깨지며 정상적으로 표시가 되지 않는 문제 발생
