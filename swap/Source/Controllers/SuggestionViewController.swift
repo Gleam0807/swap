@@ -8,48 +8,59 @@
 import UIKit
 
 
-class SuggestionViewController: UIViewController {
-    let swapListRepository = SwapListRepository()
-    var defaultCheckList: [Bool] = [false, false, false, false]
-    var isCheckedList = false
-    //MARK: Outlet
-    @IBOutlet weak var SuggestionTableView: UITableView!
+final class SuggestionViewController: UIViewController {
+    // MARK: Properties
+    private let swapListRepository = SwapListRepository()
+    private var defaultCheckList = [false, false, false, false]
+    private var isCheckedList = false
     
+    // MARK: Outlet
+    @IBOutlet weak var suggestionTableView: UITableView!
+    
+    // MARK: View Life Cycle
     override func viewDidLoad() {
-        SuggestionTableView.dataSource = self
-        SuggestionTableView.delegate = self
+        super.viewDidLoad()
+        
+        suggestionTableView.dataSource = self
+        suggestionTableView.delegate = self
     }
     
     //MARK: Action
     @IBAction func prevButtonClicked(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
+    
     @IBAction func jumpButtonClicked(_ sender: UIButton) {
-        if let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainViewController") {
-            mainVC.modalPresentationStyle = .fullScreen
-            present(mainVC, animated: true)
-        }
+        guard let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainViewController") else { return }
+        mainVC.modalPresentationStyle = .fullScreen
+        present(mainVC, animated: true)
     }
+    
     @IBAction func firstCheckboxChange(_ sender: UIButton) {
         sender.isSelected.toggle()
         defaultCheckList[0] = sender.isSelected
     }
+    
     @IBAction func secondCheckboxChange(_ sender: UIButton) {
         sender.isSelected.toggle()
         defaultCheckList[1] = sender.isSelected
     }
+    
     @IBAction func thirdCheckboxChange(_ sender: UIButton) {
         sender.isSelected.toggle()
         defaultCheckList[2] = sender.isSelected
     }
+    
     @IBAction func fourthCheckboxChange(_ sender: UIButton) {
         sender.isSelected.toggle()
         defaultCheckList[3] = sender.isSelected
     }
+    
     @IBAction func startButtonClicked(_ sender: UIButton) {
         for (index, isChecked) in defaultCheckList.enumerated() {
             if isChecked && index >= 0 && index <= 3 {
                 var title = ""
+                
                 switch index {
                 case 0:
                     title = "하루 물 1L 마시기"
@@ -62,6 +73,7 @@ class SuggestionViewController: UIViewController {
                 default:
                     break
                 }
+                
                 let newSwapList = SwapList(title: title, startDate: Date(), endDate: Date(), isAlarm: false, isDateCheck: true)
                 swapListRepository.add(newSwapList)
                 isCheckedList = true
@@ -69,19 +81,16 @@ class SuggestionViewController: UIViewController {
         }
         
         if !isCheckedList {
-            let alert = UIAlertController(title: "[ 안내 ]", message: "습관추천이 필요하지 않을 시 [Jump]버튼으로 Swap을 이용하실 수 있습니다", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(okButton)
-            present(alert, animated: true, completion: nil)
+            presentAlert(title: "[ 안내 ]", message: "습관추천이 필요하지 않을 시 [Jump]버튼으로 Swap을 이용하실 수 있습니다.")
         }
         
-        if let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainViewController") {
-            mainVC.modalPresentationStyle = .fullScreen
-            present(mainVC, animated: true)
-        }
+        guard let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainViewController") else { return }
+        mainVC.modalPresentationStyle = .fullScreen
+        present(mainVC, animated: true)
     }
 }
 
+// MARK: UITableViewDataSource
 extension SuggestionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -101,6 +110,7 @@ extension SuggestionViewController: UITableViewDelegate {
     
 }
 
+// TODO: Table로 구현
 class SuggestionTableViewCell: UITableViewCell {
     
 }

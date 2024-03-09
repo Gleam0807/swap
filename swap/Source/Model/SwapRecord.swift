@@ -34,5 +34,4 @@ class SwapRecord: Object {
         self.thirdImage = thirdImage
         self.fourthImage = fourthImage
     }
-
 }

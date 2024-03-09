@@ -1,29 +1,11 @@
 //
-//  UIViewController++Extension.swift
+//  DateFormatter.swift
 //  swap
 //
-//  Created by SUNG on 2/18/24.
+//  Created by SUNG on 3/5/24.
 //
 
-import UIKit
-
-extension UIViewController {
-    func isDateInRange(startDate: Date, endDate: Date, target: Date) -> Bool {
-        let isStarted = startDate <= target
-        let isEnd = endDate < target
-        return startDate == endDate ? true : isStarted && !isEnd
-    }
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
+import Foundation
 
 extension DateFormatter {
     var displayDateFormatter: DateFormatter {
@@ -33,6 +15,7 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }
+    
     var recordDisplayDateFormatter: DateFormatter {
         let formatter = self
         formatter.dateFormat = "yyyy년 MM월 dd일"
@@ -40,6 +23,7 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }
+    
     var recordProgressDateFormatter: DateFormatter {
         let formatter = self
         formatter.dateFormat = "yy/MM/dd"
@@ -47,18 +31,20 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }
-    var currentConvertedDate: DateFormatter {
-        let formatter = self
-        formatter.dateFormat = "yyyy-mm-dd HH:mm:ss"
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-        return formatter
-    }
-    var alarmConvertedDate: DateFormatter {
+    
+    var alarmConvertedDateFormatter: DateFormatter {
         let formatter = self
         formatter.dateFormat = "HH:mm:ss"
         formatter.locale = Locale(identifier: "ko_kr")
         formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return formatter
     }
+    
+    var calendarDisplayDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        return formatter
+     }
 }

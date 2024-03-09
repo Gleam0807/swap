@@ -8,14 +8,18 @@
 import UIKit
 
 class TrophyViewController: UIViewController {
-    //MARK: Outlet
+    // MARK: Properties
+    let imageLabelList: [String] = ["1회 방문기념", "30회 방문기념", "100회 방문기념", "200회 방문기념", "300회 방문기념"]
+    var imageViewList: [UIImage] = []
+    
+    // MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    var imageViewList: [UIImage] = []
-    var imageLabelList: [String] = ["1회 방문기념", "30회 방문기념", "100회 방문기념", "200회 방문기념", "300회 방문기념"]
     
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tabBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -24,6 +28,7 @@ class TrophyViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
+        
         visitImageAppend()
     }
     
@@ -74,39 +79,34 @@ class TrophyViewController: UIViewController {
         }
     }
     
+}
+
+extension TrophyViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == tabBar.items?[0] {
             presentTabBar(withIdentifier: "MainViewController")
         } else if item == tabBar.items?[1] {
             presentTabBar(withIdentifier: "AttaintViewController")
-        } else if item == tabBar.items?[2] {
-     
         }
     }
 }
 
-extension TrophyViewController: UITabBarDelegate {
-    
-}
-
+// MARK: UICollectionViewDelegate
 extension TrophyViewController: UICollectionViewDelegate {
     
 }
 
+// MARK: UICollectionViewDataSource
 extension TrophyViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageViewList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrohpyCollectionViewCell", for: indexPath) as! TrohpyCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrohpyCollectionViewCell", for: indexPath) as? TrohpyCollectionViewCell else { return UICollectionViewCell() }
         cell.firstImage.image = imageViewList[indexPath.item]
         cell.trohpyLabel.text = imageLabelList[indexPath.row]
         return cell
     }
 }
 
-class TrohpyCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var firstImage: UIImageView!
-    @IBOutlet weak var trohpyLabel: UILabel!
-}

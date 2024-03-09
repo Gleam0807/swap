@@ -15,7 +15,7 @@ protocol SwapCompletedListRepositoryType {
     func delete(swapId: Int)
     func completeCheckfilter(_ swapId: Int, _ completedDate: Date) -> [SwapCompletedList]
     func completeCountfilter(_ swapId: Int) -> Int?
-    func completedfilter(_ swapId: Int, _ target: String) -> [Int]
+    func completedfilter(_ swapId: Int, year: Int?, month: Month) -> [Int]
 }
 
 class SwapCompletedListRepository: SwapCompletedListRepositoryType {
@@ -59,7 +59,18 @@ class SwapCompletedListRepository: SwapCompletedListRepositoryType {
         return Array(realm.objects(SwapCompletedList.self).filter("swapId == %@ AND isCompleted == true", swapId)).count
     }
     
-    func completedfilter(_ swapId: Int, _ target: String) -> [Int] {
+    func completedfilter(_ swapId: Int, year: Int?, month: Month) -> [Int] {
+        guard let viewYear = year else { return [] }
+        let currentYear = Calendar.current.component(.year, from: Date())
+        var realViewYear = viewYear
+        
+        if currentYear != viewYear {
+            realViewYear -= 1
+        }
+        
+        let monthString = String(format: "%02d", month.rawValue)
+        let targetDateString = "\(realViewYear)\(monthString)"
+        
         var dayLists: [Int] = []
         let completedLists = realm.objects(SwapCompletedList.self)
             .filter("swapId == %@ AND isCompleted == true ", swapId)
@@ -71,7 +82,8 @@ class SwapCompletedListRepository: SwapCompletedListRepositoryType {
             let replaceDate = dateString.replacingOccurrences(of: "-", with: "")
             let startIndex = replaceDate.index(replaceDate.startIndex, offsetBy: 6)
             let substring = replaceDate[..<startIndex]
-            if substring == target {
+            
+            if substring == targetDateString {
                 let day = Calendar.current.component(.day, from: completedList.completedDate)
                 dayLists.append(day)
             }

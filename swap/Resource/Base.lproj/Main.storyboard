@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Nick Name Setting View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="swap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NickNameSettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="NickNameSettingViewController" customModule="swap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -381,7 +381,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="SuggestionTableView" destination="JA8-Mv-Tkf" id="WcU-cT-uxx"/>
+                        <outlet property="suggestionTableView" destination="JA8-Mv-Tkf" id="MWh-lC-XBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZh-Ly-4tR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -502,8 +502,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MainBackgroundColor"/>
                                         <connections>
-                                            <outlet property="checkButton" destination="G3w-25-GVb" id="YF3-pM-hTq"/>
-                                            <outlet property="titleLabel" destination="B1H-im-3c4" id="Z1j-i4-wOa"/>
+                                            <outlet property="checkButton" destination="G3w-25-GVb" id="uH4-Pf-xht"/>
+                                            <outlet property="titleLabel" destination="B1H-im-3c4" id="tAo-6U-9Hq"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewNoneCell" rowHeight="69" id="3Iu-Qv-bmo" customClass="MainTableViewNoneCell" customModule="swap" customModuleProvider="target">
@@ -964,8 +964,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MainBackgroundColor"/>
                                         <connections>
-                                            <outlet property="completedView" destination="8oq-tW-I4P" id="tUN-z2-FDi"/>
-                                            <outlet property="titelLabel" destination="wYa-6l-uTZ" id="Y6P-xn-ZzD"/>
+                                            <outlet property="completedView" destination="8oq-tW-I4P" id="7dQ-gu-bXx"/>
+                                            <outlet property="titelLabel" destination="wYa-6l-uTZ" id="pT0-4u-wdU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1719,8 +1719,8 @@
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="65" height="110"/>
                                                 <connections>
-                                                    <outlet property="firstImage" destination="fzY-MU-89M" id="GnR-Lf-r1D"/>
-                                                    <outlet property="trohpyLabel" destination="KHc-YC-kyH" id="VIu-yS-hJ6"/>
+                                                    <outlet property="firstImage" destination="fzY-MU-89M" id="XR5-W3-oPA"/>
+                                                    <outlet property="trohpyLabel" destination="KHc-YC-kyH" id="paI-pV-lFo"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -1894,7 +1894,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="CollectionViewCell" id="OTR-Te-bqT" customClass="CollectionViewCell" customModule="swap" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SeletedImageViewCell" reuseIdentifier="SeletedImageViewCell" id="OTR-Te-bqT" customClass="SeletedImageViewCell" customModule="swap" customModuleProvider="target">
                                                 <rect key="frame" x="0.66666666666666663" y="0.0" width="360" height="540"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Szg-9E-gvx">
@@ -1942,10 +1942,10 @@
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <connections>
-                                                    <outlet property="firstImage" destination="Fho-R9-Jca" id="Of1-OR-2UD"/>
-                                                    <outlet property="fourthImage" destination="6bU-tG-NKv" id="C0I-SR-Hg3"/>
-                                                    <outlet property="secondImage" destination="5F9-qk-MZ2" id="b5s-Bw-y5L"/>
-                                                    <outlet property="thirdImage" destination="6Qd-XO-8RE" id="wMb-x6-72K"/>
+                                                    <outlet property="firstImage" destination="Fho-R9-Jca" id="K5j-fB-ZUa"/>
+                                                    <outlet property="fourthImage" destination="6bU-tG-NKv" id="gKv-R3-StZ"/>
+                                                    <outlet property="secondImage" destination="5F9-qk-MZ2" id="8dc-C5-keB"/>
+                                                    <outlet property="thirdImage" destination="6Qd-XO-8RE" id="i9s-4L-7L9"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -2070,16 +2070,16 @@
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -5,8 +5,7 @@
 //  Created by SUNG on 2/24/24.
 //
 
-import Foundation
-import PhotosUI
+import UIKit
 import RealmSwift
 
 protocol SwapRecordRepositoryType {
@@ -47,14 +46,13 @@ class SwapRecordRepository: SwapRecordRepositoryType {
     }
     
     func update(swapId: Int, recordDate: Date, memo: String, images: [UIImage]) {
-        guard let swapRecord = realm.objects(SwapRecord.self).filter("swapId == %@ AND recordDate == %@", swapId, recordDate).first else {
-            return
-        }
+        guard let swapRecord = realm.objects(SwapRecord.self).filter("swapId == %@ AND recordDate == %@", swapId, recordDate).first else { return }
         try! realm.write {
             // 이미지 데이터를 Data로 변환하여 swapRecord의 imagesData에 저장
             if !images.isEmpty {
                 for (index, image) in images.prefix(4).enumerated() {
                     let imageData = image.jpegData(compressionQuality: 0.8)
+                    
                     switch index {
                         case 0: swapRecord.firstImage = imageData
                         case 1: swapRecord.secondImage = imageData
@@ -64,6 +62,7 @@ class SwapRecordRepository: SwapRecordRepositoryType {
                     }
                 }
             }
+            
             swapRecord.memo = memo
         }
     }
@@ -73,9 +72,11 @@ class SwapRecordRepository: SwapRecordRepositoryType {
     }
     
     func fetchImages(swapId: Int, recordDate: Date) -> [Data?] {
-        guard let storedRecord = realm.objects(SwapRecord.self)
-                                     .filter("swapId == %@ AND recordDate == %@", swapId, recordDate)
-                                     .first else {
+        guard let storedRecord = realm
+            .objects(SwapRecord.self)
+            .filter("swapId == %@ AND recordDate == %@", swapId, recordDate)
+            .first
+        else {
             return []
         }
         

@@ -9,45 +9,68 @@ import UIKit
 import FSCalendar
 import RealmSwift
 
-protocol NickNameUpdateDelegate {
-    func nickNameUpdate()
+//MARK : Protocols
+protocol UpdateNickNameDelegate {
+    func updateNickName()
 }
 
 protocol SwapDataDelegate {
     func reloadData()
 }
 
-class MainViewController: UIViewController {
-    let swapListRepository = SwapListRepository()
-    let swapCompletedListRepository = SwapCompletedListRepository()
-    let swapRecordRepository = SwapRecordRepository()
-    //MARK: Outlet
+final class MainViewController: UIViewController {
+    // MARK: Properties
+    private let swapListRepository = SwapListRepository()
+    private let swapCompletedListRepository = SwapCompletedListRepository()
+    private let swapRecordRepository = SwapRecordRepository()
+    
+    // MARK: Outlets
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var weekCalendar: FSCalendar!
     @IBOutlet weak var calendarHeader: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     
-    var calendarDate = Date()
+    private var calendarDate = Date()
     
-    let headerDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월"
-        return formatter
-    }()
-    
+//    let headerDateFormatter: DateFormatter = {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy년 MM월"
+//        return formatter
+//    }()
+    // MARK: View Life Cycle
     override func viewDidLoad() {
-//                        for key in UserDefaults.standard.dictionaryRepresentation().keys {
-//                            UserDefaults.standard.removeObject(forKey: key.description)
-//                        } // <userdefaults clear code>
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
-        dismissKeyboard()
+        
+        tabBar.delegate = self
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        
+        configureKeyboard()
+        configureWeekCalendar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let nickName = fetchNickName() {
+            nicknameLabel.text = "\(nickName)님"
+        }
+        
+        swapListRepository.isSwapInRange(target: calendarDate)
+        self.mainTableView.reloadData()
+        weekCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .systemRed
+    }
+    
+    // MARK: Configure
+    private func configureKeyboard() {
+        hideKeyboardWhenTappedAround()
+        dismissKeyboard()
+    }
+    
+    private func configureWeekCalendar() {
         weekCalendar.dataSource = self
         weekCalendar.delegate = self
-        tabBar.delegate = self
         
         weekCalendar.scope = .week
         weekCalendar.locale = Locale(identifier: "ko_kr")
@@ -71,58 +94,46 @@ class MainViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if let nickName = fetchUserDefaults(key: "nickname") {
-            nicknameLabel.text = "\(nickName)님"
-        }
-        swapListRepository.isSwapInRange(target: calendarDate)
-        self.mainTableView.reloadData()
-        weekCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .systemRed
+    // MARK: Functions
+    func fetchNickName() -> String? {
+        return UserDefaults.standard.string(forKey: "nickname")
     }
     
-    //MARK: Function
-    func fetchUserDefaults(key: String) -> String? {
-        return UserDefaults.standard.string(forKey: key)
-    }
-    
-    func presentTabBar(withIdentifier identifier: String) {
+    private func presentTabBar(withIdentifier identifier: String) {
         if let viewController = storyboard?.instantiateViewController(withIdentifier: identifier) {
             viewController.modalPresentationStyle = .fullScreen
             present(viewController, animated: false)
         }
     }
     
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item == tabBar.items?[0] {
-            
-        } else if item == tabBar.items?[1] {
-            presentTabBar(withIdentifier: "AttaintViewController")
-        } else if item == tabBar.items?[2] {
-            presentTabBar(withIdentifier: "TrophyViewController")
-        }
+    /// - NOTE: UserDefaults를 삭제하는 코드
+    // func clearUserDefaultDate() {
+        // for key in UserDefaults.standard.dictionaryRepresentation().keys {
+        //     UserDefaults.standard.removeObject(forKey: key.description)
+        // }
+    // }
+    
+    // MARK: Actions
+    @IBAction func calendarAddButtonClicked(_ sender: UIButton) {
+        guard let calendarAddVC = storyboard?.instantiateViewController(withIdentifier: "CalendarAddViewController") as? CalendarAddViewController else { return }
+        calendarAddVC.currentDate = calendarDate
+        calendarAddVC.swapDataDelegate = self
+        present(calendarAddVC, animated: true)
     }
     
-    //MARK: Action
-    @IBAction func calendarAddButtonClicked(_ sender: UIButton) {
-        if let calendarAddVC = storyboard?.instantiateViewController(withIdentifier: "CalendarAddViewController") as? CalendarAddViewController {
-            calendarAddVC.currentDate = calendarDate
-            calendarAddVC.swapDataDelegate = self
-            present(calendarAddVC, animated: true)
-        }
-    }
     @IBAction func settingButtonClicked(_ sender: UIButton) {
-        if let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingModalViewController") as? SettingModalViewController {
-            settingVC.nickNameUpdateDelegate = self
-            present(settingVC, animated: true)
-        }
+        guard let settingVC = storyboard?.instantiateViewController(withIdentifier: "SettingModalViewController") as? SettingModalViewController else { return }
+        settingVC.UpdateNickNameDelegate = self
+        present(settingVC, animated: true)
     }
+    
     @IBAction func checkButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
         swapCompletedListRepository.addToUpdate(SwapCompletedList(swapId: sender.tag, completedDate: calendarDate, isCompleted: sender.isSelected))
     }
-    
 }
 
+//MARK: UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func compltedUpdate(_ cell: MainTableViewCell, _ useIndex: Int) {
         if let completedItem = swapCompletedListRepository.completeCheckfilter(useIndex, calendarDate).first {
@@ -173,6 +184,7 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
@@ -188,10 +200,18 @@ extension MainViewController: UITableViewDelegate {
     }
 }
 
+// MAKR: UITabBarDelegate
 extension MainViewController: UITabBarDelegate {
-    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item == tabBar.items?[1] {
+            presentTabBar(withIdentifier: "AttaintViewController")
+        } else if item == tabBar.items?[2] {
+            presentTabBar(withIdentifier: "TrophyViewController")
+        }
+    }
 }
 
+// MARK: FSCalendarDelegate & FSCalendarDelegateAppearance
 extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let currentPage = weekCalendar.currentPage
@@ -207,35 +227,24 @@ extension MainViewController: FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let day = Calendar.current.component(.weekday, from: date) - 1
-        if day == 0 {
-            return .systemRed
-        } else {
-            return .swapTextColor
-        }
+        return day == 0 ? .systemRed : .swapTextColor
     }
 }
 
+// MARK: FSCalendarDataSource
 extension MainViewController: FSCalendarDataSource {}
 
-class MainTableViewCell: UITableViewCell {
-    static let identifier = "MainTableViewCell"
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var checkButton: UIButton!
-}
-
-class MainTableViewNoneCell: UITableViewCell {
-    static let identifier = "MainTableViewNoneCell"
-}
-
+// MARK: SwapDataDelegate
 extension MainViewController: SwapDataDelegate {
     func reloadData() {
         self.mainTableView.reloadData()
     }
 }
 
-extension MainViewController: NickNameUpdateDelegate {
-    func nickNameUpdate() {
-        if let nickName = fetchUserDefaults(key: "nickname") {
+// MARK: UpdateNickNameDelegate
+extension MainViewController: UpdateNickNameDelegate {
+    func updateNickName() {
+        if let nickName = fetchNickName() {
             nicknameLabel.text = "\(nickName)님"
         }
     }

@@ -9,67 +9,70 @@ import UIKit
 import FSCalendar
 
 protocol AlarmVCDataDelegate {
-    func alarmDateSet(alramTime: Date)
+    func alarmDateSet(alarmTime: Date)
 }
 
-class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
-    let swapListRepository = SwapListRepository()
-    //MARK: Outlet
+class CalendarAddViewController: UIViewController {
+    // MARK: Properties
+    var swapDataDelegate: SwapDataDelegate!
+    var currentDate: Date?
+    
+    private let swapListRepository = SwapListRepository()
+    private let options = ["미사용", "사용"]
+    private var isDropdownShow = false
+    private var isAlram = false
+    /// alram 설정 날짜
+    private var seletedTimeDate: Date!
+    /// 습관 시작 날짜
+    private var selectedStartDate: Date?
+    /// 습관 끝 날짜
+    private var selectedEndDate: Date?
+    
+    // MARK: UI
+    private var alarmDropDownTableView: UITableView!
+    private var monthCalendar: FSCalendar!
+    
+    // MARK: Outlets
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var alramSeleted: UIButton!
-    var alramDropDownTableView: UITableView!
-    let options = ["미사용", "사용"]
-    var isDropdownShow = false
-    var isAlram = false
-    var currentDate: Date?
-    var seletedTimeDate: Date!
-    
     @IBOutlet weak var startDateButton: UIButton!
     @IBOutlet weak var endDateButton: UIButton!
-    var monthCalendar: FSCalendar!
-    var selectedStartDate: Date?
-    var selectedEndDate: Date?
-    var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-        return formatter
-     }()
     
-    var swapDataDelegate: SwapDataDelegate!
-    
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         hideKeyboardWhenTappedAround()
         dismissKeyboard()
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .systemRed
     }
     
-    //MARK: function
+    // MARK: Configure
     func setupViews() {
         // 알람 드랍다운 생성 및 설정
-        alramDropDownTableView = UITableView()
-        alramDropDownTableView.dataSource = self
-        alramDropDownTableView.delegate = self
-        alramDropDownTableView.isHidden = true
-        view.addSubview(alramDropDownTableView)
+        alarmDropDownTableView = UITableView()
+        alarmDropDownTableView.dataSource = self
+        alarmDropDownTableView.delegate = self
+        alarmDropDownTableView.isHidden = true
+        view.addSubview(alarmDropDownTableView)
         
-        alramDropDownTableView.translatesAutoresizingMaskIntoConstraints = false
+        alarmDropDownTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            alramDropDownTableView.topAnchor.constraint(equalTo: alramSeleted.bottomAnchor, constant: -5),
-            alramDropDownTableView.leadingAnchor.constraint(equalTo: alramSeleted.leadingAnchor),
-            alramDropDownTableView.widthAnchor.constraint(equalTo: alramSeleted.widthAnchor),
-            alramDropDownTableView.heightAnchor.constraint(equalToConstant: 80)
+            alarmDropDownTableView.topAnchor.constraint(equalTo: alramSeleted.bottomAnchor, constant: -5),
+            alarmDropDownTableView.leadingAnchor.constraint(equalTo: alramSeleted.leadingAnchor),
+            alarmDropDownTableView.widthAnchor.constraint(equalTo: alramSeleted.widthAnchor),
+            alarmDropDownTableView.heightAnchor.constraint(equalToConstant: 80)
         ])
-        alramDropDownTableView.backgroundColor = .swapInputColor
-        alramDropDownTableView.layer.masksToBounds = true
-        alramDropDownTableView.separatorStyle = .singleLine
-        alramDropDownTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        alarmDropDownTableView.backgroundColor = .swapInputColor
+        alarmDropDownTableView.layer.masksToBounds = true
+        alarmDropDownTableView.separatorStyle = .singleLine
+        alarmDropDownTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         // FSCalendar 생성 및 설정
         monthCalendar = FSCalendar(frame: CGRect(x: startDateButton.frame.minX, y: startDateButton.frame.maxY + 230, width: 200, height: 200))
@@ -99,108 +102,80 @@ class CalendarAddViewController: UIViewController, FSCalendarDelegate, FSCalenda
         view.addSubview(monthCalendar)
     }
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        if startDateButton.isSelected {
-            selectedStartDate = date
-            startDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
-            startDateButton.titleLabel?.font = .swapTextFont
-        } else if endDateButton.isSelected {
-            selectedEndDate = date
-            endDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
-            endDateButton.titleLabel?.font = .swapTextFont
-        }
-        calendar.isHidden = true
-    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        let day = Calendar.current.component(.weekday, from: date) - 1
-        if Calendar.current.shortWeekdaySymbols[day] == "일" {
-            return .systemRed
-        } else {
-            return .swapTextColor
-        }
-    }
-    
     //MARK: Action
     @IBAction func alramseletedButtonClicked(_ sender: UIButton) {
         isDropdownShow.toggle()
-        alramDropDownTableView.isHidden = !isDropdownShow
+        alarmDropDownTableView.isHidden = !isDropdownShow
     }
-    @IBAction func alarmButtonClicked(_ sender: UIButton) {        
+    
+    @IBAction func alarmButtonClicked(_ sender: UIButton) {
         if isAlram {
-            if let alarmVC = storyboard?.instantiateViewController(withIdentifier: "AlarmModalViewController") as? AlarmModalViewController {
-                alarmVC.modalPresentationStyle = .overFullScreen
-                alarmVC.alarmVCDataDelegate = self
-                present(alarmVC, animated: true)
-            }
+            guard let alarmVC = storyboard?.instantiateViewController(withIdentifier: "AlarmModalViewController") as? AlarmModalViewController else { return }
+            alarmVC.modalPresentationStyle = .overFullScreen
+            alarmVC.alarmVCDataDelegate = self
+            present(alarmVC, animated: true)
         }
     }
+    
     @IBAction func startCalendarHidden(_ sender: UIButton) {
         monthCalendar.frame = CGRect(x: sender.frame.minX, y: sender.frame.maxY + 235, width: 200, height: 200)
-        monthCalendar.isHidden = monthCalendar.isHidden ? false : true
+        monthCalendar.isHidden = !monthCalendar.isHidden
         sender.isSelected = !monthCalendar.isHidden
         endDateButton.isSelected = false
     }
+    
     @IBAction func endCalendarHidden(_ sender: UIButton) {
         monthCalendar.frame = CGRect(x: sender.frame.minX, y: sender.frame.maxY + 305, width: 200, height: 200)
-        monthCalendar.isHidden = monthCalendar.isHidden ? false : true
+        monthCalendar.isHidden = !monthCalendar.isHidden
         sender.isSelected = !monthCalendar.isHidden
         startDateButton.isSelected = false
     }
+    
     @IBAction func addButtonClicked(_ sender: UIButton) {
-        guard let title = titleLabel.text, !title.isEmpty,
-              let startDate = selectedStartDate,
-              let endDate = selectedEndDate
+        guard 
+            let title = titleLabel.text,
+            !title.isEmpty,
+            let startDate = selectedStartDate,
+            let endDate = selectedEndDate
         else {
-            let alert = UIAlertController(title: "올바르지 않은 정보", message: "습관명을 입력해주세요.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(okButton)
-            present(alert, animated: true, completion: nil)
+            presentAlert(title: "올바르지 않은 정보", message: "습관명을 입력해주세요.")
             return
         }
         
         guard startDate <= endDate else {
-            let alert = UIAlertController(title: "올바르지 않은 날짜", message: "시작일이 종료일보다 이전이어야 합니다.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(okButton)
-            present(alert, animated: true, completion: nil)
+            presentAlert(title: "올바르지 않은 날짜", message: "시작일이 종료일보다 이전이어야 합니다.")
             return
         }
         
         if let currentDate = currentDate {
             let isDateInRange = isDateInRange(startDate: startDate, endDate: endDate, target: currentDate)
             swapListRepository.add(SwapList(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: isDateInRange))
-            
         } else {
             swapListRepository.add(SwapList(title: title, startDate: startDate, endDate: endDate, isAlarm: isAlram, isDateCheck: false))
         }
+        
         swapDataDelegate.reloadData()
-        if isAlram == true {
+        
+        if isAlram {
             swapListRepository.scheduleNotificationsForRange(title: title, startDate: startDate, endDate: endDate, selectedTimeDate: seletedTimeDate)
         }
         self.dismiss(animated: true)
     }
+    
     @IBAction func cancelButtonClicked(_ sender: Any) {
         self.dismiss(animated: true)
     }
-    
-    
-    
 }
 
-extension CalendarAddViewController: AlarmVCDataDelegate {
-    func alarmDateSet(alramTime: Date) {
-        seletedTimeDate = alramTime
-    }
-}
-
+// MARK: UITableViewDelegate
 extension CalendarAddViewController: UITableViewDelegate {
     
 }
 
+// MARK: UITableViewDataSource
 extension CalendarAddViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        options.count
+        return options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -218,11 +193,42 @@ extension CalendarAddViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         alramSeleted.setTitle(options[indexPath.row], for: .normal)
         isDropdownShow = false
-        alramDropDownTableView.isHidden = true
+        alarmDropDownTableView.isHidden = true
         if options[indexPath.row] == "사용"{
             isAlram = true
         } else {
             isAlram = false
         }
+    }
+}
+
+// MARK: FSCalendarDelegate
+extension CalendarAddViewController: FSCalendarDelegate {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        if startDateButton.isSelected {
+            selectedStartDate = date
+            startDateButton.setTitle(DateFormatter().calendarDisplayDateFormatter.string(from: date), for: .normal)
+            startDateButton.titleLabel?.font = .swapTextFont
+        } else if endDateButton.isSelected {
+            selectedEndDate = date
+            endDateButton.setTitle(DateFormatter().calendarDisplayDateFormatter.string(from: date), for: .normal)
+            endDateButton.titleLabel?.font = .swapTextFont
+        }
+        calendar.isHidden = true
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        let day = Calendar.current.component(.weekday, from: date) - 1
+        let isDay = Calendar.current.shortWeekdaySymbols[day] == "일"
+        return isDay ? .systemRed : .swapTextColor
+    }
+}
+
+extension CalendarAddViewController: FSCalendarDataSource {}
+
+// MARK: AlarmVCDataDelegate
+extension CalendarAddViewController: AlarmVCDataDelegate {
+    func alarmDateSet(alarmTime: Date) {
+        seletedTimeDate = alarmTime
     }
 }

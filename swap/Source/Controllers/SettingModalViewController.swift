@@ -9,41 +9,39 @@ import UIKit
 import MessageUI
 
 class SettingModalViewController: UIViewController {
-    var nickNameUpdateDelegate: NickNameUpdateDelegate!
-    //MARK: Outlet
-    @IBOutlet weak var nicknameSettingLabel: UITextField!
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? 1.0    // 앱 버전
+    // MARK: Properties
+    var UpdateNickNameDelegate: UpdateNickNameDelegate!
     
+    // MARK: Outlets
+    @IBOutlet weak var nicknameSettingLabel: UITextField!
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? 1.0
+    
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         hideKeyboardWhenTappedAround()
         dismissKeyboard()
     }
     
-    //MARK: Action
+    // MARK: Actions
     @IBAction func cancelButtonClicked(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         guard let nickname = nicknameSettingLabel.text, !nickname.isEmpty else {
-            let alert = UIAlertController(title: "올바르지 않은 닉네임", message: "닉네임을 다시 입력해주세요.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(okButton)
-            present(alert, animated: true, completion: nil)
+            presentAlert(title: "올바르지 않은 닉네임", message: "닉네임을 다시 입력해주세요.")
             return
         }
 
         UserDefaults.standard.set(nickname, forKey: "nickname")
-        nickNameUpdateDelegate.nickNameUpdate()
+        UpdateNickNameDelegate.updateNickName()
         self.dismiss(animated: true)
     }
     
     @IBAction func detailInfoButtonClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "앱 정보", message: "Version: \(appVersion)", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
+        presentAlert(title: "앱 정보", message: "Version: \(appVersion)")
     }
     
     @IBAction func inquiryButtonClicked(_ sender: Any) {
@@ -59,21 +57,20 @@ class SettingModalViewController: UIViewController {
             self.present(composeVC, animated: true)
         } else {
             // 만약, 디바이스에 email 기능이 비활성화 일 때, 사용자에게 알림
-            let alertController = UIAlertController(title: "메일 계정 활성화 필요", message: "Mail 앱에서 사용자의 Email을 계정을 설정해 주세요.", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "확인", style: .default) { _ in
                 guard let mailSettingsURL = URL(string: UIApplication.openSettingsURLString + "&&path=MAIL") else { return }
                 if UIApplication.shared.canOpenURL(mailSettingsURL) {
                     UIApplication.shared.open(mailSettingsURL, options: [:], completionHandler: nil)
                 }
             }
-            alertController.addAction(alertAction)
-            
-            self.present(alertController, animated: true)
+            presentAlert(title: "메일 계정 활성화 필요", message: "Mail 앱에서 사용자의 Email을 계정을 설정해 주세요.", alertAction: alertAction)
         }
     }
 }
 
+// MARK: MFMailComposeViewControllerDelegate
 extension SettingModalViewController: MFMailComposeViewControllerDelegate {
+    // TODO: 메일 전송 성공여부 얼럿 추가
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result {
         case .sent:

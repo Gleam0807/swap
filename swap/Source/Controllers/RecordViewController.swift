@@ -9,10 +9,24 @@ import UIKit
 import FSCalendar
 import PhotosUI
 
-class RecordViewController: UIViewController {
-    let swapCompletedListRepository = SwapCompletedListRepository()
-    let swapRecordRepository = SwapRecordRepository()
-    //MARK: Outlet
+final class RecordViewController: UIViewController {
+    // MARK: Properties
+    var swapId: Int?
+    var swapTitle: String?
+    var startDate: Date?
+    var endDate: Date?
+    var selectedDate: Date?
+    
+    private let swapCompletedListRepository = SwapCompletedListRepository()
+    private let swapRecordRepository = SwapRecordRepository()
+    private var itemProviders: [NSItemProvider] = []
+    private var imageArray: [UIImage] = []
+    private var firstImageData: Data? = nil
+    private var secondImageData: Data? = nil
+    private var thirdImageData: Data? = nil
+    private var fourthImageData: Data? = nil
+    
+    // MARK: Outlets
     @IBOutlet weak var monthCalendar: FSCalendar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var memoTextView: UITextView!
@@ -21,27 +35,45 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var progressStartDateLabel: UILabel!
     @IBOutlet weak var progressEndDateLabel: UILabel!
     
-    var swapId: Int?
-    var swapTitle: String?
-    var startDate: Date?
-    var endDate: Date?
-    var selectedDate: Date?
-    var itemProviders: [NSItemProvider] = []
-    var imageArray: [UIImage] = []
-    var firstImageData: Data? = nil
-    var secondImageData: Data? = nil
-    var thirdImageData: Data? = nil
-    var fourthImageData: Data? = nil
-    
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleLabel.text = swapTitle
         hideKeyboardWhenTappedAround()
         dismissKeyboard()
-        monthCalendar.dataSource = self
-        monthCalendar.delegate = self
+        progressSetting()
+        
+        configureMemoTextView()
+        configureCollectionView()
+        configureMonthCalendar()
+    }
+    
+    // MARK: Configure
+    private func configureMemoTextView() {
+        memoTextView.delegate = self
+    
+        if let swapId = swapId,
+           let swapRecord = swapRecordRepository.selectedDateEqualToRecordedDate(swapId, selectedDate ?? Date()).first, !swapRecord.memo.isEmpty {
+            memoTextView.text = swapRecord.memo
+            memoTextView.textColor = .swapTextColor
+        } else {
+            memoTextView.text = "메모"
+            memoTextView.textColor = .lightGray
+        }
+        collectionView.isScrollEnabled = false
+    }
+    
+    private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        memoTextView.delegate = self
+        
+        collectionView.isScrollEnabled = false
+    }
+    
+    private func configureMonthCalendar() {
+        monthCalendar.dataSource = self
+        monthCalendar.delegate = self
         
         monthCalendar.appearance.headerMinimumDissolvedAlpha = 0
         monthCalendar.rowHeight = 30
@@ -58,7 +90,6 @@ class RecordViewController: UIViewController {
         monthCalendar.appearance.titleFont = .swapTextFont
         monthCalendar.appearance.titleDefaultColor = .swapTextColor
         monthCalendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
-        progressSetting()
         
         // 선택된 날짜 정보에 header에 표시
         if let selectedDate = selectedDate {
@@ -66,41 +97,29 @@ class RecordViewController: UIViewController {
             monthCalendar.appearance.headerDateFormat = headerText
             monthCalendar.select(selectedDate)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        titleLabel.text = swapTitle
-        if let swapId = swapId, let swapRecord = swapRecordRepository.selectedDateEqualToRecordedDate(swapId, selectedDate ?? Date()).first, !swapRecord.memo.isEmpty {
-            memoTextView.text = swapRecord.memo
-            memoTextView.textColor = .swapTextColor
-        } else {
-            memoTextView.text = "메모"
-            memoTextView.textColor = .lightGray
-        }
-        collectionView.isScrollEnabled = false
+        
         monthCalendar.calendarWeekdayView.weekdayLabels.first!.textColor = .systemRed
     }
     
-    func progressSetting() {
+    private func progressSetting() {
         progressView.transform = progressView.transform.scaledBy(x: 1, y: 0.8)
         progressView.clipsToBounds = true
         progressView.layer.cornerRadius = 10
         
-        if let startDate = startDate, let endDate = endDate, let swapId = swapId {
-            let calendar = Calendar.current
+        if let startDate = startDate, 
+           let endDate = endDate,
+           let swapId = swapId {
+           let calendar = Calendar.current
             progressStartDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:startDate))"
             progressEndDateLabel.text = "\(DateFormatter().recordProgressDateFormatter.string(from:endDate))"
-            let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day ?? 0
             guard let completedCount = swapCompletedListRepository.completeCountfilter(swapId) else { return }
-            
+            let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day ?? 0
             let progress = Float(completedCount) / Float(totalDays)
-            //let progressPercentage = Int(progress * 100)
             progressView.setProgress(progress, animated: true)
         }
     }
     
-    func showImage(for cell: CollectionViewCell) {
+    private func showImage(for cell: SeletedImageViewCell) {
         // 이미지를 표시할 UIImageView 배열
         let imageViews = [cell.firstImage, cell.secondImage, cell.thirdImage, cell.fourthImage]
         
@@ -122,6 +141,7 @@ class RecordViewController: UIViewController {
         }
     }
     
+    // MARK: Actions
     @IBAction func addButtonClicked(_ sender: UIButton) {
         guard let swapId = swapId,
               let title = swapTitle,
@@ -154,32 +174,25 @@ class RecordViewController: UIViewController {
         if swapRecordRepository.isDuplicate(swapId: swapId, recordDate: selectedDate) {
             swapRecordRepository.update(swapId: swapId, recordDate: selectedDate, memo: memo, images: imageArray)
         } else {
-            swapRecordRepository.add(SwapRecord(recordDate: selectedDate, swapId: swapId, title: title, startDate: startDate, endDate: endDate, memo: memo, firstImage: firstImageData, secondImage: secondImageData, thirdImage: thirdImageData, fourthImage: fourthImageData))
+            let newSwapRecord = SwapRecord(recordDate: selectedDate, swapId: swapId, title: title, startDate: startDate, endDate: endDate, memo: memo, firstImage: firstImageData, secondImage: secondImageData, thirdImage: thirdImageData, fourthImage: fourthImageData)
+            swapRecordRepository.add(newSwapRecord)
         }
+        
         self.dismiss(animated: true)
     }
+    
     @IBAction func cancelButtonClicked(_ sender: Any) {
         self.dismiss(animated: true)
     }
 }
 
-class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var firstImage: UIImageView!
-    @IBOutlet weak var secondImage: UIImageView!
-    @IBOutlet weak var thirdImage: UIImageView!
-    @IBOutlet weak var fourthImage: UIImageView!
-}
-
+// MARK: PHPickerViewControllerDelegate
 extension RecordViewController: PHPickerViewControllerDelegate {
-    // picker가 종료되면 동작하는 함수
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        // picker 화면에서 내리기
         picker.dismiss(animated: true)
         
-        // 만들어준 itemProviders에 Picker로 선택한 이미지정보를 전달
         itemProviders = results.map{ $0.itemProvider }
         collectionView.reloadData()
-        
     }
 }
 
@@ -196,13 +209,14 @@ extension RecordViewController: UICollectionViewDelegate {
     
 }
 
+// MARK: UICollectionViewDataSource
 extension RecordViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeletedImageViewCell", for: indexPath) as? SeletedImageViewCell else { return UICollectionViewCell() }
         if let swapId = swapId {
             let imageData = swapRecordRepository.fetchImages(swapId: swapId, recordDate: selectedDate ?? Date())
             if !imageData.isEmpty {
@@ -236,6 +250,7 @@ extension RecordViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: FSCalendarDelegate
 extension RecordViewController: FSCalendarDelegate {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let currentPage = monthCalendar.currentPage
@@ -255,7 +270,6 @@ extension RecordViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
         let eventScaleFactor: CGFloat = 7.0
         cell.eventIndicator.transform = CGAffineTransform(scaleX: eventScaleFactor, y: eventScaleFactor)
-        //cell.eventIndicator.color = UIColor.swapButtonColor?.withAlphaComponent(0.85)
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
@@ -264,45 +278,19 @@ extension RecordViewController: FSCalendarDelegate {
     
 }
 
+// MARK: FSCalendarDataSource
 extension RecordViewController: FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        if let startDate = startDate, let endDate = endDate {
-            if date >= startDate, date <= endDate {
-                return 1
-            }
-        }
-        return 0
+        guard let startDate = startDate, let endDate = endDate else { return 0 }
+        guard date >= startDate, date <= endDate else { return 0 }
+        return 1
     }
 }
 
+// MARK: FSCalendarDelegateAppearance
 extension RecordViewController: FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let day = Calendar.current.component(.weekday, from: date) - 1
-        if day == 0 {
-            return .systemRed
-        } else {
-            return .swapTextColor
-        }
-    }
-}
-
-extension UIImage {
-    func resize(targetSize: CGSize, opaque: Bool = false) -> UIImage? {
-        // 1. context를 획득 (사이즈, 투명도, scale 입력)
-        // scale의 값이 0이면 현재 화면 기준으로 scale을 잡고, sclae의 값이 1이면 self(이미지) 크기 기준으로 설정
-        UIGraphicsBeginImageContextWithOptions(targetSize, opaque, 1)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        context.interpolationQuality = .high
-        
-        // 2. 그리기
-        let newRect = CGRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
-        draw(in: newRect)
-        
-        // 3. 그려진 이미지 가져오기
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        // 4. context 종료
-        UIGraphicsEndImageContext()
-        return newImage
+        return day == 0 ? .systemRed : .swapTextColor
     }
 }
